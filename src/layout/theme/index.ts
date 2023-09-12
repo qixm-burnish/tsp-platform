@@ -8,14 +8,14 @@ import { type multipleScopeVarsOptions } from "@pureadmin/theme"
 const themeColors = {
   default: {
     subMenuActiveText: "#fff",
-    menuBg: "#001529",
-    menuHover: "#4091f7",
-    subMenuBg: "#0f0303",
-    subMenuActiveBg: "#4091f7",
-    menuText: "rgb(254 254 254 / 65%)",
+    menuBg: "#4181D9",
+    menuHover: "#4181D9",
+    subMenuBg: "#4181D9",
+    subMenuActiveBg: "#4181D9",
+    menuText: "rgb(255 255 255 / 65%)",
     sidebarLogo: "#002140",
     menuTitleHover: "#fff",
-    menuActiveBefore: "#4091f7",
+    menuActiveBefore: "#4181D9",
   },
   light: {
     subMenuActiveText: "#409eff",
@@ -112,7 +112,7 @@ const themeColors = {
  */
 export const genScssMultipleScopeVars = (): multipleScopeVarsOptions[] => {
   const result = [] as multipleScopeVarsOptions[]
-  Object.keys(themeColors).forEach((key) => {
+  Object.keys(themeColors).forEach(key => {
     result.push({
       scopeName: `layout-theme-${key}`,
       varsContent: `

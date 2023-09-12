@@ -8,9 +8,6 @@ import { MotionPlugin } from "@vueuse/motion"
 // import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive"
 
-// import Table from "@pureadmin/table";
-// import PureDescriptions from "@pureadmin/descriptions";
-
 // 引入重置样式
 import "./style/reset.scss"
 // 导入公共样式
@@ -38,7 +35,7 @@ app.component("FontIcon", FontIcon)
 import { Auth } from "@/components/ReAuth"
 app.component("Auth", Auth)
 
-getServerConfig(app).then(async (config) => {
+getServerConfig(app).then(async config => {
   app.use(router)
   await router.isReady()
   injectResponsiveStorage(app, config)

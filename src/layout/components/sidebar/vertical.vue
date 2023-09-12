@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import Logo from "./logo.vue"
 import { useRoute } from "vue-router"
 import { emitter } from "@/utils/mitt"
 import SidebarItem from "./sidebarItem.vue"
-import leftCollapse from "./leftCollapse.vue"
 import { useNav } from "@/layout/hooks/useNav"
 import { responsiveStorageNameSpace } from "@/config"
 import { storageLocal, isAllEmpty } from "@pureadmin/utils"
@@ -11,10 +9,12 @@ import { findRouteByPath, getParentPaths } from "@/router/utils"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue"
 
+import logoUri from "@/assets/layout/logo.png"
+
 const route = useRoute()
 const showLogo = ref(storageLocal().getItem<StorageConfigs>(`${responsiveStorageNameSpace()}configure`)?.showLogo ?? true)
 
-const { device, pureApp, isCollapse, menuSelect, toggleSideBar } = useNav()
+const { device, pureApp, isCollapse, menuSelect } = useNav()
 
 const subMenuData = ref([])
 
@@ -50,7 +50,7 @@ watch(
 onMounted(() => {
   getSubMenuData()
 
-  emitter.on("logoChange", (key) => {
+  emitter.on("logoChange", key => {
     showLogo.value = key
   })
 })
@@ -65,15 +65,48 @@ onBeforeUnmount(() => {
   <div v-loading="loading" :class="['sidebar-container', showLogo ? 'has-logo' : '']">
     <Logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper" :class="[device === 'mobile' ? 'mobile' : 'pc']">
-      <el-menu router unique-opened mode="vertical" class="outer-most select-none" :collapse="isCollapse" :default-active="defaultActive" :collapse-transition="false">
-        <sidebar-item v-for="routes in menuData" :key="routes.path" :item="routes" :base-path="routes.path" class="outer-most select-none" />
+      <el-menu
+        router
+        unique-opened
+        mode="vertical"
+        class="select-none outer-most"
+        :collapse="isCollapse"
+        :default-active="defaultActive"
+        :collapse-transition="false"
+      >
+        <sidebar-item
+          v-for="routes in menuData"
+          :key="routes.path"
+          :item="routes"
+          :base-path="routes.path"
+          class="select-none outer-most"
+        />
       </el-menu>
     </el-scrollbar>
-    <leftCollapse v-if="device !== 'mobile'" :is-active="pureApp.sidebar.opened" @toggleClick="toggleSideBar" />
+    <div class="sidebar-logo">
+      <RouterLink to="/">
+        <img :src="logoUri" class="logo" />
+      </RouterLink>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+.sidebar-container {
+  .sidebar-logo {
+    display: flex;
+    justify-content: center;
+
+    > a {
+      width: auto !important;
+      padding-left: 0 !important;
+    }
+  }
+  .logo {
+    width: 100px;
+  }
+}
+
 :deep(.el-loading-mask) {
   opacity: 0.45;
 }
