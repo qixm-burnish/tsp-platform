@@ -10,6 +10,9 @@ dependencies:
   '@pureadmin/utils':
     specifier: ^1.9.6
     version: 1.9.6(echarts@5.4.2)(vue@3.3.4)
+  '@vuemap/vue-amap':
+    specifier: ^2.0.22
+    version: 2.0.22(vue@3.3.4)
   '@vueuse/core':
     specifier: ^10.2.0
     version: 10.2.0(vue@3.3.4)
@@ -269,6 +272,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /@amap/amap-jsapi-types@0.0.10:
+    resolution: {integrity: sha512-znvqLGPBy9NRCr1/3650o9vL1aYl/f1YK0+UGn8lBUvHJXND6uMDJGJsl43cEYglw9/tblwIRxjm4pIotOvSCQ==}
+    dev: false
+
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
     engines: {node: '>=6.0.0'}
@@ -518,6 +525,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@babel/runtime@7.22.15:
+    resolution: {integrity: sha512-T0O+aa+4w0u06iNmapipJXMV4HoUir03hpx3/YqXXhu9xim3w+dVphjFWl1OH8NbZHw5Lbm9k45drDkgq2VNNA==}
+    engines: {node: '>=6.9.0'}
+    dependencies:
+      regenerator-runtime: 0.14.0
+    dev: false
 
   /@babel/standalone@7.22.5:
     resolution: {integrity: sha512-6Lwhzral4YDEbIM3dBC8/w0BMDvOosGBGaJWSORLkerx8byawkmwwzXKUB0jGlI1Zp90+cK2uyTl62UPtLbUjQ==}
@@ -1129,6 +1143,18 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
+  /@math.gl/core@3.6.3:
+    resolution: {integrity: sha512-jBABmDkj5uuuE0dTDmwwss7Cup5ZwQ6Qb7h1pgvtkEutTrhkcv8SuItQNXmF45494yIHeoGue08NlyeY6wxq2A==}
+    dependencies:
+      '@babel/runtime': 7.22.15
+      '@math.gl/types': 3.6.3
+      gl-matrix: 3.4.3
+    dev: false
+
+  /@math.gl/types@3.6.3:
+    resolution: {integrity: sha512-3uWLVXHY3jQxsXCr/UCNPSc2BG0hNUljhmOBt9l+lNFDp7zHgm0cK2Tw4kj2XfkJy4TgwZTBGwRDQgWEbLbdTA==}
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1321,6 +1347,24 @@ packages:
   /@tsconfig/node16@1.0.4:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
+
+  /@turf/helpers@6.5.0:
+    resolution: {integrity: sha512-VbI1dV5bLFzohYYdgqwikdMVpe7pJ9X3E+dlr425wa2/sMJqYDhTO++ec38/pcPvPE6oD9WEEeU3Xu3gza+VPw==}
+    dev: false
+
+  /@turf/intersect@6.5.0:
+    resolution: {integrity: sha512-2legGJeKrfFkzntcd4GouPugoqPUjexPZnOvfez+3SfIMrHvulw8qV8u7pfVyn2Yqs53yoVCEjS5sEpvQ5YRQg==}
+    dependencies:
+      '@turf/helpers': 6.5.0
+      '@turf/invariant': 6.5.0
+      polygon-clipping: 0.15.3
+    dev: false
+
+  /@turf/invariant@6.5.0:
+    resolution: {integrity: sha512-Wv8PRNCtPD31UVbdJE/KVAWKe7l6US+lJItRR/HOEW3eh+U/JwRCSUl/KZ7bmjM/C+zLNoreM2TU6OoLACs4eg==}
+    dependencies:
+      '@turf/helpers': 6.5.0
+    dev: false
 
   /@types/estree@0.0.39:
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
@@ -1732,6 +1776,51 @@ packages:
     transitivePeerDependencies:
       - typescript
     dev: true
+
+  /@vuemap/amap-jsapi-loader@1.0.3:
+    resolution: {integrity: sha512-GdRWm7IAto18TJLySjm8JehNPlvYW8cNaqqnb1CQHvpr7k3zkGdvCrv+7H/Op1HaLMCt4LQsUjEAkiAqUfqZ7A==}
+    dev: false
+
+  /@vuemap/amap-xyz-layer@0.0.7:
+    resolution: {integrity: sha512-gmme3hjZuADGpdnT/FGE94bN09goJJRayWHGND/1FzOboFMceyfoWs45+beIQFrR6w+0HsjfBssPWCXc+UvIiA==}
+    engines: {node: '>= 16'}
+    dependencies:
+      '@math.gl/core': 3.6.3
+      earcut: 2.2.4
+      gl-matrix: 3.4.3
+    dev: false
+
+  /@vuemap/district-cluster@0.0.9:
+    resolution: {integrity: sha512-Ew+3feGbVthSKWLkI1NbzD8p6S/Sp0bQGFHtB0bFgyi8liOu9OnMhqZLhmmiX3lOYElqmEHmVvXTzTtKyKP2lQ==}
+    engines: {node: '>= 16'}
+    dependencies:
+      '@amap/amap-jsapi-types': 0.0.10
+      '@turf/helpers': 6.5.0
+      '@turf/intersect': 6.5.0
+      topojson-client: 3.1.0
+    dev: false
+
+  /@vuemap/vue-amap-util@2.0.7(vue@3.3.4):
+    resolution: {integrity: sha512-POv4dRwweE+q+rnREZmPDc0LqUHVO8PMncJRS1D3jXksQgMQNg+WK+yCDpvPqVIaAQSteeCV/NOwF0ZX/6vJXg==}
+    peerDependencies:
+      vue: '>=3.2.0'
+    dependencies:
+      uppercamelcase: 1.1.0
+      vue: 3.3.4
+    dev: false
+
+  /@vuemap/vue-amap@2.0.22(vue@3.3.4):
+    resolution: {integrity: sha512-JkBHxfI6Lp3TKdU0dNOjlqGYbJne4wLdAPNNEPyvRfvGhTuiD+EAldMxoq8HCKF1fsHB3FfrecGk4F0bAZJVJA==}
+    peerDependencies:
+      vue: '>=3.2.0'
+    dependencies:
+      '@vuemap/amap-jsapi-loader': 1.0.3
+      '@vuemap/amap-xyz-layer': 0.0.7
+      '@vuemap/district-cluster': 0.0.9
+      '@vuemap/vue-amap-util': 2.0.7(vue@3.3.4)
+      lodash-es: 4.17.21
+      vue: 3.3.4
+    dev: false
 
   /@vueuse/core@10.2.0(vue@3.3.4):
     resolution: {integrity: sha512-aHBnoCteIS3hFu7ZZkVB93SanVDY6t4TIb7XDLxJT/HQdAZz+2RdIEJ8rj5LUoEJr7Damb5+sJmtpCwGez5ozQ==}
@@ -2158,6 +2247,11 @@ packages:
       quick-lru: 4.0.1
     dev: true
 
+  /camelcase@1.2.1:
+    resolution: {integrity: sha512-wzLkDa4K/mzI1OSITC+DUyjgIl/ETNHE9QvYgy6J6Jvqyyz4C0Xfd+lQhb19sX2jMpZV4IssUn0VDVmglV+s4g==}
+    engines: {node: '>=0.10.0'}
+    dev: false
+
   /camelcase@5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
@@ -2360,7 +2454,6 @@ packages:
 
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
-    dev: true
 
   /commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -2941,6 +3034,10 @@ packages:
     engines: {node: '>=12'}
     dev: false
     optional: true
+
+  /earcut@2.2.4:
+    resolution: {integrity: sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==}
+    dev: false
 
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -3609,6 +3706,10 @@ packages:
       split2: 3.2.2
       through2: 4.0.2
     dev: true
+
+  /gl-matrix@3.4.3:
+    resolution: {integrity: sha512-wcCp8vu8FT22BnvKVPjXa/ICBWRq/zjFfdofZy1WSpQZpphblv12/bOQLBC1rMM7SGOFS9ltVmKOHil5+Ml7gA==}
+    dev: false
 
   /glob-parent@5.1.2:
     resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
@@ -5026,6 +5127,12 @@ packages:
     dev: false
     optional: true
 
+  /polygon-clipping@0.15.3:
+    resolution: {integrity: sha512-ho0Xx5DLkgxRx/+n4O74XyJ67DcyN3Tu9bGYKsnTukGAW6ssnuak6Mwcyb1wHy9MZc9xsUWqIoiazkZB5weECg==}
+    dependencies:
+      splaytree: 3.1.2
+    dev: false
+
   /popmotion@11.0.5:
     resolution: {integrity: sha512-la8gPM1WYeFznb/JqF4GiTkRRPZsfaj2+kCxqQgr2MJylMmIKUwBfWW8Wa5fml/8gmtlD5yI01MP1QCZPWmppA==}
     dependencies:
@@ -5875,6 +5982,10 @@ packages:
       strip-indent: 3.0.0
     dev: true
 
+  /regenerator-runtime@0.14.0:
+    resolution: {integrity: sha512-srw17NI0TUWHuGa5CFGGmhfNIeja30WMBfbslPNhf6JrqQlLN5gcrvig1oqPxiVaXb0oW0XRKtH6Nngs5lKCIA==}
+    dev: false
+
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
     engines: {node: '>=0.10.0'}
@@ -6230,6 +6341,10 @@ packages:
   /spdx-license-ids@3.0.13:
     resolution: {integrity: sha512-XkD+zwiqXHikFZm4AX/7JSCXA98U5Db4AFd5XUg/+9UNtnH75+Z9KxtpYiJZx36mUDVOwH83pl7yvCer6ewM3w==}
     dev: true
+
+  /splaytree@3.1.2:
+    resolution: {integrity: sha512-4OM2BJgC5UzrhVnnJA4BkHKGtjXNzzUfpQjCO8I05xYPsfS/VuQDwjCGGMi8rYQilHEV4j8NBqTFbls/PZEE7A==}
+    dev: false
 
   /split2@3.2.2:
     resolution: {integrity: sha512-9NThjpgZnifTkJpzTZ7Eue85S49QwpNhZTq6GRJwObb6jnLFNGB7Qm73V5HewTROPyxD0C29xqmaI68bQtV+hg==}
@@ -6790,6 +6905,13 @@ packages:
     dependencies:
       is-number: 7.0.0
 
+  /topojson-client@3.1.0:
+    resolution: {integrity: sha512-605uxS6bcYxGXw9qi62XyrV6Q3xwbndjachmNxu8HWTtVPxZfEJN9fd/SZS1Q54Sn2y0TMyMxFj/cJINqGHrKw==}
+    hasBin: true
+    dependencies:
+      commander: 2.20.3
+    dev: false
+
   /trim-newlines@3.0.1:
     resolution: {integrity: sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==}
     engines: {node: '>=8'}
@@ -6972,6 +7094,12 @@ packages:
       browserslist: 4.21.9
       escalade: 3.1.1
       picocolors: 1.0.0
+
+  /uppercamelcase@1.1.0:
+    resolution: {integrity: sha512-C7YEMvhgrvTEKEEVqA7LXNID/1TvvIwYZqNIKLquS6y/MGSkRQAav9LnTTILlC1RqUM8eTVBOe1U/fnB652PRA==}
+    dependencies:
+      camelcase: 1.2.1
+    dev: false
 
   /uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
