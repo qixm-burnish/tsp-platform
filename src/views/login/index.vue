@@ -106,9 +106,6 @@ onBeforeUnmount(() => {
       <div class="login-box w-[292px]">
         <Motion>
           <img class="login-logo" :src="logoUri" />
-          <div class="relative login-slogan leading-[26px] text-[20px] h-[26px]">
-            <span class="relative z-10 login-slogan-txt">提升商用车价值</span>
-          </div>
         </Motion>
         <Motion :delay="100">
           <ElTabs class="login-tab" v-model="activeLoginMode" @tab-change="onTabChange">
@@ -205,30 +202,6 @@ onBeforeUnmount(() => {
         object-fit: cover;
         margin-left: 50%;
         transform: translateX(-50%);
-      }
-    }
-
-    &-slogan {
-      margin-top: 20px;
-      text-align: center;
-
-      &::after {
-        content: "";
-        display: block;
-
-        position: absolute;
-        top: 13px;
-        left: 0;
-        right: 0;
-        height: 0;
-        border-top: 1px solid black;
-      }
-
-      &-txt {
-        background: #fff;
-        padding: 0 17px;
-
-        color: #262626;
       }
     }
 
