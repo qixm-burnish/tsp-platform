@@ -53,6 +53,8 @@ declare global {
     VITE_HIDE_HOME: string
     VITE_COMPRESSION: ViteCompression
     VITE_BASE_API: string
+    VITE_MAP_KEY: string
+    VITE_MAP_SECRET_KEY: string
   }
 
   /**

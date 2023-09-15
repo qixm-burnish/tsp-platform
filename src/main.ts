@@ -5,6 +5,8 @@ import ElementPlus from "element-plus"
 import { getServerConfig } from "./config"
 import { createApp } from "vue"
 import { MotionPlugin } from "@vueuse/motion"
+import VueAMap, { initAMapApiLoader } from "@vuemap/vue-amap"
+import "@vuemap/vue-amap/dist/style.css"
 // import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive"
 
@@ -34,6 +36,11 @@ app.component("FontIcon", FontIcon)
 // 全局注册按钮级别权限组件
 import { Auth } from "@/components/ReAuth"
 app.component("Auth", Auth)
+
+initAMapApiLoader({
+  key: import.meta.env.VITE_MAP_KEY,
+  securityJsCode: import.meta.env.VITE_MAP_SECRET_KEY, // 新版key需要配合安全密钥使用
+})
 
 getServerConfig(app).then(async config => {
   app.use(router)

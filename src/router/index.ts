@@ -5,7 +5,17 @@ import { sessionKey, type DataInfo } from "@/utils/auth"
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { Router, createRouter, RouteRecordRaw, RouteComponent } from "vue-router"
-import { ascending, getTopMenu, initRouter, isOneOfArray, getHistoryMode, findRouteByPath, handleAliveRoute, formatTwoStageRoutes, formatFlatteningRoutes } from "./utils"
+import {
+  ascending,
+  getTopMenu,
+  initRouter,
+  isOneOfArray,
+  getHistoryMode,
+  findRouteByPath,
+  handleAliveRoute,
+  formatTwoStageRoutes,
+  formatFlatteningRoutes,
+} from "./utils"
 import { buildHierarchyTree } from "@/utils/menu"
 import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils"
 
@@ -22,18 +32,20 @@ const modules: Record<string, any> = import.meta.glob(["./modules/**/*.ts", "!./
 /** 原始静态路由（未做任何处理） */
 const routes = []
 
-Object.keys(modules).forEach((key) => {
+Object.keys(modules).forEach(key => {
   routes.push(modules[key].default)
 })
 
 /** 导出处理后的静态路由（三级及以上的路由全部拍成二级） */
-export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(formatFlatteningRoutes(buildHierarchyTree(ascending(routes.flat(Infinity)))))
+export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(
+  formatFlatteningRoutes(buildHierarchyTree(ascending(routes.flat(Infinity)))),
+)
 
 /** 用于渲染菜单，保持原始层级 */
 export const constantMenus: Array<RouteComponent> = ascending(routes.flat(Infinity)).concat(...remainingRouter)
 
 /** 不参与菜单的路由 */
-export const remainingPaths = Object.keys(remainingRouter).map((v) => {
+export const remainingPaths = Object.keys(remainingRouter).map(v => {
   return remainingRouter[v].path
 })
 
@@ -43,7 +55,7 @@ export const router: Router = createRouter({
   routes: constantRoutes.concat(...(remainingRouter as any)),
   strict: true,
   scrollBehavior(to, from, savedPosition) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       if (savedPosition) {
         return savedPosition
       } else {
@@ -58,7 +70,7 @@ export const router: Router = createRouter({
 
 /** 重置路由 */
 export function resetRouter() {
-  router.getRoutes().forEach((route) => {
+  router.getRoutes().forEach(route => {
     const { name, meta } = route
     if (name && router.hasRoute(name) && meta?.backstage) {
       router.removeRoute(name)
@@ -85,7 +97,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   NProgress.start()
   const externalLink = isUrl(to?.name as string)
   if (!externalLink) {
-    to.matched.some((item) => {
+    to.matched.some(item => {
       if (!item.meta.title) return ""
       const Title = getConfig().Title
       if (Title) document.title = `${item.meta.title} | ${Title}`
@@ -125,7 +137,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
             if (route && route.meta?.title) {
               if (isAllEmpty(route.parentId) && route.meta?.backstage) {
                 // 此处为动态顶级路由（目录）
-                const { path, name, meta } = route.children[0]
+                const { path, name, meta } = route.children ? route.children[0] : route
                 useMultiTagsStoreHook().handleTags("push", {
                   path,
                   name,
