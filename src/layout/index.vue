@@ -72,7 +72,7 @@ function toggle(device: string, bool: boolean) {
 // 判断是否可自动关闭菜单栏
 let isAutoCloseSidebar = true
 
-useResizeObserver(appWrapperRef, (entries) => {
+useResizeObserver(appWrapperRef, entries => {
   if (isMobile) return
   const entry = entries[0]
   const { width } = entry.contentRect
@@ -115,10 +115,20 @@ const layoutHeader = defineComponent({
       "div",
       {
         class: { "fixed-header": set.fixedHeader },
-        style: [set.hideTabs && layout.value.includes("horizontal") ? (isDark.value ? "box-shadow: 0 1px 4px #0d0d0d" : "box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08)") : ""],
+        style: [
+          set.hideTabs && layout.value.includes("horizontal")
+            ? isDark.value
+              ? "box-shadow: 0 1px 4px #0d0d0d"
+              : "box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08)"
+            : "",
+        ],
       },
       {
-        default: () => [!pureSetting.hiddenSideBar && (layout.value.includes("vertical") || layout.value.includes("mix")) ? h(navbar) : null, !pureSetting.hiddenSideBar && layout.value.includes("horizontal") ? h(Horizontal) : null, h(tag)],
+        default: () => [
+          !pureSetting.hiddenSideBar && (layout.value.includes("vertical") || layout.value.includes("mix")) ? h(navbar) : null,
+          !pureSetting.hiddenSideBar && layout.value.includes("horizontal") ? h(Horizontal) : null,
+          h(tag),
+        ],
       },
     )
   },
@@ -127,7 +137,11 @@ const layoutHeader = defineComponent({
 
 <template>
   <div ref="appWrapperRef" :class="['app-wrapper', set.classes]">
-    <div v-show="set.device === 'mobile' && set.sidebar.opened && layout.includes('vertical')" class="app-mask" @click="useAppStoreHook().toggleSideBar()" />
+    <div
+      v-show="set.device === 'mobile' && set.sidebar.opened && layout.includes('vertical')"
+      class="app-mask"
+      @click="useAppStoreHook().toggleSideBar()"
+    />
     <Vertical v-show="!pureSetting.hiddenSideBar && (layout.includes('vertical') || layout.includes('mix'))" />
     <div :class="['main-container', pureSetting.hiddenSideBar ? 'main-hidden' : '']">
       <div v-if="set.fixedHeader">

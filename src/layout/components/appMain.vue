@@ -15,7 +15,7 @@ const keepAlive = computed(() => {
 })
 
 const transitions = computed(() => {
-  return (route) => {
+  return route => {
     return route.meta.transition
   }
 })
@@ -29,7 +29,13 @@ const layout = computed(() => {
 })
 
 const getSectionStyle = computed(() => {
-  return [hideTabs.value && layout ? "padding-top: 48px;" : "", !hideTabs.value && layout ? "padding-top: 85px;" : "", hideTabs.value && !layout.value ? "padding-top: 48px" : "", !hideTabs.value && !layout.value ? "padding-top: 85px;" : "", props.fixedHeader ? "" : "padding-top: 0;"]
+  return [
+    hideTabs.value && layout ? "padding-top: 48px;" : "",
+    !hideTabs.value && layout ? "padding-top: 85px;" : "",
+    hideTabs.value && !layout.value ? "padding-top: 48px" : "",
+    !hideTabs.value && !layout.value ? "padding-top: 85px;" : "",
+    props.fixedHeader ? "" : "padding-top: 0;",
+  ]
 })
 
 const transitionMain = defineComponent({
@@ -37,7 +43,10 @@ const transitionMain = defineComponent({
     return h(
       Transition,
       {
-        name: transitions.value(this.route) && this.route.meta.transition.enterTransition ? "pure-classes-transition" : (transitions.value(this.route) && this.route.meta.transition.name) || "fade-transform",
+        name:
+          transitions.value(this.route) && this.route.meta.transition.enterTransition
+            ? "pure-classes-transition"
+            : (transitions.value(this.route) && this.route.meta.transition.name) || "fade-transform",
         enterActiveClass: transitions.value(this.route) && `animate__animated ${this.route.meta.transition.enterTransition}`,
         leaveActiveClass: transitions.value(this.route) && `animate__animated ${this.route.meta.transition.leaveTransition}`,
         mode: "out-in",
@@ -91,6 +100,10 @@ const transitionMain = defineComponent({
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
+
+  :deep(.max-body) {
+    height: calc(100vh - 85px - 48px);
+  }
 }
 
 .app-main-nofixed-header {
