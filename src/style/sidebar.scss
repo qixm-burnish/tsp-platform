@@ -132,7 +132,7 @@
 
     .el-menu-item,
     .el-sub-menu__title {
-      height: 50px;
+      height: 40px;
       color: $menuText;
       background-color: transparent !important;
 
@@ -142,8 +142,8 @@
 
       div,
       span {
-        height: 50px;
-        line-height: 50px;
+        height: 40px;
+        line-height: 40px;
       }
     }
 
@@ -186,7 +186,7 @@
     .el-menu .el-menu--inline .el-sub-menu__title,
     & .el-sub-menu .el-menu-item {
       // min-width: $sideBarWidth !important;
-      font-size: 12px;
+      font-size: 14px;
       background-color: $subMenuBg !important;
     }
 
@@ -238,7 +238,7 @@
 
       .el-menu-item {
         span {
-          font-size: 12px;
+          font-size: 14px;
         }
       }
     }
@@ -258,17 +258,43 @@
       }
     }
 
+    // 一级菜单项margin控制
+    > li {
+      margin-bottom: 10px !important;
+
+      &:last-of-type {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    // 二级及以下的菜单margin控制
+    .el-sub-menu {
+      .el-menu {
+        .nest-menu {
+          margin-bottom: 10px !important;
+
+          &:last-of-type {
+            margin-bottom: 0 !important;
+          }
+
+          &:first-of-type {
+            margin-top: 15px !important;
+          }
+        }
+      }
+    }
+
     /* 子菜单中还有子菜单 */
     .el-menu .el-sub-menu__title {
       min-width: $sideBarWidth !important;
-      font-size: 12px;
+      font-size: 14px;
       background-color: $subMenuBg !important;
     }
 
     .el-menu-item,
     .el-sub-menu__title {
-      height: 50px;
-      line-height: 50px;
+      height: 40px;
+      line-height: 40px;
       color: $menuText;
       background-color: $subMenuBg;
 

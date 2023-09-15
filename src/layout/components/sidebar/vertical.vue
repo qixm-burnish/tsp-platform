@@ -63,7 +63,6 @@ onBeforeUnmount(() => {
 
 <template>
   <div v-loading="loading" :class="['sidebar-container', showLogo ? 'has-logo' : '']">
-    <Logo v-if="showLogo" :collapse="isCollapse" />
     <el-scrollbar wrap-class="scrollbar-wrapper" :class="[device === 'mobile' ? 'mobile' : 'pc']">
       <el-menu
         router
