@@ -12,6 +12,16 @@ export default [
     },
   },
   {
+    path: "/register",
+    name: "Register",
+    component: () => import("@/views/register/index.vue"),
+    meta: {
+      title: "注册",
+      showLink: false,
+      rank: 101,
+    },
+  },
+  {
     path: "/redirect",
     component: Layout,
     meta: {
