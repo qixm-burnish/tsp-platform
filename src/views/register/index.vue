@@ -4,7 +4,7 @@ import { useRouter } from "vue-router"
 import { Plus } from "@element-plus/icons-vue"
 import Motion from "@/components/Motion"
 
-import type { FormRules, FormInstance, ElUpload } from "element-plus"
+import type { FormRules, FormInstance, ElUpload, UploadInstance } from "element-plus"
 import { phoneReg } from "@/utils/regex"
 import SimpleLayout from "@/components/SimpleLayout"
 
@@ -22,12 +22,13 @@ defineOptions({
   name: "register",
 })
 
+const router = useRouter()
 const activeStep = ref(1)
 const step1FormRef = ref<FormInstance>()
 const step2FormRef = ref<FormInstance>()
 const step1FormValues = reactive<Step1FormValue>({})
 const step2FormValues = reactive<Step2FormValue>({})
-const router = useRouter()
+const uploadRef = ref<UploadInstance>()
 
 const step1Rules = reactive<FormRules>({
   phone: [
@@ -84,6 +85,12 @@ function onCancel() {
   router.push("/login")
 }
 
+function onBeforeUpload(file: File) {
+  console.log(file.name)
+
+  return false
+}
+
 console.log(step1FormValues)
 </script>
 
@@ -119,7 +126,7 @@ console.log(step1FormValues)
           </Motion>
           <Motion :delay="500">
             <ElFormItem prop="code" label="营业执照">
-              <ElUpload :show-file-list="false" @before-upload="console.log">
+              <ElUpload :show-file-list="false" :before-upload="onBeforeUpload" :ref="uploadRef">
                 <div class="register-uploader">
                   <ElIcon :size="20" color="#C0C6CB"><Plus /></ElIcon>
                 </div>
