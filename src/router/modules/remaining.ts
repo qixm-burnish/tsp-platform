@@ -23,7 +23,7 @@ export default [
   },
   {
     path: "/forget",
-    name: "Register",
+    name: "Forget",
     component: () => import("@/views/forget/index.vue"),
     meta: {
       title: "忘记密码",

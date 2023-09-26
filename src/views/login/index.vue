@@ -2,7 +2,7 @@
 import { ref, reactive, onMounted, onBeforeUnmount } from "vue"
 import { useRouter } from "vue-router"
 
-import Motion from "./utils/motion"
+import Motion from "@/components/Motion"
 import { message } from "@/utils/message"
 import { loginRules } from "./utils/rule"
 import type { FormInstance } from "element-plus"

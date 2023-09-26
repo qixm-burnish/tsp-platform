@@ -9,13 +9,16 @@ type IndexProps = {
   sence?: number
   phone?: string
   visible?: boolean
+  title?: string
 }
 
 type DialogEmit = {
   (event: "click"): void
 }
 
-const props = defineProps<IndexProps>()
+const props = withDefaults(defineProps<IndexProps>(), {
+  title: "发送验证码",
+})
 const attrs = useAttrs()
 const loading = ref(false)
 const { count, start, reset } = useCountDown(60)
@@ -56,6 +59,6 @@ watch(
 </script>
 <template>
   <ElButton type="primary" v-bind="attrs" :disabled="disabled" @click="onSendCode">
-    发送验证码{{ count > 0 ? `(${count}s)` : "" }}
+    {{ title + (count > 0 ? `(${count}s)` : "") }}
   </ElButton>
 </template>

@@ -11,17 +11,23 @@ type IndexProps = {
   phone?: string
   scene?: string
   modelValue?: string
+
+  placeholder?: string
+  title?: string
 }
 
-const props = defineProps<IndexProps>()
+const props = withDefaults(defineProps<IndexProps>(), {
+  placeholder: "请输入验证码",
+  title: "发送验证码",
+})
 
 const code = useModel(props, "modelValue")
 </script>
 
 <template>
   <div class="form-verify-code-com">
-    <ElInput placeholder="请输入验证码" v-model="code" class="fvc-input" />
-    <VerifyCodeButton :phone="phone" :scene="scene" />
+    <ElInput :placeholder="placeholder" v-model="code" class="fvc-input" />
+    <VerifyCodeButton :phone="phone" :scene="scene" :title="title" />
   </div>
 </template>
 
