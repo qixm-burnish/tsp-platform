@@ -63,6 +63,10 @@ function onLogin() {
   _onLogin(activeLoginMode.value == "password" ? passwordFormRef.value : codeFormRef.value)
 }
 
+function onReigster() {
+  router.push("/register")
+}
+
 /** 使用公共函数，避免`removeEventListener`失效 */
 function onkeypress({ code }: KeyboardEvent) {
   if (code === "Enter") {
@@ -184,7 +188,7 @@ onBeforeUnmount(() => {
           <ElButton class="w-full" size="default" type="primary" :loading="loading" @click="onLogin"> 登录 </ElButton>
         </Motion>
         <Motion :delay="270">
-          <ElButton class="w-full mt-[20px]" @click="onLogin"> 企业注册 </ElButton>
+          <ElButton class="w-full mt-[20px]" @click="onReigster"> 企业注册 </ElButton>
         </Motion>
       </div>
     </div>
