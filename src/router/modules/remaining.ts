@@ -22,6 +22,16 @@ export default [
     },
   },
   {
+    path: "/forget",
+    name: "Register",
+    component: () => import("@/views/forget/index.vue"),
+    meta: {
+      title: "忘记密码",
+      showLink: false,
+      rank: 101,
+    },
+  },
+  {
     path: "/redirect",
     component: Layout,
     meta: {
