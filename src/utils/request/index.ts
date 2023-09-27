@@ -5,7 +5,14 @@ import NProgress from "../progress"
 import { getToken, formatToken } from "./util"
 import { defaultConfig, RequestTokenKey, tokenDenyList, urlPrefix } from "./config"
 import { RequestError, handleError } from "./errorHandler"
-import { BusinessResponse, PureHttpError, PureHttpRequestConfig, PureHttpResponse, RequestErrorStage, RequestMethods } from "./type.d"
+import {
+  BusinessResponse,
+  PureHttpError,
+  PureHttpRequestConfig,
+  PureHttpResponse,
+  RequestErrorStage,
+  RequestMethods,
+} from "./type.d"
 
 class PureHttp {
   private static loadingInstance: {
@@ -45,7 +52,7 @@ class PureHttp {
         }
 
         // 不需要token的接口设置
-        if (tokenDenyList.some((v) => config.url.indexOf(v) > -1)) {
+        if (tokenDenyList.some(v => config.url.indexOf(v) > -1)) {
           config.withToken = false
         }
 
@@ -59,7 +66,7 @@ class PureHttp {
 
         return config
       },
-      (error) => {
+      error => {
         return Promise.reject(error)
       },
     )
@@ -80,7 +87,7 @@ class PureHttp {
 
         return config
       },
-      (error) => {
+      error => {
         NProgress.done()
         PureHttp.closeLoading()
 
@@ -162,7 +169,12 @@ class PureHttp {
   }
 
   /** 通用请求工具函数 */
-  public request<T>(method: RequestMethods, url: string, param?: AxiosRequestConfig, axiosConfig?: PureHttpRequestConfig): Promise<T> {
+  public request<T>(
+    method: RequestMethods,
+    url: string,
+    param?: AxiosRequestConfig,
+    axiosConfig?: PureHttpRequestConfig,
+  ): Promise<T> {
     const config = {
       method,
       url,
@@ -177,7 +189,7 @@ class PureHttp {
         .then((response: undefined) => {
           resolve(response)
         })
-        .catch((error) => {
+        .catch(error => {
           reject(error)
         })
     })

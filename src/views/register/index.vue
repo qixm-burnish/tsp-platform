@@ -108,27 +108,27 @@ function onConfirm() {}
               <ElInput clearable v-model="step1FormValues.phone" placeholder="请严格按照营业执照上名称填写" />
             </ElFormItem>
           </Motion>
-          <Motion :delay="100">
+          <Motion :delay="50">
             <ElFormItem prop="code" label="统一社会信用代码">
               <ElInput clearable v-model="step1FormValues.phone" placeholder="请严格按照营业执照上统一社会信用代码填写" />
             </ElFormItem>
           </Motion>
-          <Motion :delay="200">
+          <Motion :delay="100">
             <ElFormItem prop="code" label="法定代表人">
               <ElInput clearable v-model="step1FormValues.phone" placeholder="请严格按照营业执照上法定代表人填写" />
             </ElFormItem>
           </Motion>
-          <Motion :delay="300">
+          <Motion :delay="150">
             <ElFormItem prop="code" label="企业注册地址">
               <ElInput clearable v-model="step1FormValues.phone" placeholder="请严格按照营业执照上住所填写" />
             </ElFormItem>
           </Motion>
-          <Motion :delay="400">
+          <Motion :delay="200">
             <ElFormItem prop="code" label="法人联系电话">
               <ElInput clearable v-model="step1FormValues.phone" placeholder="请严格按照营业执照上法定代表人填写" />
             </ElFormItem>
           </Motion>
-          <Motion :delay="500">
+          <Motion :delay="250">
             <ElFormItem prop="code" label="营业执照">
               <ElUpload :show-file-list="false" :before-upload="onBeforeUpload" :ref="uploadRef">
                 <div class="register-uploader">
@@ -138,7 +138,7 @@ function onConfirm() {}
             </ElFormItem>
           </Motion>
         </ElForm>
-        <Motion :delay="600">
+        <Motion :delay="300">
           <div class="register-buttons flex justify-between mt-[70px] ml-[80px]">
             <ElButton class="flex-1" @click="onCancel">取消</ElButton>
             <span class="flex-none w-[10px]" />
@@ -146,9 +146,13 @@ function onConfirm() {}
           </div>
         </Motion>
       </div>
-      <div class="flex flex-row justify-between w-screen pl-[210px] pr-[310px] register-step register-step2" v-else>
+      <div class="flex flex-row justify-between w-[1400px] register-step register-step2" v-else>
         <div class="register-step2-left">right</div>
-        <div class="register-step2-right">
+        <div class="register-step2-right w-[400px]">
+          <Motion>
+            <div class="text-center register-step2-right-tip">您申请的账号是作为企业最大权限的超级管理员账号</div>
+            <div class="register-step2-right-tip mb-[50px] text-center">您下属的子账号及所属权限，将由您登录系统后自行创建</div>
+          </Motion>
           <ElForm ref="step2FormRef" :model="step2FormValues" :rules="step1Rules" label-width="80px">
             <Motion>
               <ElFormItem prop="password" label="用户名">
@@ -185,7 +189,7 @@ function onConfirm() {}
             <div class="register-buttons flex justify-between mt-[100px]">
               <ElButton class="flex-1" @click="onPrev">上一步</ElButton>
               <span class="flex-none w-[10px]" />
-              <ElButton @click="onConfirm" type="primary" class="flex-1">确定</ElButton>
+              <ElButton @click="onConfirm" type="primary" class="flex-1">提交申请</ElButton>
             </div>
           </Motion>
         </div>
@@ -210,6 +214,13 @@ function onConfirm() {}
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+
+    &-step2 {
+      &-right-tip {
+        font-size: 16px;
+        line-height: 30px;
+      }
     }
   }
 }
