@@ -91,7 +91,11 @@ function onBeforeUpload(file: File) {
   return false
 }
 
-console.log(step1FormValues)
+function onPrev() {
+  activeStep.value = 1
+}
+
+function onConfirm() {}
 </script>
 
 <template>
@@ -142,26 +146,49 @@ console.log(step1FormValues)
           </div>
         </Motion>
       </div>
-      <div class="register-step register-step2" v-else>
-        <ElForm ref="step2FormRef" :model="step2FormValues" :rules="step1Rules" hide-required-asterisk label-width="100px">
-          <Motion>
-            <ElFormItem prop="password" label="新密码">
-              <ElInput clearable v-model="step2FormValues.password" placeholder="输入新密码" />
-            </ElFormItem>
+      <div class="flex flex-row justify-between w-screen pl-[210px] pr-[310px] register-step register-step2" v-else>
+        <div class="register-step2-left">right</div>
+        <div class="register-step2-right">
+          <ElForm ref="step2FormRef" :model="step2FormValues" :rules="step1Rules" label-width="80px">
+            <Motion>
+              <ElFormItem prop="password" label="用户名">
+                <ElInput clearable v-model="step2FormValues.password" placeholder="6-20为数字和字母组合，字母分大小写" />
+              </ElFormItem>
+            </Motion>
+            <Motion :delay="50">
+              <ElFormItem prop="password" label="手机号">
+                <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入手机号" />
+              </ElFormItem>
+            </Motion>
+            <Motion :delay="150">
+              <ElFormItem prop="password" label="密码">
+                <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入密码" />
+              </ElFormItem>
+            </Motion>
+            <Motion :delay="200">
+              <ElFormItem prop="password" label="身份证号">
+                <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入身份证号" />
+              </ElFormItem>
+            </Motion>
+            <Motion :delay="250">
+              <ElFormItem prop="password" label="电子邮箱">
+                <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入电子邮箱" />
+              </ElFormItem>
+            </Motion>
+            <Motion :delay="300">
+              <ElFormItem prop="password" label="姓名">
+                <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入姓名" />
+              </ElFormItem>
+            </Motion>
+          </ElForm>
+          <Motion :delay="200">
+            <div class="register-buttons flex justify-between mt-[100px]">
+              <ElButton class="flex-1" @click="onPrev">上一步</ElButton>
+              <span class="flex-none w-[10px]" />
+              <ElButton @click="onConfirm" type="primary" class="flex-1">确定</ElButton>
+            </div>
           </Motion>
-          <Motion :delay="100">
-            <ElFormItem prop="password" label="重复密码">
-              <ElInput clearable v-model="step2FormValues.newPassword" placeholder="输入重复密码" />
-            </ElFormItem>
-          </Motion>
-        </ElForm>
-        <Motion :delay="200">
-          <div class="register-buttons flex justify-between mt-[100px]">
-            <ElButton class="flex-1" @click="onCancel">上一步</ElButton>
-            <span class="flex-none w-[10px]" />
-            <ElButton @click="onConfirm" type="primary" class="flex-1">确定</ElButton>
-          </div>
-        </Motion>
+        </div>
       </div>
     </div>
   </SimpleLayout>
