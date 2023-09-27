@@ -8,6 +8,7 @@ export const RequestTokenKey = "Authorization"
 export const tokenDenyList = ["/refreshToken", "/login"]
 
 export const urlPrefix = import.meta.env.VITE_BASE_API
+export const userCenterUrlPrefix = import.meta.env.VITE_BASE_API_USER_CENTER
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
 export const defaultConfig: AxiosRequestConfig = {

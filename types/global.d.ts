@@ -55,6 +55,9 @@ declare global {
     VITE_BASE_API: string
     VITE_MAP_KEY: string
     VITE_MAP_SECRET_KEY: string
+
+    // 用户中心的API前缀
+    VITE_BASE_API_USER_CENTER: string
   }
 
   /**

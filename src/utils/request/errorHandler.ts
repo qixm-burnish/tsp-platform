@@ -92,11 +92,11 @@ export class RequestError extends Error {
     this.raw = error
 
     this.formatErrorMessage()
-    console.error(this)
   }
 
   private formatErrorMessage() {
     let errorData: [number, string]
+
     switch (this.stage) {
       case RequestErrorStage.REQUEST_INTERCEPTOR:
         errorData = formatRequestInterceptorError()

@@ -4,6 +4,9 @@ import { userType } from "./types"
 import { routerArrays } from "@/layout/types"
 import { router, resetRouter } from "@/router"
 import { storageSession } from "@pureadmin/utils"
+
+import { login_v1_auth_login_post as loginByPassword } from "@/services/userCenter/mods/authorization/login_v1_auth_login_post"
+
 import { getLogin, refreshTokenApi } from "@/api/user"
 import { UserResult, RefreshTokenResult } from "@/api/user"
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
@@ -28,17 +31,13 @@ export const useUserStore = defineStore({
     },
     /** 登入 */
     async loginByUsername(data) {
-      return new Promise<UserResult>((resolve, reject) => {
-        getLogin(data)
-          .then((data) => {
-            if (data) {
-              setToken(data.data)
-              resolve(data)
-            }
-          })
-          .catch((error) => {
-            reject(error)
-          })
+      loginByPassword({
+        identifier: data.phone,
+        credential: data.password,
+        login_type: "password",
+      }).then(data => {
+        console.log(data)
+        // setToken(data.data)
       })
     },
     /** 前端登出（不调用接口） */
@@ -49,21 +48,6 @@ export const useUserStore = defineStore({
       useMultiTagsStoreHook().handleTags("equal", [...routerArrays])
       resetRouter()
       router.push("/login")
-    },
-    /** 刷新`token` */
-    async handRefreshToken(data) {
-      return new Promise<RefreshTokenResult>((resolve, reject) => {
-        refreshTokenApi(data)
-          .then((data) => {
-            if (data) {
-              setToken(data.data)
-              resolve(data)
-            }
-          })
-          .catch((error) => {
-            reject(error)
-          })
-      })
     },
   },
 })

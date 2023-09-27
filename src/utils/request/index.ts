@@ -3,7 +3,7 @@ import { ElLoading } from "element-plus"
 
 import NProgress from "../progress"
 import { getToken, formatToken } from "./util"
-import { defaultConfig, RequestTokenKey, tokenDenyList, urlPrefix } from "./config"
+import { defaultConfig, RequestTokenKey, tokenDenyList, urlPrefix, userCenterUrlPrefix } from "./config"
 import { RequestError, handleError } from "./errorHandler"
 import {
   BusinessResponse,
@@ -21,9 +21,11 @@ class PureHttp {
   }
 
   axiosInstance: AxiosInstance
+  urlPrefix: string
 
   constructor(config: PureHttpInitConfig) {
     this.axiosInstance = Axios.create(config)
+    this.urlPrefix = config.baseURL
 
     if (config.withoutDefRequestInterceptor !== true) this.initRequestInterceptors()
     if (config.withoutDefResponseInterceptor !== true) this.initResponseInterceptors()
@@ -118,8 +120,8 @@ class PureHttp {
         if ($config.useRawRes) return data
 
         // 如果正常响应的代码不是200，则处理业务错误
-        if (data.code != 200) {
-          const requestError = new RequestError(RequestErrorStage.REQUEST_INTERCEPTOR, false, response.data)
+        if (data.code != 0) {
+          const requestError = new RequestError(RequestErrorStage.RESPONSE_HANDLER, false, data)
           if ($config.showError !== false) {
             handleError(requestError)
           }
@@ -152,7 +154,7 @@ class PureHttp {
 
   // URL前缀处理：如果是以http或https开头，则不添加前缀
   private static requestUrlConfig(config: PureHttpRequestConfig): void {
-    if (/^(http|https):\/\//.test(config.url)) return
+    if (/^(http|https):\/\//.test(config.url) || config.baseURL) return
 
     let _urlPrefix = urlPrefix
     if (urlPrefix.endsWith("/")) {
@@ -182,6 +184,8 @@ class PureHttp {
       ...param,
       ...axiosConfig,
     } as PureHttpRequestConfig
+
+    console.log("userCenterUrlPrefix: ", userCenterUrlPrefix)
 
     // 单独处理自定义请求/响应回调
     return new Promise((resolve, reject) => {
@@ -222,3 +226,10 @@ class PureHttp {
 const defRequest = new PureHttp(defaultConfig)
 
 export default defRequest
+
+const _userCenterRequest = new PureHttp({
+  ...defaultConfig,
+  baseURL: userCenterUrlPrefix,
+})
+
+export const userCenterRequest = _userCenterRequest

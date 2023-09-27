@@ -1,15 +1,24 @@
 {
-  "originUrl": "https://petstore.swagger.io/v2/swagger.json",
-  "outDir": "./src/api",
+  "outDir": "./src/services",
   "templatePath": "./apiTemplate",
+  "spiltApiLock": true,
+  "usingMultipleOrigins": true,
+  "origins": [
+    {
+      "name": "userCenter",
+      "description": "用户中心",
+      "originUrl": "http://192.168.3.75:63982/openapi.json",
+      "originType": "SwaggerV3"
+    }
+  ],
   "prettierConfig": {
-    "printWidth": 120,
+    "printWidth": 130,
     "tabWidth": 2,
-    "useTabs": true,
+    "useTabs": false,
     "semi": false,
-    "singleQuote": true,
-    "trailingComma": "none",
+    "singleQuote": false,
+    "trailingComma": "all",
     "bracketSpacing": true,
-    "arrowParens": "always"
+    "arrowParens": "avoid"
   }
 }
