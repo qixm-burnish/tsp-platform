@@ -28,6 +28,13 @@ export interface PureHttpRequestConfig extends AxiosRequestConfig {
   useRawRes?: boolean
 }
 
+export interface PureHttpInitConfig extends PureHttpRequestConfig {
+ // 不使用默认的请求拦截器
+  withoutDefRequestInterceptor?: boolean
+  // 不使用默认的响应拦截器
+  withoutDefResponseInterceptor?: boolean
+}
+
 export interface PureHttpResponse extends AxiosResponse {
   config: PureHttpRequestConfig
 }

@@ -12,6 +12,7 @@ import {
   PureHttpResponse,
   RequestErrorStage,
   RequestMethods,
+  PureHttpInitConfig,
 } from "./type.d"
 
 class PureHttp {
@@ -21,11 +22,11 @@ class PureHttp {
 
   axiosInstance: AxiosInstance
 
-  constructor(config: AxiosRequestConfig) {
+  constructor(config: PureHttpInitConfig) {
     this.axiosInstance = Axios.create(config)
 
-    this.initRequestInterceptors()
-    this.initResponseInterceptors()
+    if (config.withoutDefRequestInterceptor !== true) this.initRequestInterceptors()
+    if (config.withoutDefResponseInterceptor !== true) this.initResponseInterceptors()
   }
 
   // 请求拦截器
@@ -38,7 +39,7 @@ class PureHttp {
 
   // 响应拦截器
   private initResponseInterceptors() {
-    this.addResponseInterceptor()
+    this.addResponseDefInterceptor()
   }
 
   // 添加token的请求拦截器：如果在config中添加了beforeRequestCallback函数，则会直接执行并返回。
@@ -96,7 +97,7 @@ class PureHttp {
     )
   }
 
-  private addResponseInterceptor(): void {
+  private addResponseDefInterceptor(): void {
     this.axiosInstance.interceptors.response.use(
       (response: PureHttpResponse) => {
         const $config = response.config
