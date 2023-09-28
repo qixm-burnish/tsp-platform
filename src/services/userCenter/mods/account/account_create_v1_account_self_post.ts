@@ -6,8 +6,8 @@ export type DataParams = defs.userCenter.AccountCreate
 /**
  * @desc 创建用户
  */
-export function account_create_v1_account_self_post(data: DataParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function account_create_v1_account_self_post<T = any>(data: DataParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "post",
     `/v1/account/self`,
     {

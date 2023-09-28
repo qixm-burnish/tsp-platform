@@ -7,10 +7,10 @@ import { storageSession } from "@pureadmin/utils"
 
 import { login_v1_auth_login_post as loginByPassword } from "@/services/userCenter/mods/authorization/login_v1_auth_login_post"
 
-import { getLogin, refreshTokenApi } from "@/api/user"
-import { UserResult, RefreshTokenResult } from "@/api/user"
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { type DataInfo, setToken, removeToken, sessionKey } from "@/utils/auth"
+
+import { LoginResponse } from "../types"
 
 export const useUserStore = defineStore({
   id: "pure-user",
@@ -30,15 +30,20 @@ export const useUserStore = defineStore({
       this.roles = roles
     },
     /** 登入 */
-    async loginByUsername(data) {
-      loginByPassword({
-        identifier: data.phone,
-        credential: data.password,
+    async loginByPassword(params) {
+      const data = await loginByPassword<LoginResponse>({
+        identifier: params.username,
+        credential: params.password,
         login_type: "password",
-      }).then(data => {
-        console.log(data)
-        // setToken(data.data)
       })
+
+      setToken({
+        accessToken: data.access_token,
+        username: data.account.username,
+        expires: data.expired_at,
+      })
+
+      return data.account
     },
     /** 前端登出（不调用接口） */
     logOut() {

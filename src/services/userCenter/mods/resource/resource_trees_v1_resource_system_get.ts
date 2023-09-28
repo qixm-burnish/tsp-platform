@@ -10,8 +10,8 @@ export class QueryParams {
      * @desc 获取系统的全层级菜单
 获取系统的全层级菜单
      */
-export function resource_trees_v1_resource_system_get(params: QueryParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function resource_trees_v1_resource_system_get<T = any>(params: QueryParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "get",
     `/v1/resource/system`,
     {

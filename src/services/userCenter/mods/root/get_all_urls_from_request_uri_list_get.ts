@@ -7,8 +7,8 @@
     /**
      * @desc 全部uri
      */
-    export function get_all_urls_from_request_uri_list_get(, config: PureHttpRequestConfig) {
-      return request.request(
+    export function get_all_urls_from_request_uri_list_get<T = any>(, config?: PureHttpRequestConfig) {
+      return request.request<T>(
         "get",
         `/uri-list`,
         {

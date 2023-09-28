@@ -39,7 +39,7 @@
               "description": "用户名",
               "required": false,
               "in": "query",
-              "name": "name",
+              "name": "username",
               "dataType": {
                 "typeArgs": [],
                 "typeName": "string",
@@ -91,7 +91,7 @@
               }
             },
             {
-              "description": "状态, {'enable': '启用', 'disable': '禁用'}",
+              "description": "状态, choices: enable-启用、disable-禁用",
               "required": false,
               "in": "query",
               "name": "status",
@@ -106,7 +106,7 @@
               }
             },
             {
-              "description": "状态, {'male': '男', 'female': '女', 'other': '其他'}",
+              "description": "状态, choices: male-男、female-女、other-其他",
               "required": false,
               "in": "query",
               "name": "gender",
@@ -151,7 +151,7 @@
               }
             },
             {
-              "description": "搜索关键字. 匹配字段: username, nickname",
+              "description": "搜索关键字. 匹配字段: username",
               "required": false,
               "in": "query",
               "name": "search",
@@ -166,7 +166,7 @@
               }
             },
             {
-              "description": "排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段",
+              "description": "排序字段. 升序保持原字段名, 降序增加前缀-. 可选字段: created_at",
               "required": false,
               "in": "query",
               "name": "order_by",
@@ -604,7 +604,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -4186,30 +4186,6 @@
           "name": "scene",
           "description": "登录终端或场景",
           "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Array",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "system_codes",
-          "description": "需要访问的系统唯一标识列表, 为null则是全部",
-          "required": false
         }
       ]
     },
@@ -7341,30 +7317,6 @@
           },
           "name": "scene",
           "description": "登录终端或场景",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Array",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "system_codes",
-          "description": "需要访问的系统唯一标识列表, 为null则是全部",
           "required": false
         }
       ]

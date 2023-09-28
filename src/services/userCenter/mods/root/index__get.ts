@@ -7,8 +7,8 @@
     /**
      * @desc 健康检查
      */
-    export function index__get(, config: PureHttpRequestConfig) {
-      return request.request(
+    export function index__get<T = any>(, config?: PureHttpRequestConfig) {
+      return request.request<T>(
         "get",
         `/`,
         {

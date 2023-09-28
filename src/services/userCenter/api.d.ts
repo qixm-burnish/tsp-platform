@@ -591,9 +591,6 @@ declare namespace defs {
 
       /** 登录终端或场景 */
       scene?: string
-
-      /** 需要访问的系统唯一标识列表, 为null则是全部 */
-      system_codes?: Array<string>
     }
 
     export class LoginTypeEnum {}
@@ -1274,9 +1271,6 @@ declare namespace defs {
     export class TokenSceneSchema {
       /** 登录终端或场景 */
       scene?: string
-
-      /** 需要访问的系统唯一标识列表, 为null则是全部 */
-      system_codes?: Array<string>
     }
 
     export class TokenSceneTypeEnum {}
@@ -1323,22 +1317,22 @@ declare namespace API {
       export namespace route_v1_account_self_get {
         export class Params {
           /** 用户名 */
-          name?: string
+          username?: string
           /** 手机号 */
           phone?: string
           /** 角色id */
           roles__id__in?: Array<string>
-          /** 状态, {'enable': '启用', 'disable': '禁用'} */
+          /** 状态, choices: enable-启用、disable-禁用 */
           status?: any
-          /** 状态, {'male': '男', 'female': '女', 'other': '其他'} */
+          /** 状态, choices: male-男、female-女、other-其他 */
           gender?: any
           /** 第几页 */
           page?: number
           /** 每页数量 */
           size?: number
-          /** 搜索关键字. 匹配字段: username, nickname */
+          /** 搜索关键字. 匹配字段: username */
           search?: string
-          /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
+          /** 排序字段. 升序保持原字段名, 降序增加前缀-. 可选字段: created_at */
           order_by?: Array<string>
           /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, username, phone, email, gender, real_name, id_number, born_date, last_login_at, status, is_staff, is_super_admin, is_company_super_admin, company_id, days_from_last_login, status_display, gender_display, age */
           selected_fields?: Array<string>
@@ -1499,7 +1493,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
           selected_fields?: Array<string>
         }
 

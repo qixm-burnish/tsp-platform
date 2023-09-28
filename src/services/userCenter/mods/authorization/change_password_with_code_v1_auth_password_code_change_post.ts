@@ -7,8 +7,11 @@ export type DataParams = defs.userCenter.ChangePasswordCodeIn
      * @desc 修改密码
 通过验证码修改密码
      */
-export function change_password_with_code_v1_auth_password_code_change_post(data: DataParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function change_password_with_code_v1_auth_password_code_change_post<T = any>(
+  data: DataParams,
+  config?: PureHttpRequestConfig,
+) {
+  return request.request<T>(
     "post",
     `/v1/auth/password/code-change`,
     {

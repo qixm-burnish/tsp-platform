@@ -59,8 +59,8 @@ export default class MyGenerator extends CodeGenerator {
     /**
      * @desc ${inter.description}
      */
-    export function ${inter.name}(${funcParamsType}, config: PureHttpRequestConfig) {
-      return request.request(
+    export function ${inter.name}<T = any>(${funcParamsType}, config?: PureHttpRequestConfig) {
+      return request.request<T>(
         "${inter.method}",
         \`${requestPath}\`,
         {

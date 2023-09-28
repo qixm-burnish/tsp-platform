@@ -6,8 +6,8 @@ export type DataParams = defs.userCenter.AccountUpdate
 /**
  * @desc 更新用户
  */
-export function account_update_v1_account_self__id__put(data: DataParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function account_update_v1_account_self__id__put<T = any>(data: DataParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "put",
     `/v1/account/self/{id}`,
     {

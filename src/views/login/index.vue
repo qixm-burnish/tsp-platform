@@ -7,7 +7,7 @@ import { message } from "@/utils/message"
 import { loginRules } from "./utils/rule"
 import type { FormInstance, FormRules } from "element-plus"
 import { useLayout } from "@/layout/hooks/useLayout"
-import { useUserStoreHook } from "@/store/modules/user"
+import { useUserStore } from "@/store/modules/user"
 import { initRouter, getTopMenu } from "@/router/utils"
 import FormVerifyCode from "@/components/FormVerifyCode/index.vue"
 
@@ -21,13 +21,14 @@ const router = useRouter()
 const loading = ref(false)
 const passwordFormRef = ref<FormInstance>()
 const codeFormRef = ref<FormInstance>()
+const { loginByPassword } = useUserStore()
 
 const { initStorage } = useLayout()
 initStorage()
 
 const passwordFormValues = reactive({
-  username: "admin",
-  password: "admin123",
+  username: "",
+  password: "",
   rememberPassword: false,
 })
 
@@ -50,7 +51,7 @@ const passwordFormRules = reactive<FormRules>({
         if (value === "") {
           callback(new Error("请输入密码"))
         } else if (!pwdReg.test(value)) {
-          callback(new Error("密码格式应为8-18位数字、字母、符号的任意两种组合"))
+          callback(new Error("请输入8~20位的密码"))
         } else {
           callback()
         }
@@ -65,16 +66,13 @@ async function _onLogin(formEl: FormInstance | undefined) {
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      useUserStoreHook()
-        .loginByUsername(passwordFormValues)
-        .then(res => {
-          if (res.success) {
-            // 获取后端路由
-            initRouter().then(() => {
-              router.push(getTopMenu(true).path)
-              message("登录成功", { type: "success" })
-            })
-          }
+      loginByPassword(passwordFormValues)
+        .then(_ => {
+          // 获取后端路由
+          initRouter().then(() => {
+            router.push(getTopMenu(true).path)
+            message("登录成功", { type: "success" })
+          })
         })
         .finally(() => {
           loading.value = false
@@ -147,7 +145,7 @@ onBeforeUnmount(() => {
                     <ElInput clearable v-model="passwordFormValues.username" placeholder="输入用户名/手机号" />
                   </ElFormItem>
                   <ElFormItem prop="password" label="密码">
-                    <ElInput clearable v-model="passwordFormValues.password" placeholder="输入密码" />
+                    <ElInput clearable v-model="passwordFormValues.password" placeholder="输入密码" type="password" />
                   </ElFormItem>
                   <div class="flex justify-between ml-[40px]">
                     <ElCheckbox v-model="passwordFormValues.rememberPassword">记住密码</ElCheckbox>

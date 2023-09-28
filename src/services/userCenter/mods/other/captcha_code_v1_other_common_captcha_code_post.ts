@@ -7,8 +7,8 @@ export type DataParams = defs.userCenter.Body_captcha_code_v1_other_common_captc
      * @desc 发送验证码
 发送验证码, phone + scene组成unique_key
      */
-export function captcha_code_v1_other_common_captcha_code_post(data: DataParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function captcha_code_v1_other_common_captcha_code_post<T = any>(data: DataParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "post",
     `/v1/other/common/captcha/code`,
     {

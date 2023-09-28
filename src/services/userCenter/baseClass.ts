@@ -585,9 +585,6 @@ class LoginSchema {
 
   /** 登录终端或场景 */
   scene = ""
-
-  /** 需要访问的系统唯一标识列表, 为null则是全部 */
-  system_codes = []
 }
 
 class LoginTypeEnum {}
@@ -1268,9 +1265,6 @@ class SystemSimpleWithAvailableTag {
 class TokenSceneSchema {
   /** 登录终端或场景 */
   scene = ""
-
-  /** 需要访问的系统唯一标识列表, 为null则是全部 */
-  system_codes = []
 }
 
 class TokenSceneTypeEnum {}

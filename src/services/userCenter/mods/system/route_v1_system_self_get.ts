@@ -17,8 +17,8 @@ export class QueryParams {
 /**
  * @desc 子系统列表
  */
-export function route_v1_system_self_get(params: QueryParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function route_v1_system_self_get<T = any>(params: QueryParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "get",
     `/v1/system/self`,
     {

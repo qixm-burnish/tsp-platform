@@ -14,8 +14,8 @@ export class QueryParams {
      * @desc 枚举表
 枚举-列表
      */
-export function enum_content_v1_other_common_enum_get(params: QueryParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function enum_content_v1_other_common_enum_get<T = any>(params: QueryParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "get",
     `/v1/other/common/enum`,
     {

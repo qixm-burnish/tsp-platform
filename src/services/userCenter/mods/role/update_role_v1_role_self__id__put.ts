@@ -6,8 +6,8 @@ export type DataParams = defs.userCenter.SystemCompanyRoleUpdate
 /**
  * @desc 更新子系统角色
  */
-export function update_role_v1_role_self__id__put(data: DataParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function update_role_v1_role_self__id__put<T = any>(data: DataParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "put",
     `/v1/role/self/{id}`,
     {

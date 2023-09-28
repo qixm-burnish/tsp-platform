@@ -17,8 +17,8 @@ export class QueryParams {
 /**
  * @desc 企业列表
  */
-export function route_v1_company_self_get(params: QueryParams, config: PureHttpRequestConfig) {
-  return request.request(
+export function route_v1_company_self_get<T = any>(params: QueryParams, config?: PureHttpRequestConfig) {
+  return request.request<T>(
     "get",
     `/v1/company/self`,
     {
