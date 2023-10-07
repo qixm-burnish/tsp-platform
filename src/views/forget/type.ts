@@ -5,7 +5,7 @@ export type Step1FormValue = {
 
 export type Step2FormValue = {
   password?: string
-  newPassword?: string
+  confirmPassword?: string
 }
 
 export type Step1EmitType = {

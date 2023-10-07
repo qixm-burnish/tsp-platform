@@ -49,8 +49,8 @@ const rules = reactive<FormRules>({
       validator: (rule, value, callback) => {
         if (value === "") {
           callback(new Error("请输入验证码"))
-        } else if (value.length != 6) {
-          callback(new Error("请输入6位验证码"))
+        } else if (value.length != 4) {
+          callback(new Error("请输入4位验证码"))
         } else {
           callback()
         }
@@ -83,7 +83,7 @@ function onCancel() {
       </Motion>
       <Motion :delay="100">
         <ElFormItem prop="code" label="验证码">
-          <FormVerifyCode :phone="formValues.phone" v-model="formValues.code" title="发送" />
+          <FormVerifyCode :phone="formValues.phone" v-model="formValues.code" title="发送" scene="change_password" />
         </ElFormItem>
       </Motion>
     </ElForm>

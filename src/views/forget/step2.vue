@@ -3,8 +3,9 @@ import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
 import Motion from "@/components/Motion"
 
-import type { FormRules, FormInstance } from "element-plus"
+import { type FormRules, type FormInstance, ElMessage } from "element-plus"
 import { pwdReg } from "@/utils/regex"
+import { postAuthPasswordCodeChangeV1 } from "@/services/userCenter/mods/authorization/postAuthPasswordCodeChangeV1"
 
 import { Step1FormValue, Step2FormValue, Step2EmitType } from "./type"
 
@@ -17,6 +18,7 @@ const formRef = ref<FormInstance>()
 const formValues = reactive<Step2FormValue>({})
 const router = useRouter()
 const emits = defineEmits<Step2EmitType>()
+const loading = ref(false)
 
 const rules = reactive<FormRules>({
   password: [
@@ -38,7 +40,7 @@ const rules = reactive<FormRules>({
       trigger: "blur",
     },
   ],
-  newPassword: [
+  confirmPassword: [
     {
       required: true,
       message: "输入重复密码",
@@ -62,9 +64,22 @@ const rules = reactive<FormRules>({
 function onConfirm() {
   formRef.value?.validate().then(isValid => {
     if (isValid) {
-      console.log({ ...props, ...formValues })
-
-      router.push("/forget")
+      loading.value = true
+      postAuthPasswordCodeChangeV1({
+        data: {
+          code: props.code,
+          identifier: props.phone,
+          new_password: formValues.password,
+          confirm_password: formValues.confirmPassword,
+        },
+      })
+        .then(() => {
+          ElMessage.success("密码修改成功")
+          router.push("/forget")
+        })
+        .finally(() => {
+          loading.value = false
+        })
     }
   })
 }
@@ -84,15 +99,15 @@ function onCancel() {
       </Motion>
       <Motion :delay="100">
         <ElFormItem prop="password" label="重复密码">
-          <ElInput clearable v-model="formValues.newPassword" placeholder="输入重复密码" />
+          <ElInput clearable v-model="formValues.confirmPassword" placeholder="输入重复密码" />
         </ElFormItem>
       </Motion>
     </ElForm>
     <Motion :delay="200">
       <div class="forget-buttons flex justify-between mt-[100px]">
-        <ElButton class="flex-1" @click="onCancel">上一步</ElButton>
+        <ElButton class="flex-1" @click="onCancel" :loading="loading">上一步</ElButton>
         <span class="flex-none w-[10px]" />
-        <ElButton @click="onConfirm" type="primary" class="flex-1">确定</ElButton>
+        <ElButton @click="onConfirm" type="primary" class="flex-1" :loading="loading">确定</ElButton>
       </div>
     </Motion>
   </div>
