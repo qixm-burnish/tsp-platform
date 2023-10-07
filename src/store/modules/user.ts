@@ -92,6 +92,11 @@ export const useUserStore = defineStore({
       resetRouter()
       router.push("/login")
     },
+
+    /**
+     * 创建企业入驻申请
+     */
+    async createCompanyApply() {},
   },
 })
 

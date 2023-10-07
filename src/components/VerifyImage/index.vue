@@ -27,12 +27,11 @@ function genImage() {
     withToken: false,
     responseType: "arraybuffer",
     beforeResponseCallback(res) {
-      console.log(res.headers)
       const binaryData = []
       binaryData.push(res.data) //My blob
       sourceUrl.value = URL.createObjectURL(new Blob(binaryData, { type: res.headers["Content-Type"] }))
 
-      emits("change", res.headers["X-Unique-Key"])
+      emits("change", res.headers.get("X-Unique-Key"))
     },
   })
 }
