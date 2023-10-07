@@ -5,7 +5,7 @@ import { getToken as _getToken } from "@/utils/auth"
  * @returns string
  */
 export function getToken() {
-  return _getToken().accessToken
+  return _getToken()?.accessToken
 }
 
 // token格式化。例如添加JWT前缀之类的

@@ -37,7 +37,7 @@ defineOptions({
 })
 
 const router = useRouter()
-const activeStep = ref(2)
+const activeStep = ref(1)
 const step1FormRef = ref<FormInstance>()
 const step2FormRef = ref<FormInstance>()
 const step1FormValues = shallowReactive<Step1FormValue>({})
@@ -348,8 +348,8 @@ onMounted(() => {
             v-for="item in systemList"
             :key="item.id"
             class="register-step2-left-item flex items-center relative"
-            :class="{ 'register-step2-left-item-active': step2FormValues.systems.includes(item.code) }"
-            @click="() => onSytemItemClick(item.code)"
+            :class="{ 'register-step2-left-item-active': step2FormValues.systems.includes(item.id) }"
+            @click="() => onSytemItemClick(item.id)"
           >
             <img :src="item.icon" v-if="item.icon" class="register-step2-left-item-icon flex-none mr-[20px] w-[94px]" />
             <div class="register-step2-left-item-right">
@@ -359,7 +359,7 @@ onMounted(() => {
             <ElIcon
               :size="40"
               color="#4181d9"
-              v-if="step2FormValues.systems.includes(item.code)"
+              v-if="step2FormValues.systems.includes(item.id)"
               class="register-step2-left-item-checked"
             >
               <Select />
@@ -418,6 +418,10 @@ onMounted(() => {
 
 <style lang="scss">
 .register-pg {
+  .el-form-item__label {
+    font-weight: 700;
+  }
+
   .register {
     &-step1 {
       width: 450px;
