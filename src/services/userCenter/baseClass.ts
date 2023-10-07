@@ -375,6 +375,11 @@ class ChangePasswordIn {
   old_password = ""
 }
 
+class CodeLoginPayload {
+  /** 验证码 */
+  code = ""
+}
+
 class CompanyList {
   /** 创建时间 */
   created_at = ""
@@ -579,14 +584,14 @@ class HealthCheck {
 }
 
 class LoginSchema {
-  /** 通行凭证 */
-  credential = ""
-
   /** 唯一标识, 用户名、手机号或者邮箱地址 */
   identifier = ""
 
   /** 登录方式, choices: password-密码、verify_code-验证码 */
   login_type = undefined
+
+  /** 1. 密码登录: PasswordWithCaptchaLoginPayload; 2. 验证码登录: CodeLoginPayload */
+  payload = undefined
 
   /** 登录终端或场景 */
   scene = ""
@@ -706,6 +711,17 @@ class PageResp_SystemList_ {
 
   /** 请求唯一标识 */
   trace_id = ""
+}
+
+class PasswordWithCaptchaLoginPayload {
+  /** 验证码 */
+  code = ""
+
+  /** 密码 */
+  password = ""
+
+  /** 验证码唯一标识 */
+  unique_key = ""
 }
 
 class ResourceLevelTreeBaseNode {
@@ -1305,6 +1321,7 @@ export const userCenter = {
   CaptchaCodeResponse,
   ChangePasswordCodeIn,
   ChangePasswordIn,
+  CodeLoginPayload,
   CompanyList,
   CompanyRegisterApplyDetail,
   CompanyRegisterApplyList,
@@ -1320,6 +1337,7 @@ export const userCenter = {
   PageResp_CompanyRegisterApplyList_,
   PageResp_SystemCompanyRoleList_,
   PageResp_SystemList_,
+  PasswordWithCaptchaLoginPayload,
   ResourceLevelTreeBaseNode,
   ResourceLevelTreeNode,
   RespFormatEnum,

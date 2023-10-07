@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, onBeforeUnmount } from "vue"
+import { ref, reactive, onMounted, onBeforeUnmount, toRaw } from "vue"
 import { useRouter } from "vue-router"
 
 import Motion from "@/components/Motion"
@@ -22,7 +22,7 @@ const router = useRouter()
 const loading = ref(false)
 const passwordFormRef = ref<FormInstance>()
 const codeFormRef = ref<FormInstance>()
-const { loginByPassword } = useUserStore()
+const { login } = useUserStore()
 
 const { initStorage } = useLayout()
 initStorage()
@@ -32,9 +32,10 @@ const passwordFormValues = reactive({
   password: "",
   rememberPassword: false,
   verifyCode: "",
+  verifyCodeKey: "",
 })
 
-const codeForm = reactive({
+const codeFormValues = reactive({
   phone: "",
   code: "",
 })
@@ -69,12 +70,12 @@ const passwordFormRules = reactive<FormRules>({
   ],
 })
 
-async function _onLogin(formEl: FormInstance | undefined) {
+async function _onLogin(formEl: FormInstance | undefined, values: Record<string, any>) {
   loading.value = true
   if (!formEl) return
   await formEl.validate((valid, fields) => {
     if (valid) {
-      loginByPassword(passwordFormValues)
+      login(activeLoginMode.value, values)
         .then(_ => {
           // 获取后端路由
           initRouter().then(() => {
@@ -93,7 +94,11 @@ async function _onLogin(formEl: FormInstance | undefined) {
 }
 
 function onLogin() {
-  _onLogin(activeLoginMode.value == "password" ? passwordFormRef.value : codeFormRef.value)
+  if (activeLoginMode.value == "password") {
+    _onLogin(passwordFormRef.value, toRaw(passwordFormValues))
+  } else {
+    _onLogin(codeFormRef.value, toRaw(codeFormValues))
+  }
 }
 
 function onReigster() {
@@ -109,14 +114,18 @@ function onkeypress({ code }: KeyboardEvent) {
 
 function onTabChange(tab) {
   if (tab == "password") {
-    if (codeForm.phone != passwordFormValues.username) {
-      passwordFormValues.username = codeForm.phone
+    if (codeFormValues.phone != passwordFormValues.username) {
+      passwordFormValues.username = codeFormValues.phone
     }
   } else {
-    if (codeForm.phone != passwordFormValues.username) {
-      codeForm.phone = passwordFormValues.username
+    if (codeFormValues.phone != passwordFormValues.username) {
+      codeFormValues.phone = passwordFormValues.username
     }
   }
+}
+
+function onVerifyImageChange(key: string) {
+  passwordFormValues.verifyCodeKey = key
 }
 
 onMounted(() => {
@@ -162,7 +171,7 @@ onBeforeUnmount(() => {
                     <ElInput clearable v-model="passwordFormValues.password" placeholder="输入密码" type="password" />
                   </ElFormItem>
                   <ElFormItem prop="verifyCode" label="验证码">
-                    <FormVerifyImage v-model="passwordFormValues.verifyCode" />
+                    <FormVerifyImage v-model="passwordFormValues.verifyCode" @change="onVerifyImageChange" />
                   </ElFormItem>
                   <div class="flex justify-between ml-[60px] mb-[52px]">
                     <ElCheckbox v-model="passwordFormValues.rememberPassword">记住密码</ElCheckbox>
@@ -175,7 +184,7 @@ onBeforeUnmount(() => {
             </ElTabPane>
             <ElTabPane label="验证码登录" name="code">
               <div class="login-form login-form-code mb-[90px]">
-                <ElForm ref="codeFormRef" :model="codeForm" :rules="loginRules" hide-required-asterisk label-width="60px">
+                <ElForm ref="codeFormRef" :model="codeFormValues" :rules="loginRules" hide-required-asterisk label-width="60px">
                   <ElFormItem
                     :rules="[
                       {
@@ -187,7 +196,7 @@ onBeforeUnmount(() => {
                     prop="phone"
                     label="账号"
                   >
-                    <ElInput clearable v-model="codeForm.phone" placeholder="输入手机号" />
+                    <ElInput clearable v-model="codeFormValues.phone" placeholder="输入手机号" />
                   </ElFormItem>
                   <ElFormItem
                     :rules="[
@@ -200,7 +209,7 @@ onBeforeUnmount(() => {
                     prop="code"
                     label="验证码"
                   >
-                    <FormVerifyCode :phone="codeForm.phone" v-model="codeForm.code" />
+                    <FormVerifyCode :phone="codeFormValues.phone" v-model="codeFormValues.code" />
                   </ElFormItem>
                 </ElForm>
               </div>

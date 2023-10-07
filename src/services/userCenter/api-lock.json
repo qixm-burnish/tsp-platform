@@ -604,7 +604,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -887,21 +887,6 @@
             "typeProperties": []
           },
           "parameters": [
-            {
-              "description": "唯一标识, 手机号或用户名",
-              "required": true,
-              "in": "query",
-              "name": "identifier",
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
             {
               "description": "场景",
               "required": true,
@@ -3198,6 +3183,26 @@
       ]
     },
     {
+      "name": "CodeLoginPayload",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "验证码",
+          "required": true
+        }
+      ]
+    },
+    {
       "description": "企业",
       "name": "CompanyList",
       "templateArgs": [],
@@ -4154,20 +4159,6 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "credential",
-          "description": "通行凭证",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
           "name": "identifier",
           "description": "唯一标识, 用户名、手机号或者邮箱地址",
           "required": true
@@ -4185,6 +4176,20 @@
           "name": "login_type",
           "description": "登录方式, choices: password-密码、verify_code-验证码",
           "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "payload",
+          "description": "1. 密码登录: PasswordWithCaptchaLoginPayload; 2. 验证码登录: CodeLoginPayload",
+          "required": true
         },
         {
           "dataType": {
@@ -4759,6 +4764,54 @@
           "name": "trace_id",
           "description": "请求唯一标识",
           "required": false
+        }
+      ]
+    },
+    {
+      "name": "PasswordWithCaptchaLoginPayload",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "验证码",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "password",
+          "description": "密码",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "unique_key",
+          "description": "验证码唯一标识",
+          "required": true
         }
       ]
     },

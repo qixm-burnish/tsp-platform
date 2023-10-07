@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { userCenterUrlPrefix } from "@/utils/request/config"
-import { ExposeType } from "./type"
+import { ref, onMounted } from "vue"
+import { getOtherCommonCaptchaImageV1 } from "@/services/userCenter/mods/other/getOtherCommonCaptchaImageV1"
+
+import { ExposeType, EmitType } from "./type"
 
 type PropsType = {
   scene: string
@@ -14,24 +15,39 @@ defineOptions({
 const props = withDefaults(defineProps<PropsType>(), {
   scene: "login",
 })
+const emits = defineEmits<EmitType>()
 
-const sourceUrl = ref(genImageUrl())
+const sourceUrl = ref()
 
-function genImageUrl() {
-  return userCenterUrlPrefix + `/v1/other/common/captcha/image?identifier=${Date.now()}&scene=${props.scene}&time=${Date.now()}`
-}
+function genImage() {
+  getOtherCommonCaptchaImageV1({
+    params: {
+      scene: props.scene,
+    },
+    withToken: false,
+    responseType: "arraybuffer",
+    beforeResponseCallback(res) {
+      console.log(res.headers)
+      const binaryData = []
+      binaryData.push(res.data) //My blob
+      sourceUrl.value = URL.createObjectURL(new Blob(binaryData, { type: res.headers["Content-Type"] }))
 
-function onClick() {
-  sourceUrl.value = genImageUrl()
+      emits("change", res.headers["X-Unique-Key"])
+    },
+  })
 }
 
 defineExpose<ExposeType>({
-  refresh: genImageUrl,
+  refresh: genImage,
+})
+
+onMounted(() => {
+  genImage()
 })
 </script>
 
 <template>
-  <img class="com-verify-image" :src="sourceUrl" @click="onClick" />
+  <img class="com-verify-image" :src="sourceUrl" @click="genImage" v-show="sourceUrl" />
 </template>
 
 <style lang="scss">

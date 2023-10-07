@@ -381,6 +381,11 @@ declare namespace defs {
       old_password: string
     }
 
+    export class CodeLoginPayload {
+      /** 验证码 */
+      code: string
+    }
+
     export class CompanyList {
       /** 创建时间 */
       created_at: string
@@ -585,14 +590,14 @@ declare namespace defs {
     }
 
     export class LoginSchema {
-      /** 通行凭证 */
-      credential: string
-
       /** 唯一标识, 用户名、手机号或者邮箱地址 */
       identifier: string
 
       /** 登录方式, choices: password-密码、verify_code-验证码 */
       login_type?: any
+
+      /** 1. 密码登录: PasswordWithCaptchaLoginPayload; 2. 验证码登录: CodeLoginPayload */
+      payload: any
 
       /** 登录终端或场景 */
       scene?: string
@@ -712,6 +717,17 @@ declare namespace defs {
 
       /** 请求唯一标识 */
       trace_id?: string
+    }
+
+    export class PasswordWithCaptchaLoginPayload {
+      /** 验证码 */
+      code: string
+
+      /** 密码 */
+      password: string
+
+      /** 验证码唯一标识 */
+      unique_key: string
     }
 
     export class ResourceLevelTreeBaseNode {
@@ -1501,7 +1517,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1607,8 +1623,6 @@ declare namespace API {
         */
       export namespace getOtherCommonCaptchaImageV1 {
         export class Params {
-          /** 唯一标识, 手机号或用户名 */
-          identifier: string
           /** 场景 */
           scene: any
         }

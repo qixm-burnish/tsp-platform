@@ -3,7 +3,10 @@ import { store } from "@/store"
 import { routerArrays } from "@/layout/types"
 import { router, resetRouter } from "@/router"
 
-import { postAuthLoginV1 as loginByPassword } from "@/services/userCenter/mods/authorization/postAuthLoginV1"
+import {
+  postAuthLoginV1 as login,
+  type RequestDataType as LoginRequestDataType,
+} from "@/services/userCenter/mods/authorization/postAuthLoginV1"
 
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { setToken, removeToken, sessionKey } from "@/utils/auth"
@@ -39,23 +42,47 @@ export const useUserStore = defineStore({
     },
 
     /** 登入 */
-    async loginByPassword(params) {
-      const data = await loginByPassword<LoginResponse>({
-        data: {
-          identifier: params.username,
-          credential: params.password,
-          login_type: "password",
-        },
-      })
+    async login(type: string, params) {
+      let _params: any
 
-      setToken({
-        accessToken: data.access_token,
-        username: data.account.username,
-        expires: data.expired_at,
-      })
+      if (type == "password") {
+        _params = {
+          identifier: params.username,
+          login_type: "password",
+          payload: {
+            password: params.password,
+            code: params.verifyCode,
+            unique_key: params.verifyCodeKey,
+          },
+        }
+      } else {
+        _params = {
+          identifier: params.phone,
+          login_type: "verify_code",
+          payload: {
+            code: params.code,
+          },
+        }
+      }
+
+      const data = await this._login(_params)
 
       return data.account
     },
+    async _login(data: LoginRequestDataType) {
+      const loginData = await login<LoginResponse>({
+        data,
+      })
+
+      setToken({
+        accessToken: loginData.access_token,
+        username: loginData.account.username,
+        expires: loginData.expired_at,
+      })
+
+      return loginData
+    },
+
     /** 前端登出（不调用接口） */
     logOut() {
       this.username = ""

@@ -2,8 +2,6 @@ import { userCenterRequest as request } from "@/utils/request"
 import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
 export class RequestParamsType {
-  /** 唯一标识, 手机号或用户名 */
-  identifier: string
   /** 场景 */
   scene: any
 }

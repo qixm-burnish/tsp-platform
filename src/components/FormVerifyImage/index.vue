@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useModel, ref } from "vue"
 
-import VerifyImage, { type ExposeType } from "@/components/VerifyImage"
+import VerifyImage, { type ExposeType, type EmitType } from "@/components/VerifyImage"
 
 defineOptions({
   name: "FormVerifyCodeInput",
@@ -18,10 +18,15 @@ const props = withDefaults(defineProps<IndexProps>(), {
   placeholder: "请输入验证码",
   scene: "login",
 })
+const emits = defineEmits<EmitType>()
 
 const verifyImage = ref<ExposeType>()
 
 const value = useModel(props, "modelValue")
+
+function onImageChange(key: string) {
+  emits("change", key)
+}
 
 defineExpose<ExposeType>({
   refresh() {
@@ -33,8 +38,7 @@ defineExpose<ExposeType>({
 <template>
   <div class="form-verify-image-com">
     <ElInput :placeholder="placeholder" v-model="value" class="fvi-input" />
-
-    <VerifyImage :scene="scene" ref="verifyImage" />
+    <VerifyImage :scene="scene" ref="verifyImage" @change="onImageChange" />
   </div>
 </template>
 
