@@ -176,6 +176,7 @@ class PureHttp {
     const config = {
       method,
       url,
+      withToken: true,
       ...axiosConfig,
     } as PureHttpRequestConfig
 
