@@ -9,7 +9,8 @@ import type { FormInstance, FormRules } from "element-plus"
 import { useLayout } from "@/layout/hooks/useLayout"
 import { useUserStore } from "@/store/modules/user"
 import { initRouter, getTopMenu } from "@/router/utils"
-import FormVerifyCode from "@/components/FormVerifyCode/index.vue"
+import FormVerifyCode from "@/components/FormVerifyCode"
+import FormVerifyImage from "@/components/FormVerifyImage"
 
 import logoUri from "@/assets/login/logo.png"
 import { pwdReg } from "@/utils/regex"
@@ -30,6 +31,7 @@ const passwordFormValues = reactive({
   username: "",
   password: "",
   rememberPassword: false,
+  verifyCode: "",
 })
 
 const codeForm = reactive({
@@ -57,6 +59,12 @@ const passwordFormRules = reactive<FormRules>({
         }
       },
       trigger: "blur",
+    },
+  ],
+  verifyCode: [
+    {
+      required: true,
+      message: "请输入验证码",
     },
   ],
 })
@@ -140,14 +148,23 @@ onBeforeUnmount(() => {
           <ElTabs class="login-tab" v-model="activeLoginMode" @tab-change="onTabChange">
             <ElTabPane label="密码登录" name="password">
               <div class="login-form">
-                <ElForm ref="passwordFormRef" :model="passwordFormValues" :rules="passwordFormRules" hide-required-asterisk>
+                <ElForm
+                  ref="passwordFormRef"
+                  :model="passwordFormValues"
+                  :rules="passwordFormRules"
+                  hide-required-asterisk
+                  label-width="60px"
+                >
                   <ElFormItem prop="username" label="账号">
                     <ElInput clearable v-model="passwordFormValues.username" placeholder="输入用户名/手机号" />
                   </ElFormItem>
                   <ElFormItem prop="password" label="密码">
                     <ElInput clearable v-model="passwordFormValues.password" placeholder="输入密码" type="password" />
                   </ElFormItem>
-                  <div class="flex justify-between ml-[40px]">
+                  <ElFormItem prop="verifyCode" label="验证码">
+                    <FormVerifyImage v-model="passwordFormValues.verifyCode" />
+                  </ElFormItem>
+                  <div class="flex justify-between ml-[60px] mb-[52px]">
                     <ElCheckbox v-model="passwordFormValues.rememberPassword">记住密码</ElCheckbox>
                     <RouterLink to="/forget">
                       <ElLink :underline="false" type="primary">忘记密码</ElLink>
@@ -157,8 +174,8 @@ onBeforeUnmount(() => {
               </div>
             </ElTabPane>
             <ElTabPane label="验证码登录" name="code">
-              <div class="login-form">
-                <ElForm ref="codeFormRef" :model="codeForm" :rules="loginRules" hide-required-asterisk>
+              <div class="login-form login-form-code mb-[90px]">
+                <ElForm ref="codeFormRef" :model="codeForm" :rules="loginRules" hide-required-asterisk label-width="60px">
                   <ElFormItem
                     :rules="[
                       {
@@ -205,6 +222,10 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .login-pg {
   .login {
+    &-box {
+      min-height: 600px;
+    }
+
     &-left {
       overflow: hidden;
       &-video {
@@ -232,8 +253,6 @@ onBeforeUnmount(() => {
 
     &-form {
       margin-top: 25px;
-
-      min-height: 170px;
     }
   }
 }

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { ref, computed, watch, useAttrs } from "vue"
 import { ElMessage } from "element-plus"
-// import { auth_send_code_create as sendCode } from "@/services/mods/auth/auth_send_code_create"
+import { postOtherCommonCaptchaCodeV1 as sendCode } from "@/services/userCenter/mods/other/postOtherCommonCaptchaCodeV1"
 import { useCountDown } from "@/hooks/useCountDown"
 import { phoneReg } from "@/utils/regex"
 
 type IndexProps = {
-  sence?: number
+  scene?: string
   phone?: string
   visible?: boolean
   title?: string
@@ -40,7 +40,7 @@ async function onSendCode() {
 
   loading.value = true
   try {
-    // await sendCode({ bodyParams: { phone: props.phone, scene_type: props.sence as any } })
+    await sendCode({ data: { identifier: props.phone, scene: props.scene } })
     loading.value = false
     start()
   } catch (err) {

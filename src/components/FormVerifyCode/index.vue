@@ -19,6 +19,7 @@ type IndexProps = {
 const props = withDefaults(defineProps<IndexProps>(), {
   placeholder: "请输入验证码",
   title: "发送验证码",
+  scene: "login",
 })
 
 const code = useModel(props, "modelValue")
