@@ -1,7 +1,7 @@
 import { userCenterRequest as request } from "@/utils/request"
 import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
-export class QueryParams {
+export class RequestParamsType {
   /** 用户名 */
   username?: string
   /** 手机号 */
@@ -24,16 +24,15 @@ export class QueryParams {
   selected_fields?: Array<string>
 }
 
+export type RequestDataType = any
+export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> & {
+  data?: RequestDataType
+  params?: RequestParamsType
+}
+
 /**
  * @desc 用户列表
  */
-export function route_v1_account_self_get<T = any>(params: QueryParams, config?: PureHttpRequestConfig) {
-  return request.request<T>(
-    "get",
-    `/v1/account/self`,
-    {
-      params,
-    },
-    config,
-  )
+export function getAccountSelfV1<T = any>(config?: RequestConfigType) {
+  return request.request<T>("get", `/v1/account/self`, config)
 }

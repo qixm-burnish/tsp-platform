@@ -53,6 +53,7 @@ export default [
     response: () => {
       return {
         success: true,
+        code: 0,
         data: [permissionRouter, mapLocationRouter],
       }
     },

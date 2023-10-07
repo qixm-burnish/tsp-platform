@@ -1,13 +1,14 @@
 {
   "outDir": "./src/services",
-  "templatePath": "./apiTemplate",
+  "templatePath": "./pont/apiTemplate",
+  "transformPath": "./pont/apiTransform",
   "spiltApiLock": true,
   "usingMultipleOrigins": true,
   "origins": [
     {
       "name": "userCenter",
       "description": "用户中心",
-      "originUrl": "http://192.168.3.75:63982/openapi.json",
+      "originUrl": "http://192.168.3.75:54743/user/openapi.json",
       "originType": "SwaggerV3"
     }
   ],

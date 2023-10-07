@@ -1,24 +1,28 @@
 import { defineStore } from "pinia"
 import { store } from "@/store"
-import { userType } from "./types"
 import { routerArrays } from "@/layout/types"
 import { router, resetRouter } from "@/router"
-import { storageSession } from "@pureadmin/utils"
 
-import { login_v1_auth_login_post as loginByPassword } from "@/services/userCenter/mods/authorization/login_v1_auth_login_post"
+import { postAuthLoginV1 as loginByPassword } from "@/services/userCenter/mods/authorization/postAuthLoginV1"
 
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
-import { type DataInfo, setToken, removeToken, sessionKey } from "@/utils/auth"
+import { setToken, removeToken, sessionKey } from "@/utils/auth"
 
-import { LoginResponse } from "../types"
+import { LoginResponse, UserCenterAccount } from "../types"
+
+type StateType = {
+  username?: string
+  userData?: UserCenterAccount
+  roles: Array<string>
+}
 
 export const useUserStore = defineStore({
   id: "pure-user",
-  state: (): userType => ({
+  state: (): StateType => ({
     // 用户名
-    username: storageSession().getItem<DataInfo<number>>(sessionKey)?.username ?? "",
+    username: "",
     // 页面级别权限
-    roles: storageSession().getItem<DataInfo<number>>(sessionKey)?.roles ?? [],
+    roles: [],
   }),
   actions: {
     /** 存储用户名 */
@@ -29,12 +33,19 @@ export const useUserStore = defineStore({
     SET_ROLES(roles: Array<string>) {
       this.roles = roles
     },
+
+    async getUserData() {
+      if (this.userData) return this.userData
+    },
+
     /** 登入 */
     async loginByPassword(params) {
       const data = await loginByPassword<LoginResponse>({
-        identifier: params.username,
-        credential: params.password,
-        login_type: "password",
+        data: {
+          identifier: params.username,
+          credential: params.password,
+          login_type: "password",
+        },
       })
 
       setToken({

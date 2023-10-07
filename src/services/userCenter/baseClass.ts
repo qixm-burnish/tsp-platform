@@ -291,11 +291,58 @@ class AuthData {
 }
 
 class Body_captcha_code_v1_other_common_captcha_code_post {
-  /** 手机号 */
-  phone = ""
+  /** 唯一标识, 手机号或邮箱 */
+  identifier = ""
 
   /** 场景 */
   scene = undefined
+}
+
+class Body_create_company_register_apply_v1_company_apply_post {
+  /** business_license */
+  business_license = ""
+
+  /** credit_code_tax_id */
+  credit_code_tax_id = ""
+
+  /** email */
+  email = ""
+
+  /** id_number */
+  id_number = ""
+
+  /** legal_representative_id_card_front */
+  legal_representative_id_card_front = ""
+
+  /** legal_representative_name */
+  legal_representative_name = ""
+
+  /** legal_representative_phone */
+  legal_representative_phone = ""
+
+  /** name */
+  name = ""
+
+  /** password */
+  password = ""
+
+  /** phone */
+  phone = ""
+
+  /** real_name */
+  real_name = ""
+
+  /** resources */
+  resources = []
+
+  /** submit_remark */
+  submit_remark = ""
+
+  /** systems */
+  systems = []
+
+  /** username */
+  username = ""
 }
 
 class CaptchaCodeResponse {
@@ -352,53 +399,6 @@ class CompanyList {
 
   /** 更新时间 */
   updated_at = ""
-}
-
-class CompanyRegisterApplyCreate {
-  /** 营业执照 */
-  business_license = ""
-
-  /** 统一社会信用代码/税号 */
-  credit_code_tax_id = ""
-
-  /** 邮箱 */
-  email = ""
-
-  /** 身份证号 */
-  id_number = ""
-
-  /** 法人身份证正面 */
-  legal_representative_id_card_front = ""
-
-  /** 法人姓名 */
-  legal_representative_name = ""
-
-  /** 法人手机号 */
-  legal_representative_phone = ""
-
-  /** 企业全称 */
-  name = ""
-
-  /** 密码 */
-  password = ""
-
-  /** 手机号 */
-  phone = ""
-
-  /** 姓名 */
-  real_name = ""
-
-  /** 可分配的子系统资源 */
-  resources = []
-
-  /** 备注 */
-  submit_remark = ""
-
-  /** 注册的子系统 */
-  systems = []
-
-  /** 用户名 */
-  username = ""
 }
 
 class CompanyRegisterApplyDetail {
@@ -559,6 +559,11 @@ class CompanySimple {
 
 class GenderEnum {}
 
+class HTTPValidationError {
+  /** detail */
+  detail = []
+}
+
 class HealthCheck {
   /** description */
   description = ""
@@ -588,14 +593,6 @@ class LoginSchema {
 }
 
 class LoginTypeEnum {}
-
-class OssUrlResponse {
-  /** path */
-  path = ""
-
-  /** url */
-  url = ""
-}
 
 class PageInfo {
   /** page */
@@ -941,23 +938,6 @@ class Resp_HealthCheck_ {
   trace_id = ""
 }
 
-class Resp_OssUrlResponse_ {
-  /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
-  code = undefined
-
-  /** 响应数据格式 */
-  data = undefined
-
-  /** 响应提示信息 */
-  message = ""
-
-  /** 响应时间 */
-  response_time = ""
-
-  /** 请求唯一标识 */
-  trace_id = ""
-}
-
 class Resp_SystemCompanyRoleDetail_ {
   /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
   code = undefined
@@ -976,6 +956,23 @@ class Resp_SystemCompanyRoleDetail_ {
 }
 
 class Resp_SystemDetail_ {
+  /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
+  code = undefined
+
+  /** 响应数据格式 */
+  data = undefined
+
+  /** 响应提示信息 */
+  message = ""
+
+  /** 响应时间 */
+  response_time = ""
+
+  /** 请求唯一标识 */
+  trace_id = ""
+}
+
+class Resp_SystemList_ {
   /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
   code = undefined
 
@@ -1283,6 +1280,17 @@ class UriItem {
   tags = []
 }
 
+class ValidationError {
+  /** loc */
+  loc = undefined
+
+  /** msg */
+  msg = ""
+
+  /** type */
+  type = ""
+}
+
 export const userCenter = {
   AccountAuthDetail,
   AccountCreate,
@@ -1293,19 +1301,19 @@ export const userCenter = {
   ArchiveCheckOut,
   AuthData,
   Body_captcha_code_v1_other_common_captcha_code_post,
+  Body_create_company_register_apply_v1_company_apply_post,
   CaptchaCodeResponse,
   ChangePasswordCodeIn,
   ChangePasswordIn,
   CompanyList,
-  CompanyRegisterApplyCreate,
   CompanyRegisterApplyDetail,
   CompanyRegisterApplyList,
   CompanySimple,
   GenderEnum,
+  HTTPValidationError,
   HealthCheck,
   LoginSchema,
   LoginTypeEnum,
-  OssUrlResponse,
   PageInfo,
   PageResp_AccountList_,
   PageResp_CompanyList_,
@@ -1322,9 +1330,9 @@ export const userCenter = {
   Resp_CompanyList_,
   Resp_CompanyRegisterApplyDetail_,
   Resp_HealthCheck_,
-  Resp_OssUrlResponse_,
   Resp_SystemCompanyRoleDetail_,
   Resp_SystemDetail_,
+  Resp_SystemList_,
   Resp_Union_dict__tuple_tuple___,
   Resp_list_apis_http_routes_v1_auth_schemas_ArchiveCheckOut__,
   Resp_list_apis_http_urls_UriItem__,
@@ -1346,4 +1354,5 @@ export const userCenter = {
   TokenSceneSchema,
   TokenSceneTypeEnum,
   UriItem,
+  ValidationError,
 }

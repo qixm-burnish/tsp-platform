@@ -1,7 +1,8 @@
 /**
  * @description 系统管理
  */
-import * as route_v1_system_self_get from "./route_v1_system_self_get"
-import * as route_v1_system_self__id__get from "./route_v1_system_self__id__get"
+import * as getSystemMyselfV1 from "./getSystemMyselfV1"
+import * as getSystemSelfV1 from "./getSystemSelfV1"
+import * as getSystemSelfByIdV1 from "./getSystemSelfByIdV1"
 
-export { route_v1_system_self_get, route_v1_system_self__id__get }
+export { getSystemMyselfV1, getSystemSelfV1, getSystemSelfByIdV1 }

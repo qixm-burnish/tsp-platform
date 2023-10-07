@@ -1,16 +1,10 @@
 /**
  * @description 账户信息管理
  */
-import * as myself_account_detail_v1_account_myself_get from "./myself_account_detail_v1_account_myself_get"
-import * as route_v1_account_self_get from "./route_v1_account_self_get"
-import * as account_create_v1_account_self_post from "./account_create_v1_account_self_post"
-import * as route_v1_account_self__id__get from "./route_v1_account_self__id__get"
-import * as account_update_v1_account_self__id__put from "./account_update_v1_account_self__id__put"
+import * as getAccountMyselfV1 from "./getAccountMyselfV1"
+import * as getAccountSelfV1 from "./getAccountSelfV1"
+import * as postAccountSelfV1 from "./postAccountSelfV1"
+import * as getAccountSelfByIdV1 from "./getAccountSelfByIdV1"
+import * as putAccountSelfByIdV1 from "./putAccountSelfByIdV1"
 
-export {
-  myself_account_detail_v1_account_myself_get,
-  route_v1_account_self_get,
-  account_create_v1_account_self_post,
-  route_v1_account_self__id__get,
-  account_update_v1_account_self__id__put,
-}
+export { getAccountMyselfV1, getAccountSelfV1, postAccountSelfV1, getAccountSelfByIdV1, putAccountSelfByIdV1 }

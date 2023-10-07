@@ -17,7 +17,7 @@ export default class MyGenerator extends CodeGenerator {
     const isOnlyFormParameter = formParameters.length > 0 && bodyParameters.length == 0 && queryParameters.length == 0
     const hasQueryOrBodyParameter = (bodyParameters.length || queryParameters.length || formParameters.length) > 0
 
-    let { funcParamsType, exportParamsType, requestParamsType } = this.getParametersDefine(
+    const requestExportType = this.getRequestExportTypeDefine(
       inter,
       bodyParameters,
       queryParameters,
@@ -30,6 +30,7 @@ export default class MyGenerator extends CodeGenerator {
 
     let requestPath = inter.path
     let pathParamsType = ""
+    let funcParamsType = "config?: RequestConfigType"
     if (pathParameters.length > 0) {
       pathParamsType = pathParameters
         .map(item => {
@@ -54,25 +55,22 @@ export default class MyGenerator extends CodeGenerator {
     ${requestImportStr}
     import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
-    ${exportParamsType}
+    ${requestExportType}
 
     /**
      * @desc ${inter.description}
      */
-    export function ${inter.name}<T = any>(${funcParamsType}, config?: PureHttpRequestConfig) {
+    export function ${inter.name}<T = any>(${funcParamsType}) {
       return request.request<T>(
         "${inter.method}",
         \`${requestPath}\`,
-        {
-          ${requestParamsType}
-        },
         config,
       )
     }
     `
   }
 
-  getParametersDefine(
+  getRequestExportTypeDefine(
     inter: Interface,
     bodyParameters: Property[],
     queryParameters: Property[],
@@ -81,66 +79,38 @@ export default class MyGenerator extends CodeGenerator {
     isOnlyBodyParameter: boolean,
     isOnlyQueryParameter: boolean,
     isOnlyFormParameter: boolean,
-  ): {
-    exportParamsType: string
-    funcParamsType: string
-    requestParamsType: string
-  } {
-    let exportParamsType = ""
-    let funcParamsType = ""
-    let requestParamsType = ""
+  ): string {
     const dataParamsType = inter.getBodyParamsCode()
-    const queryParamsType = inter.getParamsCode("QueryParams")
+    const queryParamsType = inter.getParamsCode("RequestParamsType")
+    let _exportParamsType = "export type RequestParamsType = any"
+    let _exportDataType = "export type RequestDataType = any"
 
     if (hasQueryOrBodyParameter) {
       if (isOnlyBodyParameter) {
-        exportParamsType = `
-          export type DataParams = ${dataParamsType}
-        `
-        funcParamsType = "data: DataParams"
-        requestParamsType = "data,"
+        _exportDataType = `export type RequestDataType = ${dataParamsType}`
       } else if (isOnlyQueryParameter) {
-        exportParamsType = `
-          export ${queryParamsType}
-        `
-        funcParamsType = "params: QueryParams"
-        requestParamsType = "params,"
+        _exportParamsType = `export ${queryParamsType}`
         // 理论上FormData只会单独存在
       } else if (isOnlyFormParameter) {
-        funcParamsType = "data: FormData"
-        requestParamsType = "data,"
+        _exportDataType = `export type RequestDataType = FormData`
         // body和query参数同时存在
       } else if (queryParameters.length > 0 && bodyParameters.length > 0) {
-        exportParamsType = `
-          export type DataParams = ${dataParamsType}
-          export ${queryParamsType}
-          export type RequestParams = {
-            params: QueryParams
-            data: DataParams
-          }
-        `
-        funcParamsType = "{params, data}: RequestParams"
-        requestParamsType = "params, data,"
-        // form和query参数同时存在
+        _exportParamsType = `export ${queryParamsType}`
+        _exportDataType = `export type RequestDataType = ${dataParamsType}`
       } else if (queryParameters.length > 0 && formParameters.length > 0) {
-        exportParamsType = `
-          export type DataParams = FromData
-          export ${queryParamsType}
-          export type RequestParams = {
-            params: QueryParams
-            data: FromData
-          }
-        `
-        funcParamsType = "{params, data}: RequestParams"
-        requestParamsType = "params, data,"
+        _exportDataType = `export type RequestDataType = FormData`
+        _exportParamsType = `export ${queryParamsType}`
       }
     }
 
-    return {
-      exportParamsType,
-      funcParamsType,
-      requestParamsType,
-    }
+    return `
+      ${_exportParamsType}
+      ${_exportDataType}
+      export type RequestConfigType = Omit<PureHttpRequestConfig, 'params' | 'data'> & {
+        data?: RequestDataType
+        params?: RequestParamsType
+      }
+    `
   }
   /**
    * 多个api源时，根据不同源名生产不同的request导入语句（主要针对可能不同源的导入语句不一样）

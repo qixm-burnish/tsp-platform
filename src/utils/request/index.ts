@@ -1,4 +1,4 @@
-import Axios, { AxiosHeaders, AxiosInstance, AxiosRequestConfig } from "axios"
+import Axios, { AxiosHeaders, AxiosInstance } from "axios"
 import { ElLoading } from "element-plus"
 
 import NProgress from "../progress"
@@ -172,20 +172,12 @@ class PureHttp {
   }
 
   /** 通用请求工具函数 */
-  public request<T>(
-    method: RequestMethods,
-    url: string,
-    param?: AxiosRequestConfig,
-    axiosConfig?: PureHttpRequestConfig,
-  ): Promise<T> {
+  public request<T>(method: RequestMethods, url: string, axiosConfig?: PureHttpRequestConfig): Promise<T> {
     const config = {
       method,
       url,
-      ...param,
       ...axiosConfig,
     } as PureHttpRequestConfig
-
-    console.log("userCenterUrlPrefix: ", userCenterUrlPrefix)
 
     // 单独处理自定义请求/响应回调
     return new Promise((resolve, reject) => {
@@ -201,25 +193,25 @@ class PureHttp {
   }
 
   /** 单独抽离的post工具函数 */
-  public post<T, P>(url: string, params?: AxiosRequestConfig<T>, config?: PureHttpRequestConfig): Promise<P> {
-    return this.request<P>("post", url, params, config)
+  public post<T>(url: string, config?: PureHttpRequestConfig): Promise<T> {
+    return this.request<T>("post", url, config)
   }
 
   /** 单独抽离的get工具函数 */
-  public get<T, P>(url: string, params?: AxiosRequestConfig<T>, config?: PureHttpRequestConfig): Promise<P> {
-    return this.request<P>("get", url, params, config)
+  public get<T>(url: string, config?: PureHttpRequestConfig): Promise<T> {
+    return this.request<T>("get", url, config)
   }
 
-  public put<T, P>(url: string, params?: AxiosRequestConfig<T>, config?: PureHttpRequestConfig): Promise<P> {
-    return this.request<P>("put", url, params, config)
+  public put<T>(url: string, config?: PureHttpRequestConfig): Promise<T> {
+    return this.request<T>("put", url, config)
   }
 
-  public patch<T, P>(url: string, params?: AxiosRequestConfig<T>, config?: PureHttpRequestConfig): Promise<P> {
-    return this.request<P>("patch", url, params, config)
+  public patch<T>(url: string, config?: PureHttpRequestConfig): Promise<T> {
+    return this.request<T>("patch", url, config)
   }
 
-  public delete<T, P>(url: string, params?: AxiosRequestConfig<T>, config?: PureHttpRequestConfig): Promise<P> {
-    return this.request<P>("delete", url, params, config)
+  public delete<T>(url: string, config?: PureHttpRequestConfig): Promise<T> {
+    return this.request<T>("delete", url, config)
   }
 }
 
@@ -233,3 +225,5 @@ const _userCenterRequest = new PureHttp({
 })
 
 export const userCenterRequest = _userCenterRequest
+
+export const axiosInstance = Axios.create()

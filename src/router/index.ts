@@ -1,7 +1,7 @@
 // import "@/utils/sso";
 import { getConfig } from "@/config"
 import NProgress from "@/utils/progress"
-import { sessionKey, type DataInfo } from "@/utils/auth"
+import { sessionKey, type DataInfo, getToken } from "@/utils/auth"
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { Router, createRouter, RouteRecordRaw, RouteComponent } from "vue-router"
@@ -85,7 +85,7 @@ const whiteList = ["/login", "/register", "/forget"]
 
 const { VITE_HIDE_HOME } = import.meta.env
 
-router.beforeEach((to: ToRouteType, _from, next) => {
+router.beforeEach(async (to: ToRouteType, _from, next) => {
   if (to.meta?.keepAlive) {
     handleAliveRoute(to, "add")
     // 页面整体刷新和点击标签页刷新
@@ -93,7 +93,7 @@ router.beforeEach((to: ToRouteType, _from, next) => {
       handleAliveRoute(to)
     }
   }
-  const userInfo = storageSession().getItem<DataInfo<number>>(sessionKey)
+  const token = getToken()
   NProgress.start()
   const externalLink = isUrl(to?.name as string)
   if (!externalLink) {
@@ -108,9 +108,9 @@ router.beforeEach((to: ToRouteType, _from, next) => {
   function toCorrectRoute() {
     whiteList.includes(to.fullPath) ? next(_from.fullPath) : next()
   }
-  if (userInfo) {
+  if (token) {
     // 无权限跳转403页面
-    if (to.meta?.roles && !isOneOfArray(to.meta?.roles, userInfo?.roles)) {
+    if (to.meta?.roles && !isOneOfArray(to.meta?.roles, [])) {
       next({ path: "/error/403" })
     }
     // 开启隐藏首页后在浏览器地址栏手动输入首页welcome路由则跳转到404页面

@@ -6,5 +6,5 @@ type Result = {
 }
 
 export const getAsyncRoutes = () => {
-  return request.request<Result>("get", "/getAsyncRoutes", {}, { useRawRes: true })
+  return request.request<Result>("get", "/getAsyncRoutes", { useRawRes: true })
 }

@@ -1,6 +1,6 @@
 /**
  * @description 资源管理
  */
-import * as resource_trees_v1_resource_system_get from "./resource_trees_v1_resource_system_get"
+import * as getResourceSystemV1 from "./getResourceSystemV1"
 
-export { resource_trees_v1_resource_system_get }
+export { getResourceSystemV1 }

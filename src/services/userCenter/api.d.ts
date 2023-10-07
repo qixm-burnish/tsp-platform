@@ -297,11 +297,58 @@ declare namespace defs {
     }
 
     export class Body_captcha_code_v1_other_common_captcha_code_post {
-      /** 手机号 */
-      phone: string
+      /** 唯一标识, 手机号或邮箱 */
+      identifier: string
 
       /** 场景 */
       scene: any
+    }
+
+    export class Body_create_company_register_apply_v1_company_apply_post {
+      /** business_license */
+      business_license: string
+
+      /** credit_code_tax_id */
+      credit_code_tax_id: string
+
+      /** email */
+      email?: string
+
+      /** id_number */
+      id_number?: string
+
+      /** legal_representative_id_card_front */
+      legal_representative_id_card_front: string
+
+      /** legal_representative_name */
+      legal_representative_name?: string
+
+      /** legal_representative_phone */
+      legal_representative_phone?: string
+
+      /** name */
+      name: string
+
+      /** password */
+      password: string
+
+      /** phone */
+      phone: string
+
+      /** real_name */
+      real_name?: string
+
+      /** resources */
+      resources?: Array<string>
+
+      /** submit_remark */
+      submit_remark?: string
+
+      /** systems */
+      systems: Array<string>
+
+      /** username */
+      username: string
     }
 
     export class CaptchaCodeResponse {
@@ -358,53 +405,6 @@ declare namespace defs {
 
       /** 更新时间 */
       updated_at: string
-    }
-
-    export class CompanyRegisterApplyCreate {
-      /** 营业执照 */
-      business_license: string
-
-      /** 统一社会信用代码/税号 */
-      credit_code_tax_id: string
-
-      /** 邮箱 */
-      email?: string
-
-      /** 身份证号 */
-      id_number?: string
-
-      /** 法人身份证正面 */
-      legal_representative_id_card_front: string
-
-      /** 法人姓名 */
-      legal_representative_name?: string
-
-      /** 法人手机号 */
-      legal_representative_phone?: string
-
-      /** 企业全称 */
-      name: string
-
-      /** 密码 */
-      password: string
-
-      /** 手机号 */
-      phone: string
-
-      /** 姓名 */
-      real_name?: string
-
-      /** 可分配的子系统资源 */
-      resources?: Array<string>
-
-      /** 备注 */
-      submit_remark?: string
-
-      /** 注册的子系统 */
-      systems: Array<string>
-
-      /** 用户名 */
-      username: string
     }
 
     export class CompanyRegisterApplyDetail {
@@ -565,6 +565,11 @@ declare namespace defs {
 
     export class GenderEnum {}
 
+    export class HTTPValidationError {
+      /** detail */
+      detail?: Array<defs.userCenter.ValidationError>
+    }
+
     export class HealthCheck {
       /** description */
       description?: string
@@ -594,14 +599,6 @@ declare namespace defs {
     }
 
     export class LoginTypeEnum {}
-
-    export class OssUrlResponse {
-      /** path */
-      path: string
-
-      /** url */
-      url: string
-    }
 
     export class PageInfo {
       /** page */
@@ -947,23 +944,6 @@ declare namespace defs {
       trace_id?: string
     }
 
-    export class Resp_OssUrlResponse_ {
-      /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
-      code?: number
-
-      /** 响应数据格式 */
-      data?: any
-
-      /** 响应提示信息 */
-      message?: string
-
-      /** 响应时间 */
-      response_time?: string
-
-      /** 请求唯一标识 */
-      trace_id?: string
-    }
-
     export class Resp_SystemCompanyRoleDetail_ {
       /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
       code?: number
@@ -982,6 +962,23 @@ declare namespace defs {
     }
 
     export class Resp_SystemDetail_ {
+      /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
+      code?: number
+
+      /** 响应数据格式 */
+      data?: any
+
+      /** 响应提示信息 */
+      message?: string
+
+      /** 响应时间 */
+      response_time?: string
+
+      /** 请求唯一标识 */
+      trace_id?: string
+    }
+
+    export class Resp_SystemList_ {
       /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
       code?: number
 
@@ -1288,6 +1285,17 @@ declare namespace defs {
       /** tags */
       tags: Array<string>
     }
+
+    export class ValidationError {
+      /** loc */
+      loc: array
+
+      /** msg */
+      msg: string
+
+      /** type */
+      type: string
+    }
   }
 }
 
@@ -1302,7 +1310,7 @@ declare namespace API {
 获取个人信息
         * /v1/account/myself
         */
-      export namespace myself_account_detail_v1_account_myself_get {
+      export namespace getAccountMyselfV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_AccountAuthDetail_
@@ -1314,7 +1322,7 @@ declare namespace API {
        * 用户列表
        * /v1/account/self
        */
-      export namespace route_v1_account_self_get {
+      export namespace getAccountSelfV1 {
         export class Params {
           /** 用户名 */
           username?: string
@@ -1347,7 +1355,7 @@ declare namespace API {
        * 创建用户
        * /v1/account/self
        */
-      export namespace account_create_v1_account_self_post {
+      export namespace postAccountSelfV1 {
         export class Params {}
 
         export type Response = defs.userCenter.AccountDetail
@@ -1359,7 +1367,7 @@ declare namespace API {
        * 用户详情
        * /v1/account/self/{id}
        */
-      export namespace route_v1_account_self__id__get {
+      export namespace getAccountSelfByIdV1 {
         export class Params {
           /** id */
           id: string
@@ -1374,7 +1382,7 @@ declare namespace API {
        * 更新用户
        * /v1/account/self/{id}
        */
-      export namespace account_update_v1_account_self__id__put {
+      export namespace putAccountSelfByIdV1 {
         export class Params {}
 
         export type Response = defs.userCenter.AccountDetail
@@ -1392,7 +1400,7 @@ declare namespace API {
 注销
         * /v1/auth/archive
         */
-      export namespace archive_v1_auth_archive_post {
+      export namespace postAuthArchiveV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_list_apis_http_routes_v1_auth_schemas_ArchiveCheckOut__
@@ -1408,7 +1416,7 @@ declare namespace API {
 登录接口
         * /v1/auth/login
         */
-      export namespace login_v1_auth_login_post {
+      export namespace postAuthLoginV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_AuthData_
@@ -1421,7 +1429,7 @@ declare namespace API {
 退出登录接口
         * /v1/auth/logout
         */
-      export namespace logout_v1_auth_logout_post {
+      export namespace postAuthLogoutV1 {
         export class Params {}
 
         export type Response = defs.userCenter.SimpleSuccess
@@ -1437,7 +1445,7 @@ declare namespace API {
 已登录通过旧密码修改密码
         * /v1/auth/password/change
         */
-      export namespace change_password_v1_auth_password_change_post {
+      export namespace postAuthPasswordChangeV1 {
         export class Params {}
 
         export type Response = any
@@ -1450,7 +1458,7 @@ declare namespace API {
 通过验证码修改密码
         * /v1/auth/password/code-change
         */
-      export namespace change_password_with_code_v1_auth_password_code_change_post {
+      export namespace postAuthPasswordCodeChangeV1 {
         export class Params {}
 
         export type Response = any
@@ -1463,7 +1471,7 @@ declare namespace API {
 刷新用户可访问子系统的token, 当前系统的当前场景为刷新操作, 会导致旧token失效
         * /v1/auth/token/refresh
         */
-      export namespace cross_system_v1_auth_token_refresh_post {
+      export namespace postAuthTokenRefreshV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_AuthData_
@@ -1483,7 +1491,7 @@ declare namespace API {
        * 企业入驻申请列表
        * /v1/company/apply
        */
-      export namespace route_v1_company_apply_get {
+      export namespace getCompanyApplyV1 {
         export class Params {
           /** 第几页 */
           page?: number
@@ -1493,7 +1501,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1503,17 +1511,18 @@ declare namespace API {
       }
 
       /**
-       * 创建企业入驻申请
-       * /v1/company/apply
-       */
-      export namespace route_v1_company_apply_post {
+        * 企业入驻申请创建
+企业入驻申请创建
+        * /v1/company/apply
+        */
+      export namespace postCompanyApplyV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_CompanyRegisterApplyDetail_
         export const init: Response
         export function request(
           params: Params,
-          bodyParams: defs.userCenter.CompanyRegisterApplyCreate,
+          bodyParams: defs.userCenter.Body_create_company_register_apply_v1_company_apply_post,
         ): Promise<defs.userCenter.Resp_CompanyRegisterApplyDetail_>
       }
 
@@ -1521,7 +1530,7 @@ declare namespace API {
        * 企业入驻申请详情
        * /v1/company/apply/{id}
        */
-      export namespace route_v1_company_apply__id__get {
+      export namespace getCompanyApplyByIdV1 {
         export class Params {
           /** id */
           id: string
@@ -1536,7 +1545,7 @@ declare namespace API {
        * 企业列表
        * /v1/company/self
        */
-      export namespace route_v1_company_self_get {
+      export namespace getCompanySelfV1 {
         export class Params {
           /** 第几页 */
           page?: number
@@ -1559,7 +1568,7 @@ declare namespace API {
        * 企业详情
        * /v1/company/self/{id}
        */
-      export namespace route_v1_company_self__id__get {
+      export namespace getCompanySelfByIdV1 {
         export class Params {
           /** id */
           id: string
@@ -1577,10 +1586,10 @@ declare namespace API {
     export namespace other {
       /**
         * 发送验证码
-发送验证码, phone + scene组成unique_key
+发送验证码, phone/email + scene组成unique_key
         * /v1/other/common/captcha/code
         */
-      export namespace captcha_code_v1_other_common_captcha_code_post {
+      export namespace postOtherCommonCaptchaCodeV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_CaptchaCodeResponse_
@@ -1596,8 +1605,13 @@ declare namespace API {
 图片验证码, unique_key附带在响应头中
         * /v1/other/common/captcha/image
         */
-      export namespace captcha_image_v1_other_common_captcha_image_get {
-        export class Params {}
+      export namespace getOtherCommonCaptchaImageV1 {
+        export class Params {
+          /** 唯一标识, 手机号或用户名 */
+          identifier: string
+          /** 场景 */
+          scene: any
+        }
 
         export type Response = any
         export const init: Response
@@ -1609,7 +1623,7 @@ declare namespace API {
 枚举-列表
         * /v1/other/common/enum
         */
-      export namespace enum_content_v1_other_common_enum_get {
+      export namespace getOtherCommonEnumV1 {
         export class Params {
           /** 返回格式 */
           format?: any
@@ -1623,24 +1637,6 @@ declare namespace API {
         export const init: Response
         export function request(params: Params): Promise<defs.userCenter.Resp_Union_dict__tuple_tuple___>
       }
-
-      /**
-        * 临时OSS上传url
-临时OSS上传url
-        * /v1/other/common/oss/upload-url
-        */
-      export namespace oss_upload_url_v1_other_common_oss_upload_url_get {
-        export class Params {
-          /** 上传路径 */
-          filepath: string
-          /** 基础路径, 默认为空按项目及环境划分 */
-          base_path?: string
-        }
-
-        export type Response = defs.userCenter.Resp_OssUrlResponse_
-        export const init: Response
-        export function request(params: Params): Promise<defs.userCenter.Resp_OssUrlResponse_>
-      }
     }
 
     /**
@@ -1652,7 +1648,7 @@ declare namespace API {
 获取系统的全层级菜单
         * /v1/resource/system
         */
-      export namespace resource_trees_v1_resource_system_get {
+      export namespace getResourceSystemV1 {
         export class Params {
           /** system_id */
           system_id: string
@@ -1674,7 +1670,7 @@ declare namespace API {
        * 子系统角色列表
        * /v1/role/self
        */
-      export namespace route_v1_role_self_get {
+      export namespace getRoleSelfV1 {
         export class Params {
           /** 第几页 */
           page?: number
@@ -1697,7 +1693,7 @@ declare namespace API {
        * 创建子系统角色
        * /v1/role/self
        */
-      export namespace create_role_v1_role_self_post {
+      export namespace postRoleSelfV1 {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_SystemCompanyRoleDetail_
@@ -1712,7 +1708,7 @@ declare namespace API {
        * 子系统角色详情
        * /v1/role/self/{id}
        */
-      export namespace retrieve_role_v1_role_self__id__get {
+      export namespace getRoleSelfByIdV1 {
         export class Params {
           /** id */
           id: string
@@ -1727,7 +1723,7 @@ declare namespace API {
        * 更新子系统角色
        * /v1/role/self/{id}
        */
-      export namespace update_role_v1_role_self__id__put {
+      export namespace putRoleSelfByIdV1 {
         export class Params {}
 
         export type Response = defs.userCenter.SystemCompanyRoleDetail
@@ -1747,7 +1743,7 @@ declare namespace API {
        * 健康检查
        * /
        */
-      export namespace index__get {
+      export namespace getIndex {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_HealthCheck_
@@ -1759,7 +1755,7 @@ declare namespace API {
        * 全部uri
        * /uri-list
        */
-      export namespace get_all_urls_from_request_uri_list_get {
+      export namespace getUriList {
         export class Params {}
 
         export type Response = defs.userCenter.Resp_list_apis_http_urls_UriItem__
@@ -1773,10 +1769,23 @@ declare namespace API {
      */
     export namespace system {
       /**
+        * 已授权系统
+获取用户已授权系统
+        * /v1/system/myself
+        */
+      export namespace getSystemMyselfV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp_SystemList_
+        export const init: Response
+        export function request(params: Params): Promise<defs.userCenter.Resp_SystemList_>
+      }
+
+      /**
        * 子系统列表
        * /v1/system/self
        */
-      export namespace route_v1_system_self_get {
+      export namespace getSystemSelfV1 {
         export class Params {
           /** 第几页 */
           page?: number
@@ -1799,7 +1808,7 @@ declare namespace API {
        * 子系统详情
        * /v1/system/self/{id}
        */
-      export namespace route_v1_system_self__id__get {
+      export namespace getSystemSelfByIdV1 {
         export class Params {
           /** id */
           id: string

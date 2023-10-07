@@ -6,7 +6,7 @@
       "interfaces": [
         {
           "description": "个人信息\n获取个人信息",
-          "name": "myself_account_detail_v1_account_myself_get",
+          "name": "getAccountMyselfV1",
           "method": "get",
           "path": "/v1/account/myself",
           "response": {
@@ -22,7 +22,7 @@
         },
         {
           "description": "用户列表",
-          "name": "route_v1_account_self_get",
+          "name": "getAccountSelfV1",
           "method": "get",
           "path": "/v1/account/self",
           "response": {
@@ -219,7 +219,7 @@
         },
         {
           "description": "创建用户",
-          "name": "account_create_v1_account_self_post",
+          "name": "postAccountSelfV1",
           "method": "post",
           "path": "/v1/account/self",
           "response": {
@@ -250,7 +250,7 @@
         },
         {
           "description": "用户详情",
-          "name": "route_v1_account_self__id__get",
+          "name": "getAccountSelfByIdV1",
           "method": "get",
           "path": "/v1/account/self/{id}",
           "response": {
@@ -281,7 +281,7 @@
         },
         {
           "description": "更新用户",
-          "name": "account_update_v1_account_self__id__put",
+          "name": "putAccountSelfByIdV1",
           "method": "put",
           "path": "/v1/account/self/{id}",
           "response": {
@@ -318,7 +318,7 @@
       "interfaces": [
         {
           "description": "注销\n注销",
-          "name": "archive_v1_auth_archive_post",
+          "name": "postAuthArchiveV1",
           "method": "post",
           "path": "/v1/auth/archive",
           "response": {
@@ -359,7 +359,7 @@
         },
         {
           "description": "登录\n登录接口",
-          "name": "login_v1_auth_login_post",
+          "name": "postAuthLoginV1",
           "method": "post",
           "path": "/v1/auth/login",
           "response": {
@@ -390,7 +390,7 @@
         },
         {
           "description": "登出\n退出登录接口",
-          "name": "logout_v1_auth_logout_post",
+          "name": "postAuthLogoutV1",
           "method": "post",
           "path": "/v1/auth/logout",
           "response": {
@@ -421,7 +421,7 @@
         },
         {
           "description": "修改密码\n已登录通过旧密码修改密码",
-          "name": "change_password_v1_auth_password_change_post",
+          "name": "postAuthPasswordChangeV1",
           "method": "post",
           "path": "/v1/auth/password/change",
           "response": {
@@ -452,7 +452,7 @@
         },
         {
           "description": "修改密码\n通过验证码修改密码",
-          "name": "change_password_with_code_v1_auth_password_code_change_post",
+          "name": "postAuthPasswordCodeChangeV1",
           "method": "post",
           "path": "/v1/auth/password/code-change",
           "response": {
@@ -483,7 +483,7 @@
         },
         {
           "description": "刷新子系统token\n刷新用户可访问子系统的token, 当前系统的当前场景为刷新操作, 会导致旧token失效",
-          "name": "cross_system_v1_auth_token_refresh_post",
+          "name": "postAuthTokenRefreshV1",
           "method": "post",
           "path": "/v1/auth/token/refresh",
           "response": {
@@ -520,7 +520,7 @@
       "interfaces": [
         {
           "description": "企业入驻申请列表",
-          "name": "route_v1_company_apply_get",
+          "name": "getCompanyApplyV1",
           "method": "get",
           "path": "/v1/company/apply",
           "response": {
@@ -604,7 +604,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -631,8 +631,8 @@
           ]
         },
         {
-          "description": "创建企业入驻申请",
-          "name": "route_v1_company_apply_post",
+          "description": "企业入驻申请创建\n企业入驻申请创建",
+          "name": "postCompanyApplyV1",
           "method": "post",
           "path": "/v1/company/apply",
           "response": {
@@ -651,7 +651,7 @@
               "name": "requestBody",
               "dataType": {
                 "typeArgs": [],
-                "typeName": "CompanyRegisterApplyCreate",
+                "typeName": "Body_create_company_register_apply_v1_company_apply_post",
                 "isDefsType": true,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
@@ -663,7 +663,7 @@
         },
         {
           "description": "企业入驻申请详情",
-          "name": "route_v1_company_apply__id__get",
+          "name": "getCompanyApplyByIdV1",
           "method": "get",
           "path": "/v1/company/apply/{id}",
           "response": {
@@ -694,7 +694,7 @@
         },
         {
           "description": "企业列表",
-          "name": "route_v1_company_self_get",
+          "name": "getCompanySelfV1",
           "method": "get",
           "path": "/v1/company/self",
           "response": {
@@ -806,7 +806,7 @@
         },
         {
           "description": "企业详情",
-          "name": "route_v1_company_self__id__get",
+          "name": "getCompanySelfByIdV1",
           "method": "get",
           "path": "/v1/company/self/{id}",
           "response": {
@@ -842,8 +842,8 @@
       "name": "other",
       "interfaces": [
         {
-          "description": "发送验证码\n发送验证码, phone + scene组成unique_key",
-          "name": "captcha_code_v1_other_common_captcha_code_post",
+          "description": "发送验证码\n发送验证码, phone/email + scene组成unique_key",
+          "name": "postOtherCommonCaptchaCodeV1",
           "method": "post",
           "path": "/v1/other/common/captcha/code",
           "response": {
@@ -874,7 +874,7 @@
         },
         {
           "description": "图片验证码\n图片验证码, unique_key附带在响应头中",
-          "name": "captcha_image_v1_other_common_captcha_image_get",
+          "name": "getOtherCommonCaptchaImageV1",
           "method": "get",
           "path": "/v1/other/common/captcha/image",
           "response": {
@@ -886,11 +886,42 @@
             "enum": [],
             "typeProperties": []
           },
-          "parameters": []
+          "parameters": [
+            {
+              "description": "唯一标识, 手机号或用户名",
+              "required": true,
+              "in": "query",
+              "name": "identifier",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "场景",
+              "required": true,
+              "in": "query",
+              "name": "scene",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
         },
         {
           "description": "枚举表\n枚举-列表",
-          "name": "enum_content_v1_other_common_enum_get",
+          "name": "getOtherCommonEnumV1",
           "method": "get",
           "path": "/v1/other/common/enum",
           "response": {
@@ -947,53 +978,6 @@
               }
             }
           ]
-        },
-        {
-          "description": "临时OSS上传url\n临时OSS上传url",
-          "name": "oss_upload_url_v1_other_common_oss_upload_url_get",
-          "method": "get",
-          "path": "/v1/other/common/oss/upload-url",
-          "response": {
-            "typeArgs": [],
-            "typeName": "Resp_OssUrlResponse_",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "description": "上传路径",
-              "required": true,
-              "in": "query",
-              "name": "filepath",
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            },
-            {
-              "description": "基础路径, 默认为空按项目及环境划分",
-              "required": false,
-              "in": "query",
-              "name": "base_path",
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
         }
       ]
     },
@@ -1003,7 +987,7 @@
       "interfaces": [
         {
           "description": "获取系统的全层级菜单\n获取系统的全层级菜单",
-          "name": "resource_trees_v1_resource_system_get",
+          "name": "getResourceSystemV1",
           "method": "get",
           "path": "/v1/resource/system",
           "response": {
@@ -1040,7 +1024,7 @@
       "interfaces": [
         {
           "description": "子系统角色列表",
-          "name": "route_v1_role_self_get",
+          "name": "getRoleSelfV1",
           "method": "get",
           "path": "/v1/role/self",
           "response": {
@@ -1152,7 +1136,7 @@
         },
         {
           "description": "创建子系统角色",
-          "name": "create_role_v1_role_self_post",
+          "name": "postRoleSelfV1",
           "method": "post",
           "path": "/v1/role/self",
           "response": {
@@ -1183,7 +1167,7 @@
         },
         {
           "description": "子系统角色详情",
-          "name": "retrieve_role_v1_role_self__id__get",
+          "name": "getRoleSelfByIdV1",
           "method": "get",
           "path": "/v1/role/self/{id}",
           "response": {
@@ -1214,7 +1198,7 @@
         },
         {
           "description": "更新子系统角色",
-          "name": "update_role_v1_role_self__id__put",
+          "name": "putRoleSelfByIdV1",
           "method": "put",
           "path": "/v1/role/self/{id}",
           "response": {
@@ -1251,7 +1235,7 @@
       "interfaces": [
         {
           "description": "健康检查",
-          "name": "index__get",
+          "name": "getIndex",
           "method": "get",
           "path": "/",
           "response": {
@@ -1267,7 +1251,7 @@
         },
         {
           "description": "全部uri",
-          "name": "get_all_urls_from_request_uri_list_get",
+          "name": "getUriList",
           "method": "get",
           "path": "/uri-list",
           "response": {
@@ -1288,8 +1272,24 @@
       "name": "system",
       "interfaces": [
         {
+          "description": "已授权系统\n获取用户已授权系统",
+          "name": "getSystemMyselfV1",
+          "method": "get",
+          "path": "/v1/system/myself",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_SystemList_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": []
+        },
+        {
           "description": "子系统列表",
-          "name": "route_v1_system_self_get",
+          "name": "getSystemSelfV1",
           "method": "get",
           "path": "/v1/system/self",
           "response": {
@@ -1401,7 +1401,7 @@
         },
         {
           "description": "子系统详情",
-          "name": "route_v1_system_self__id__get",
+          "name": "getSystemSelfByIdV1",
           "method": "get",
           "path": "/v1/system/self/{id}",
           "response": {
@@ -2826,8 +2826,8 @@
             "enum": [],
             "typeProperties": []
           },
-          "name": "phone",
-          "description": "手机号",
+          "name": "identifier",
+          "description": "唯一标识, 手机号或邮箱",
           "required": true
         },
         {
@@ -2842,6 +2842,227 @@
           },
           "name": "scene",
           "description": "场景",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Body_create_company_register_apply_v1_company_apply_post",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "business_license",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "credit_code_tax_id",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "email",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "id_number",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "legal_representative_id_card_front",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "legal_representative_name",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "legal_representative_phone",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "name",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "password",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "phone",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "real_name",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "resources",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "submit_remark",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "systems",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "username",
           "required": true
         }
       ]
@@ -3091,243 +3312,6 @@
           },
           "name": "updated_at",
           "description": "更新时间",
-          "required": true
-        }
-      ]
-    },
-    {
-      "description": "企业入驻申请<br/>每一次申请直接创建 状态为 enums. 的企业<br/>审核通过直接修改对应企业的状态，审核拒绝直接删除对应企业",
-      "name": "CompanyRegisterApplyCreate",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "business_license",
-          "description": "营业执照",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "credit_code_tax_id",
-          "description": "统一社会信用代码/税号",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "email",
-          "description": "邮箱",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "id_number",
-          "description": "身份证号",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "legal_representative_id_card_front",
-          "description": "法人身份证正面",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "legal_representative_name",
-          "description": "法人姓名",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "legal_representative_phone",
-          "description": "法人手机号",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "name",
-          "description": "企业全称",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "password",
-          "description": "密码",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "phone",
-          "description": "手机号",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "real_name",
-          "description": "姓名",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Array",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "resources",
-          "description": "可分配的子系统资源",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "submit_remark",
-          "description": "备注",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [
-              {
-                "typeArgs": [],
-                "typeName": "string",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            ],
-            "typeName": "Array",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "systems",
-          "description": "注册的子系统",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "username",
-          "description": "用户名",
           "required": true
         }
       ]
@@ -4070,6 +4054,35 @@
       "properties": []
     },
     {
+      "name": "HTTPValidationError",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "ValidationError",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "detail",
+          "required": false
+        }
+      ]
+    },
+    {
       "name": "HealthCheck",
       "templateArgs": [],
       "properties": [
@@ -4194,38 +4207,6 @@
       "name": "LoginTypeEnum",
       "templateArgs": [],
       "properties": []
-    },
-    {
-      "name": "OssUrlResponse",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "path",
-          "required": true
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "url",
-          "required": true
-        }
-      ]
     },
     {
       "description": "翻页相关信息.",
@@ -5838,83 +5819,6 @@
     },
     {
       "description": "响应Model.",
-      "name": "Resp_OssUrlResponse_",
-      "templateArgs": [],
-      "properties": [
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "number",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "code",
-          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "data",
-          "description": "响应数据格式",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "message",
-          "description": "响应提示信息",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "response_time",
-          "description": "响应时间",
-          "required": false
-        },
-        {
-          "dataType": {
-            "typeArgs": [],
-            "typeName": "string",
-            "isDefsType": false,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "name": "trace_id",
-          "description": "请求唯一标识",
-          "required": false
-        }
-      ]
-    },
-    {
-      "description": "响应Model.",
       "name": "Resp_SystemCompanyRoleDetail_",
       "templateArgs": [],
       "properties": [
@@ -5993,6 +5897,83 @@
     {
       "description": "响应Model.",
       "name": "Resp_SystemDetail_",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_SystemList_",
       "templateArgs": [],
       "properties": [
         {
@@ -7391,6 +7372,51 @@
             "typeProperties": []
           },
           "name": "tags",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "ValidationError",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "loc",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "msg",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "type",
           "required": true
         }
       ]

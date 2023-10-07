@@ -1,14 +1,9 @@
 /**
  * @description 角色管理
  */
-import * as route_v1_role_self_get from "./route_v1_role_self_get"
-import * as create_role_v1_role_self_post from "./create_role_v1_role_self_post"
-import * as retrieve_role_v1_role_self__id__get from "./retrieve_role_v1_role_self__id__get"
-import * as update_role_v1_role_self__id__put from "./update_role_v1_role_self__id__put"
+import * as getRoleSelfV1 from "./getRoleSelfV1"
+import * as postRoleSelfV1 from "./postRoleSelfV1"
+import * as getRoleSelfByIdV1 from "./getRoleSelfByIdV1"
+import * as putRoleSelfByIdV1 from "./putRoleSelfByIdV1"
 
-export {
-  route_v1_role_self_get,
-  create_role_v1_role_self_post,
-  retrieve_role_v1_role_self__id__get,
-  update_role_v1_role_self__id__put,
-}
+export { getRoleSelfV1, postRoleSelfV1, getRoleSelfByIdV1, putRoleSelfByIdV1 }
