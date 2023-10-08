@@ -260,6 +260,7 @@ onMounted(() => {
     params: {
       page: 1,
       size: 99,
+      internal: false,
     },
   }).then(data => {
     systemList.value = data
@@ -344,27 +345,30 @@ onMounted(() => {
       </div>
       <div class="flex flex-row justify-between w-[1400px] register-step register-step2" v-else>
         <div class="register-step2-left">
-          <div
-            v-for="item in systemList"
-            :key="item.id"
-            class="register-step2-left-item flex items-center relative"
-            :class="{ 'register-step2-left-item-active': step2FormValues.systems.includes(item.id) }"
-            @click="() => onSytemItemClick(item.id)"
-          >
-            <img :src="item.icon" v-if="item.icon" class="register-step2-left-item-icon flex-none mr-[20px] w-[94px]" />
-            <div class="register-step2-left-item-right">
-              <div class="register-step2-left-item-title">{{ item.label }}</div>
-              <div class="register-step2-left-item-description">{{ item.description }}</div>
-            </div>
-            <ElIcon
-              :size="40"
-              color="#4181d9"
-              v-if="step2FormValues.systems.includes(item.id)"
-              class="register-step2-left-item-checked"
-            >
-              <Select />
-            </ElIcon>
-          </div>
+          <template v-for="(item, index) in systemList" :key="item.id">
+            <Motion :delay="index * 50">
+              <div
+                class="register-step2-left-item flex items-center relative"
+                :class="{ 'register-step2-left-item-active': step2FormValues.systems.includes(item.id) }"
+                @click="() => onSytemItemClick(item.id)"
+                :style="`margin-bottom: ${index != systemList.length - 1 ? 20 : 0}px`"
+              >
+                <img :src="item.icon" v-if="item.icon" class="register-step2-left-item-icon flex-none mr-[20px] w-[94px]" />
+                <div class="register-step2-left-item-right">
+                  <div class="register-step2-left-item-title">{{ item.label }}</div>
+                  <div class="register-step2-left-item-description">{{ item.description }}</div>
+                </div>
+                <ElIcon
+                  :size="40"
+                  color="#4181d9"
+                  v-if="step2FormValues.systems.includes(item.id)"
+                  class="register-step2-left-item-checked"
+                >
+                  <Select />
+                </ElIcon>
+              </div>
+            </Motion>
+          </template>
         </div>
         <div class="register-step2-right w-[400px]">
           <Motion>

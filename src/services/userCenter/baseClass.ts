@@ -260,6 +260,29 @@ class AccountUpdate {
   username = ""
 }
 
+class AccountUpdateSelf {
+  /** 出生日期 */
+  born_date = ""
+
+  /** 邮箱 */
+  email = ""
+
+  /** 性别, choices: male-男、female-女、other-其他 */
+  gender = undefined
+
+  /** 身份证号 */
+  id_number = ""
+
+  /** 手机号 */
+  phone = ""
+
+  /** 姓名 */
+  real_name = ""
+
+  /** 用户名 */
+  username = ""
+}
+
 class ApplyStatusEnum {}
 
 class ArchiveCheckOut {
@@ -299,6 +322,9 @@ class Body_captcha_code_v1_other_common_captcha_code_post {
 }
 
 class Body_create_company_register_apply_v1_company_apply_post {
+  /** address */
+  address = ""
+
   /** business_license */
   business_license = ""
 
@@ -346,6 +372,9 @@ class Body_create_company_register_apply_v1_company_apply_post {
 }
 
 class CaptchaCodeResponse {
+  /** code */
+  code = ""
+
   /** 验证码唯一标识 */
   unique_key = ""
 }
@@ -381,6 +410,9 @@ class CodeLoginPayload {
 }
 
 class CompanyList {
+  /** 企业地址 */
+  address = ""
+
   /** 创建时间 */
   created_at = ""
 
@@ -409,6 +441,9 @@ class CompanyList {
 class CompanyRegisterApplyDetail {
   /** 账户 */
   account_id = ""
+
+  /** 企业地址 */
+  address = ""
 
   /** 营业执照 */
   business_license = ""
@@ -477,6 +512,9 @@ class CompanyRegisterApplyDetail {
 class CompanyRegisterApplyList {
   /** 账户 */
   account_id = ""
+
+  /** 企业地址 */
+  address = ""
 
   /** 营业执照 */
   business_license = ""
@@ -1313,6 +1351,7 @@ export const userCenter = {
   AccountDetail,
   AccountList,
   AccountUpdate,
+  AccountUpdateSelf,
   ApplyStatusEnum,
   ArchiveCheckOut,
   AuthData,

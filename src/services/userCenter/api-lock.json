@@ -21,6 +21,37 @@
           "parameters": []
         },
         {
+          "description": "个人信息\n修改个人信息",
+          "name": "postAccountMyselfV1",
+          "method": "post",
+          "path": "/v1/account/myself",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_AccountAuthDetail_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "body",
+              "name": "requestBody",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "AccountUpdateSelf",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
           "description": "用户列表",
           "name": "getAccountSelfV1",
           "method": "get",
@@ -564,7 +595,7 @@
               }
             },
             {
-              "description": "搜索关键字. 匹配字段: username, name",
+              "description": "搜索关键字. 匹配字段: name, username",
               "required": false,
               "in": "query",
               "name": "search",
@@ -604,7 +635,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -778,7 +809,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, status, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, address, status, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -1287,6 +1318,36 @@
             "typeProperties": []
           },
           "parameters": [
+            {
+              "description": "是否内部",
+              "required": false,
+              "in": "query",
+              "name": "internal",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "状态, choices: enable-启用、disable-禁用",
+              "required": false,
+              "in": "query",
+              "name": "status",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
             {
               "description": "第几页",
               "required": false,
@@ -2672,6 +2733,111 @@
       ]
     },
     {
+      "description": "用户<br/>Redis 实时缓存用户基本信息和权限码: service/tasks/long-live/mysql-bin-consume.py",
+      "name": "AccountUpdateSelf",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "born_date",
+          "description": "出生日期",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "email",
+          "description": "邮箱",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "gender",
+          "description": "性别, choices: male-男、female-女、other-其他",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "id_number",
+          "description": "身份证号",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "phone",
+          "description": "手机号",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "real_name",
+          "description": "姓名",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "username",
+          "description": "用户名",
+          "required": false
+        }
+      ]
+    },
+    {
       "description": "审核状态",
       "name": "ApplyStatusEnum",
       "templateArgs": [],
@@ -2835,6 +3001,19 @@
       "name": "Body_create_company_register_apply_v1_company_apply_post",
       "templateArgs": [],
       "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "address",
+          "required": false
+        },
         {
           "dataType": {
             "typeArgs": [],
@@ -3066,6 +3245,19 @@
             "enum": [],
             "typeProperties": []
           },
+          "name": "code",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
           "name": "unique_key",
           "description": "验证码唯一标识",
           "required": true
@@ -3217,6 +3409,20 @@
             "enum": [],
             "typeProperties": []
           },
+          "name": "address",
+          "description": "企业地址",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
           "name": "created_at",
           "description": "创建时间",
           "required": true
@@ -3338,6 +3544,20 @@
           },
           "name": "account_id",
           "description": "账户",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "address",
+          "description": "企业地址",
           "required": false
         },
         {
@@ -3663,6 +3883,20 @@
           },
           "name": "account_id",
           "description": "账户",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "address",
+          "description": "企业地址",
           "required": false
         },
         {

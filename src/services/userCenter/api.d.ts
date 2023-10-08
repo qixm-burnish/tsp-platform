@@ -266,6 +266,29 @@ declare namespace defs {
       username?: string
     }
 
+    export class AccountUpdateSelf {
+      /** 出生日期 */
+      born_date?: string
+
+      /** 邮箱 */
+      email?: string
+
+      /** 性别, choices: male-男、female-女、other-其他 */
+      gender?: any
+
+      /** 身份证号 */
+      id_number?: string
+
+      /** 手机号 */
+      phone?: string
+
+      /** 姓名 */
+      real_name?: string
+
+      /** 用户名 */
+      username?: string
+    }
+
     export class ApplyStatusEnum {}
 
     export class ArchiveCheckOut {
@@ -305,6 +328,9 @@ declare namespace defs {
     }
 
     export class Body_create_company_register_apply_v1_company_apply_post {
+      /** address */
+      address?: string
+
       /** business_license */
       business_license: string
 
@@ -352,6 +378,9 @@ declare namespace defs {
     }
 
     export class CaptchaCodeResponse {
+      /** code */
+      code: string
+
       /** 验证码唯一标识 */
       unique_key: string
     }
@@ -387,6 +416,9 @@ declare namespace defs {
     }
 
     export class CompanyList {
+      /** 企业地址 */
+      address?: string
+
       /** 创建时间 */
       created_at: string
 
@@ -415,6 +447,9 @@ declare namespace defs {
     export class CompanyRegisterApplyDetail {
       /** 账户 */
       account_id?: string
+
+      /** 企业地址 */
+      address?: string
 
       /** 营业执照 */
       business_license: string
@@ -483,6 +518,9 @@ declare namespace defs {
     export class CompanyRegisterApplyList {
       /** 账户 */
       account_id?: string
+
+      /** 企业地址 */
+      address?: string
 
       /** 营业执照 */
       business_license: string
@@ -1335,6 +1373,22 @@ declare namespace API {
       }
 
       /**
+        * 个人信息
+修改个人信息
+        * /v1/account/myself
+        */
+      export namespace postAccountMyselfV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp_AccountAuthDetail_
+        export const init: Response
+        export function request(
+          params: Params,
+          bodyParams: defs.userCenter.AccountUpdateSelf,
+        ): Promise<defs.userCenter.Resp_AccountAuthDetail_>
+      }
+
+      /**
        * 用户列表
        * /v1/account/self
        */
@@ -1513,11 +1567,11 @@ declare namespace API {
           page?: number
           /** 每页数量 */
           size?: number
-          /** 搜索关键字. 匹配字段: username, name */
+          /** 搜索关键字. 匹配字段: name, username */
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1571,7 +1625,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, status, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, address, status, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1801,6 +1855,10 @@ declare namespace API {
        */
       export namespace getSystemSelfV1 {
         export class Params {
+          /** 是否内部 */
+          internal?: boolean
+          /** 状态, choices: enable-启用、disable-禁用 */
+          status?: any
           /** 第几页 */
           page?: number
           /** 每页数量 */

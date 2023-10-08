@@ -2,6 +2,10 @@ import { userCenterRequest as request } from "@/utils/request"
 import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
 export class RequestParamsType {
+  /** 是否内部 */
+  internal?: boolean
+  /** 状态, choices: enable-启用、disable-禁用 */
+  status?: any
   /** 第几页 */
   page?: number
   /** 每页数量 */
