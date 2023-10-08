@@ -29,11 +29,11 @@ const { initStorage } = useLayout()
 initStorage()
 
 const passwordFormValues = reactive({
+  rememberPassword: false,
   ...loginData.get({
     username: "",
     password: "",
   }),
-  rememberPassword: false,
   verifyCode: "",
   verifyCodeKey: "",
 })
@@ -86,6 +86,7 @@ async function _onLogin(formEl: FormInstance | undefined, values: Record<string,
               loginData.set({
                 username: values.username,
                 password: values.password,
+                rememberPassword: true,
               })
             } else {
               loginData.remove()
