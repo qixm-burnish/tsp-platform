@@ -75,7 +75,7 @@ function onConfirm() {
       })
         .then(() => {
           ElMessage.success("密码修改成功")
-          router.push("/forget")
+          router.push("/login")
         })
         .finally(() => {
           loading.value = false
