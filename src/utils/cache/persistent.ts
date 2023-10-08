@@ -1,7 +1,15 @@
 import { pick, omit } from "lodash-es"
 import { toRaw } from "vue"
 
-import { type BasicStore, DEFAULT_CACHE_TIME, TOKEN_KEY, USER_INFO_KEY, LOCK_INFO_KEY, APP_LOCAL_CACHE_KEY, APP_SESSION_CACHE_KEY } from "@/config/cache"
+import {
+  type BasicStore,
+  DEFAULT_CACHE_TIME,
+  TOKEN_KEY,
+  USER_INFO_KEY,
+  LOCK_INFO_KEY,
+  APP_LOCAL_CACHE_KEY,
+  APP_SESSION_CACHE_KEY,
+} from "@/config/cache"
 
 import { createLocalStorage, createSessionStorage } from "./index"
 import { Memory } from "./memory"

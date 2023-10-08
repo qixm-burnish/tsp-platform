@@ -11,9 +11,10 @@ import { useUserStore } from "@/store/modules/user"
 import { initRouter, getTopMenu } from "@/router/utils"
 import FormVerifyCode from "@/components/FormVerifyCode"
 import FormVerifyImage from "@/components/FormVerifyImage"
+import { pwdReg } from "@/utils/regex"
+import { loginData } from "@/utils/storage"
 
 import logoUri from "@/assets/login/logo.png"
-import { pwdReg } from "@/utils/regex"
 
 defineOptions({
   name: "Login",
@@ -28,8 +29,10 @@ const { initStorage } = useLayout()
 initStorage()
 
 const passwordFormValues = reactive({
-  username: "",
-  password: "",
+  ...loginData.get({
+    username: "",
+    password: "",
+  }),
   rememberPassword: false,
   verifyCode: "",
   verifyCodeKey: "",
@@ -77,6 +80,18 @@ async function _onLogin(formEl: FormInstance | undefined, values: Record<string,
     if (valid) {
       login(activeLoginMode.value, values)
         .then(_ => {
+          // 用户名登录时，判断是否记住密码，需要进行保存或清空
+          if (values.username) {
+            if (values.rememberPassword) {
+              loginData.set({
+                username: values.username,
+                password: values.password,
+              })
+            } else {
+              loginData.remove()
+            }
+          }
+
           // 获取后端路由
           initRouter().then(() => {
             router.push(getTopMenu(true).path)

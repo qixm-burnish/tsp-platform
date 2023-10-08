@@ -27,7 +27,7 @@ const code = useModel(props, "modelValue")
 
 <template>
   <div class="form-verify-code-com">
-    <ElInput :placeholder="placeholder" v-model="code" class="fvc-input" />
+    <ElInput :placeholder="placeholder" v-model="code" class="fvc-input" clearable />
     <VerifyCodeButton :phone="phone" :scene="scene" :title="title" />
   </div>
 </template>

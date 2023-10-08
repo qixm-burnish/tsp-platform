@@ -46,3 +46,6 @@ export const APP_LOCAL_CACHE_KEY = "COMMON__LOCAL__KEY__"
 
 // base global session key
 export const APP_SESSION_CACHE_KEY = "COMMON__SESSION__KEY__"
+
+// 记录登录信息的KEY
+export const LOGIN_DATA = "__LOGIN_DATA__"
