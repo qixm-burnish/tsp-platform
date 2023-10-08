@@ -3,10 +3,8 @@ import { reactive, ref } from "vue"
 import { Search as SearchIcon } from "@element-plus/icons-vue"
 import { Search, SearchItem } from "@/components/Search"
 import Addcar from "@/views/components/addcar.vue"
-import Cardetail from "@/views/components/cardetail.vue"
-
 defineOptions({
-  name: "MapLocation",
+  name: "Fuelvehicle",
 })
 
 const tableData = [
@@ -81,17 +79,7 @@ const tableData = [
     address: "No. 189, Grove St, Los Angeles",
   },
   {
-    date: "2016-05-04",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-01",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-03",
+    date: "2016-05-02",
     name: "Tom",
     address: "No. 189, Grove St, Los Angeles",
   },
@@ -101,42 +89,17 @@ const tableData = [
     address: "No. 189, Grove St, Los Angeles",
   },
   {
-    date: "2016-05-04",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-01",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-03",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
     date: "2016-05-02",
-    name: "Tom",
-    address: "No. 189, Grove St, Los Angeles",
-  },
-  {
-    date: "2016-05-04",
     name: "Tom",
     address: "No. 189, Grove St, Los Angeles",
   },
 ]
 
 const initformvalue = reactive({
-  time: "",
+  time: "全部",
   checked: [],
   vin: "",
 })
-
-const activeType = ref<string>("map")
-const handleActiveType = (type: string) => {
-  activeType.value = type
-}
 
 const addShow = ref<boolean>(false)
 const handleAddCar = type => {
@@ -157,61 +120,8 @@ const handleAddSingleCar = () => {
   addShow.value = false
 }
 
-const detaildialogShow = ref<boolean>(false)
-const detailID = ref<number>(0)
-//详情 后续需要更改触发位置
-const handleDetail = id => {
-  detailID.value = id
-  detaildialogShow.value = true
-}
-const handleDetailClose = isBol => {
-  console.log(isBol)
-
-  detaildialogShow.value = isBol
-}
-// const handleConfirm = isBol => {
-//   adddialogShow.value = isBol
-// }
-const mapRef = ref<any>()
-
-const points = ref<any>([
-  {
-    lnglat: [106.55, 29.56],
-    id: 1,
-  },
-  {
-    lnglat: [106.51, 29.56],
-    id: 2,
-  },
-  {
-    lnglat: [106.52, 29.56],
-    id: 3,
-  },
-  {
-    lnglat: [106.53, 29.56],
-    id: 4,
-  },
-  {
-    lnglat: [106.54, 29.56],
-    id: 5,
-  },
-  {
-    lnglat: [106.56, 29.56],
-    id: 6,
-  },
-  {
-    lnglat: [106.57, 29.56],
-    id: 7,
-  },
-])
-const zoom = ref<number>(6)
-const clickMarker = e => {
-  if (e.clusterData.length > 1 && zoom.value < 15) {
-    zoom.value = zoom.value + 3
-  } else {
-    console.log(e)
-  }
-}
+//时间范围
+const timerange = ref<any>("")
 </script>
 
 <template>
@@ -219,16 +129,13 @@ const clickMarker = e => {
     <div class="flex-none ml-search white_header">
       <Search :initial-value="initformvalue" :default-value="initformvalue" #default="formValue" @add="handleAddCar">
         <SearchItem index="1" :span="4" class="filter_top">
-          <el-select v-model="formValue.value.time" class="m-2" placeholder="全部品牌">
-            <el-option label="全部品牌" value="全部品牌" />
-          </el-select>
-          <el-select v-model="formValue.value.time" class="m-2" placeholder="全部运营城市">
-            <el-option label="全部运营城市" value="全部运营城市" />
-          </el-select>
-          <el-checkbox-group class="truck_type_checkbox" v-model="formValue.value.checked">
-            <el-checkbox label="新能源车" key="新能源车" size="large" />
-            <el-checkbox label="燃油车" key="燃油车" size="large" />
-          </el-checkbox-group>
+          <el-radio-group v-model="formValue.value.time">
+            <el-radio-button label="全部" />
+            <el-radio-button label="点火运行" />
+            <el-radio-button label="熄火停车" />
+            <el-radio-button label="离线" />
+            <el-radio-button label="未激活" />
+          </el-radio-group>
         </SearchItem>
 
         <SearchItem index="4" :span="1" class="vin_license filter_top">
@@ -241,7 +148,7 @@ const clickMarker = e => {
           <img class="addcar_single" src="@/assets/image/addcar/single.png" alt="" />
           <div>单台添加车辆</div>
         </div>
-        <div class="addcar_item addcar_item_center flex flex-col" @click="handleDetail(22)">
+        <div class="addcar_item addcar_item_center flex flex-col">
           <img class="addcar_multiple" src="@/assets/image/addcar/multiple.png" alt="" />
           <div>批量导入车辆</div>
         </div>
@@ -250,59 +157,87 @@ const clickMarker = e => {
           <div>导入模板下载</div>
         </div>
       </div>
-
-      <div class="location_list">
-        <div
-          class="location_list_item"
-          :class="activeType == 'map' ? 'location_list_activeitem' : ''"
-          @click="handleActiveType('map')"
-        >
-          <img class="location_list_item_img" src="@/assets/image/maplocation/location.png" alt="" />
-        </div>
-        <div
-          class="location_list_item location_list_item_right"
-          :class="activeType == 'list' ? 'location_list_activeitem' : ''"
-          @click="handleActiveType('list')"
-        >
-          <img class="location_list_item_img" src="@/assets/image/maplocation/list.png" alt="" />
-        </div>
-      </div>
       <Addcar :show="adddialogShow" @close="handleClose" @confirm="handleConfirm" />
-      <Cardetail v-if="detaildialogShow" @close="handleDetailClose" />
     </div>
-    <div class="flex flex-row items-stretch flex-1 ml-body" v-if="activeType == 'map'">
-      <div class="ml-left flex-none w-[390px] flex flex-col">
-        <ElTable :data="tableData" :header-cell-class-name="'grey-table-header-cell'" max-height="620" class="flex-1 ml-table">
-          <ElTableColumn prop="date" label="运行状态" width="90" show-overflow-tooltip />
+    <div class="flex flex-row items-stretch flex-1 ml-body">
+      <div class="ml-left w-[310px] h-[100%]">
+        <ElTable :data="tableData" :header-cell-class-name="'grey-table-header-cell'" max-height="620px" class="flex-1 ml-table">
+          <ElTableColumn prop="date" label="运行状态" width="100" show-overflow-tooltip />
           <ElTableColumn prop="name" label="车牌号" width="105" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="车架号" width="90" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="运营城市" width="100" show-overflow-tooltip />
+          <ElTableColumn prop="name" label="车架号" width="105" show-overflow-tooltip />
         </ElTable>
         <div class="flex justify-end flex-none ml-pager mt-[10px]">
-          <ElPagination small :pager-count="5" layout="prev, pager, next,total" :pageSize="20" :total="20" />
+          <ElPagination small :pager-count="5" layout="prev, pager, next,total" :pageSize="20" :total="30000" />
         </div>
       </div>
-      <div class="flex-1 ml-map">
-        <el-amap :center="[106.55, 29.56]" :zoom="zoom" ref="mapRef" :clusterByZoomChange="true">
-          <el-amap-marker-cluster :points="points" @click="clickMarker" />
-        </el-amap>
-      </div>
-    </div>
-    <div class="ml-body" v-else>
-      <div class="flex-none flex flex-col ml-auto">
-        <ElTable :data="tableData" :header-cell-class-name="'grey-table-header-cell'" max-height="620" class="ml-table">
-          <ElTableColumn prop="date" label="运行状态" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="车牌号" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="车架号" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="品牌" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="车系" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="车型" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="能源类型" show-overflow-tooltip />
-          <ElTableColumn prop="name" label="运营城市" width="auto" show-overflow-tooltip />
-        </ElTable>
-        <div class="flex justify-end flex-none ml-pager mt-[10px]">
-          <ElPagination small layout="prev, pager, next,total" :pageSize="20" :total="20" />
-        </div>
+      <div class="flex-1 ml-right">
+        <el-tabs type="border-card" class="mi-right-tabs">
+          <el-tab-pane label="整车数据">
+            <el-date-picker
+              v-model="timerange"
+              type="datetimerange"
+              range-separator="到"
+              :value-format="'YYYY-MM-DD hh:mm'"
+              :format="'YYYY-MM-DD hh:mm'"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              style="margin-bottom: 15px"
+            />
+            <ElTable
+              :data="tableData"
+              :header-cell-class-name="'grey-table-header-cell'"
+              max-height="500"
+              class="ml-table"
+              style="width: 100%"
+            >
+              <ElTableColumn prop="date" label="时间" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="运行状态" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="充电状态" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="运行模式" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="累计里程（万公里)" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="车速（公里/小时）" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="总电压（伏）" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="总电流（安）" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="SOC" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="DC/DC状态" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="档位" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="绝缘电阻值（千欧）" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="加速踏板行程值" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="制动踏板状态" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="当前经度" show-overflow-tooltip />
+              <ElTableColumn prop="name" label="当前纬度" show-overflow-tooltip />
+            </ElTable>
+            <div class="flex justify-end flex-none ml-pager mt-[10px]">
+              <ElPagination small layout="prev, pager, next,total" :pageSize="20" :total="30000" />
+            </div>
+          </el-tab-pane>
+          <el-tab-pane label="原始报文">
+            <el-date-picker
+              v-model="timerange"
+              type="datetimerange"
+              range-separator="到"
+              :value-format="'YYYY-MM-DD hh:mm'"
+              :format="'YYYY-MM-DD hh:mm'"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              style="margin-bottom: 15px"
+            />
+            原始报文
+          </el-tab-pane>
+          <el-tab-pane label="静态信息">
+            <el-date-picker
+              v-model="timerange"
+              type="datetimerange"
+              range-separator="到"
+              :value-format="'YYYY-MM-DD hh:mm'"
+              :format="'YYYY-MM-DD hh:mm'"
+              start-placeholder="开始时间"
+              end-placeholder="结束时间"
+              style="margin-bottom: 15px"
+            />
+            静态信息
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </div>
   </div>
@@ -316,8 +251,13 @@ const clickMarker = e => {
       background: #fff;
     }
 
-    &-map {
+    &-right {
       margin-left: 22px;
+      overflow: auto;
+
+      &-tabs {
+        width: 100%;
+      }
     }
 
     &-table {

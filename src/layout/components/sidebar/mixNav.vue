@@ -20,7 +20,9 @@ function getDefaultActive(routePath) {
   const wholeMenus = usePermissionStoreHook().wholeMenus
   /** 当前路由的父级路径 */
   const parentRoutes = getParentPaths(routePath, wholeMenus)[0]
-  defaultActive.value = !isAllEmpty(route.meta?.activePath) ? route.meta.activePath : findRouteByPath(parentRoutes, wholeMenus)?.children[0]?.path
+  defaultActive.value = !isAllEmpty(route.meta?.activePath)
+    ? route.meta.activePath
+    : findRouteByPath(parentRoutes, wholeMenus)?.children[0]?.path
 }
 
 onMounted(() => {
@@ -42,7 +44,11 @@ watch(
 <template>
   <div v-if="device !== 'mobile'" class="horizontal-header" v-loading="usePermissionStoreHook().wholeMenus.length === 0">
     <el-menu router ref="menuRef" mode="horizontal" class="horizontal-header-menu" :default-active="defaultActive">
-      <el-menu-item v-for="route in usePermissionStoreHook().wholeMenus" :key="route.path" :index="resolvePath(route) || route.redirect">
+      <el-menu-item
+        v-for="route in usePermissionStoreHook().wholeMenus"
+        :key="route.path"
+        :index="resolvePath(route) || route.redirect"
+      >
         <template #title>
           <div v-if="toRaw(route.meta.icon)" :class="['sub-menu-icon', route.meta.icon]">
             <component :is="useRenderIcon(route.meta && toRaw(route.meta.icon))" />

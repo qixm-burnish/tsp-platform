@@ -3,7 +3,7 @@ import { useNav } from "@/layout/hooks/useNav"
 import Breadcrumb from "./sidebar/breadCrumb.vue"
 import topCollapse from "./sidebar/topCollapse.vue"
 
-const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
+const { device, logout, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
 </script>
 
 <template>
@@ -29,10 +29,14 @@ const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, tog
             <ul class="navbar-ui-list">
               <li class="flex navbar-ui-item">
                 <div class="navbar-ui-label">用户名</div>
-                <div class="navbar-ui-value">11212313212315121231231231</div>
+                <div class="navbar-ui-value">1121231321</div>
               </li>
               <li class="flex navbar-ui-item">
                 <div class="navbar-ui-label">手机号</div>
+                <div class="navbar-ui-value">22</div>
+              </li>
+              <li class="flex navbar-ui-item">
+                <div class="navbar-ui-label">角色</div>
                 <div class="navbar-ui-value">22</div>
               </li>
               <li class="flex navbar-ui-item">
@@ -41,8 +45,9 @@ const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, tog
               </li>
             </ul>
             <div class="flex justify-end navbar-ui-buttons">
-              <ElButton>个人详情</ElButton>
-              <ElButton type="danger" @click="logout">退出</ElButton>
+              <ElButton class="btn btn_blue">个人详情</ElButton>
+              <ElButton class="btn btn_blue">修改密码</ElButton>
+              <ElButton class="btn" type="danger" @click="logout">退出</ElButton>
             </div>
           </div>
         </template>
@@ -70,8 +75,8 @@ const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, tog
     justify-content: flex-end;
     min-width: 280px;
     height: 48px;
-    color: #000000d9;
     margin-right: 22px;
+    color: #000000d9;
 
     .el-dropdown-link {
       display: flex;
@@ -100,23 +105,22 @@ const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, tog
   }
 
   &-user-info {
+    width: 313px;
     padding: 18px 18px 17px 28px;
-
     font-size: 12px;
     line-height: 20px;
-    width: 280px;
   }
 
   &-ui {
     &-item {
       margin-bottom: 20px;
     }
-    &-label {
-      margin-right: 20px;
 
-      color: #8d8d8d;
-      width: 50px;
+    &-label {
       flex: none;
+      width: 50px;
+      margin-right: 20px;
+      color: #8d8d8d;
       text-align: right;
     }
 
@@ -130,9 +134,21 @@ const { layout, device, logout, pureApp, username, userAvatar, avatarsStyle, tog
       margin-top: 64px;
 
       :deep(.el-button--danger) {
-        background: #000000;
-        padding-left: 29px;
         padding-right: 29px;
+        padding-left: 29px;
+        background: #000;
+      }
+
+      .btn {
+        width: 81px;
+        height: 28px;
+        border-radius: 4px;
+      }
+
+      .btn_blue {
+        color: #2d77d4;
+        background: #fff;
+        border-color: #2d77d4;
       }
     }
   }

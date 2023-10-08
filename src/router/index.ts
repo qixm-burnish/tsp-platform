@@ -1,7 +1,7 @@
 // import "@/utils/sso";
 import { getConfig } from "@/config"
 import NProgress from "@/utils/progress"
-import { sessionKey, type DataInfo, getToken } from "@/utils/auth"
+import { getToken } from "@/utils/auth"
 import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { Router, createRouter, RouteRecordRaw, RouteComponent } from "vue-router"
@@ -17,7 +17,7 @@ import {
   formatFlatteningRoutes,
 } from "./utils"
 import { buildHierarchyTree } from "@/utils/menu"
-import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils"
+import { isUrl, openLink, isAllEmpty } from "@pureadmin/utils"
 
 import remainingRouter from "./modules/remaining"
 
@@ -114,7 +114,7 @@ router.beforeEach(async (to: ToRouteType, _from, next) => {
       next({ path: "/error/403" })
     }
     // 开启隐藏首页后在浏览器地址栏手动输入首页welcome路由则跳转到404页面
-    if (VITE_HIDE_HOME === "true" && to.fullPath === "/welcome") {
+    if (VITE_HIDE_HOME === "true" && to.fullPath === "/new-energy-vehicles") {
       next({ path: "/error/404" })
     }
     if (_from?.name) {

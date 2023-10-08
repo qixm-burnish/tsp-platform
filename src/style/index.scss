@@ -18,3 +18,14 @@
 .html-weakness {
   filter: invert(80%);
 }
+
+/* 设置表格灰色表头 */
+.grey-table-header-cell {
+  background: #e8ebed !important;
+}
+
+/* 设置表格灰色表头 */
+.el-dialog__header {
+  margin-right: 0 !important;
+  border-bottom: 1px solid #c0c6cb;
+}
