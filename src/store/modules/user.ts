@@ -72,6 +72,7 @@ export const useUserStore = defineStore({
     async _login(data: LoginRequestDataType) {
       const loginData = await login<LoginResponse>({
         data,
+        withToken: false,
       })
 
       setToken({

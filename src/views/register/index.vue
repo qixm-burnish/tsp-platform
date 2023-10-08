@@ -262,6 +262,7 @@ onMounted(() => {
       size: 99,
       internal: false,
     },
+    withToken: false,
   }).then(data => {
     systemList.value = data
   })

@@ -72,6 +72,7 @@ function onConfirm() {
           new_password: formValues.password,
           confirm_password: formValues.confirmPassword,
         },
+        withToken: false,
       })
         .then(() => {
           ElMessage.success("密码修改成功")
