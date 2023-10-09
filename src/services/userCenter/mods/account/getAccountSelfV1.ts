@@ -6,6 +6,8 @@ export class RequestParamsType {
   username?: string
   /** 手机号 */
   phone?: string
+  /** 系统ID */
+  systems__id__in?: Array<string>
   /** 角色id */
   roles__id__in?: Array<string>
   /** 状态, choices: enable-启用、disable-禁用 */

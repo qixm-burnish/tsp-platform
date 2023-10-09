@@ -14,13 +14,18 @@ const __APP_INFO__ = {
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
-  const { VITE_CDN, VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = wrapperEnv(loadEnv(mode, root))
+  const root = resolve(__dirname, "src/app") // 修改root参数为多页面的根目录
+
+  const { VITE_CDN, VITE_PORT, VITE_COMPRESSION } = wrapperEnv(loadEnv(mode, root))
   return {
-    base: VITE_PUBLIC_PATH,
     root,
+    base: "./",
+    publicDir: pathResolve("public"),
     resolve: {
       alias,
     },
+    plugins: getPluginsList(command, VITE_CDN, VITE_COMPRESSION),
+
     // 服务端渲染
     server: {
       // 是否开启 https
@@ -31,19 +36,21 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
       proxy: {},
     },
-    plugins: getPluginsList(command, VITE_CDN, VITE_COMPRESSION),
     // https://cn.vitejs.dev/config/dep-optimization-options.html#dep-optimization-options
     optimizeDeps: {
       include,
       exclude,
     },
     build: {
+      outDir: pathResolve("dist"),
+      minify: false,
       sourcemap: mode != "prod",
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
         input: {
-          index: pathResolve("index.html"),
+          index: pathResolve("src/app/index.html"),
+          demo: pathResolve("src/app/demo/index.html"),
         },
         // 静态资源分类打包
         output: {
@@ -60,9 +67,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
   }
 }
 
-/** 当前执行node命令时文件夹的地址（工作目录） */
-const root: string = process.cwd()
-
 /** 路径查找 */
 const pathResolve = (dir: string): string => {
   return resolve(__dirname, "./", dir)
@@ -72,4 +76,5 @@ const pathResolve = (dir: string): string => {
 const alias: Record<string, string> = {
   "@": pathResolve("src"),
   "@build": pathResolve("build"),
+  "@app": pathResolve("src/app"),
 }

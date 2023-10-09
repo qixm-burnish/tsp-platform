@@ -2,6 +2,8 @@ import { userCenterRequest as request } from "@/utils/request"
 import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
 export class RequestParamsType {
+  /** 系统ID */
+  system_id?: string
   /** 第几页 */
   page?: number
   /** 每页数量 */

@@ -1,7 +1,11 @@
 import { userCenterRequest as request } from "@/utils/request"
 import { PureHttpRequestConfig } from "@/utils/request/type.d"
 
-export type RequestParamsType = any
+export class RequestParamsType {
+  /** 系统ID */
+  system_id?: string
+}
+
 export type RequestDataType = any
 export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> & {
   data?: RequestDataType

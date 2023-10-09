@@ -11,6 +11,6 @@ export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> &
 /**
  * @desc 子系统详情
  */
-export function getSystemSelfByIdV1<T = any>(id: string, config?: RequestConfigType) {
+export function getSystemSelfByIdV1<T = any>(id, config?: RequestConfigType) {
   return request.request<T>("get", `/v1/system/self/${id}`, config)
 }

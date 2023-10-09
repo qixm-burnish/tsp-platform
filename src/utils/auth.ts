@@ -1,6 +1,5 @@
 import Cookies from "js-cookie"
 import { storageSession } from "@pureadmin/utils"
-import { useUserStoreHook } from "@/store/modules/user"
 
 export interface DataInfo<T> {
   /** token */
@@ -44,8 +43,6 @@ export function setToken(data: DataInfo<Date>) {
     : Cookies.set(TokenKey, cookieString)
 
   function setSessionKey(username: string, roles: Array<string>) {
-    useUserStoreHook().SET_USERNAME(username)
-    useUserStoreHook().SET_ROLES(roles)
     storageSession().setItem(sessionKey, {
       refreshToken,
       expires,

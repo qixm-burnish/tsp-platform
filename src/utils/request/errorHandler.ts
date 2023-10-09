@@ -1,8 +1,7 @@
 import { ElMessage } from "element-plus"
 import { BusinessResponse, PureHttpError, RequestErrorStage } from "./type.d"
 import { removeToken } from "../auth"
-import { resetRouter } from "@/router"
-import { useRouter } from "vue-router"
+import router, { resetRouter } from "@/router"
 
 /**
  * 请求拦截器中的错误处理
@@ -118,7 +117,6 @@ export function handleError(error: RequestError) {
 
   // 权限失效需要退出登录
   if (error.code == 401) {
-    const router = useRouter()
     removeToken()
     resetRouter()
 

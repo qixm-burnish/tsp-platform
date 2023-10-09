@@ -135,7 +135,7 @@ export function useElementPlus(app: App) {
     app.component(component.name, component)
   })
   // 注册指令
-  plugins.forEach((plugin) => {
+  plugins.forEach(plugin => {
     app.use(plugin)
   })
 }

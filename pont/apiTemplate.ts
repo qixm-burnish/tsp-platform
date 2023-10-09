@@ -8,7 +8,11 @@ export default class MyGenerator extends CodeGenerator {
     }
 
     // 获取响应类型: inter.responseType
-    const pathParameters = inter.parameters.filter(item => item.in == "path")
+    const parametersInPath: string[] = inter.path.match(/\{\w+\}/g)?.map(item => item.match(/\w+/)![0]) ?? []
+
+    const pathParameters = inter.parameters
+      .filter(item => item.in == "path")
+      .filter(item => !parametersInPath.includes(item.name))
     const bodyParameters = inter.parameters.filter(item => item.in == "body")
     const queryParameters = inter.parameters.filter(item => item.in == "query")
     const formParameters = inter.parameters.filter(item => item.in == "formData")
@@ -29,23 +33,33 @@ export default class MyGenerator extends CodeGenerator {
     )
 
     let requestPath = inter.path
-    let pathParamsType = ""
     let funcParamsType = "config?: RequestConfigType"
+    let pathParamsType = parametersInPath.join(",")
+    if (parametersInPath.length) {
+      parametersInPath.forEach(item => {
+        requestPath = requestPath.replace(`{${item}}`, "${" + item + "}")
+      })
+    }
     if (pathParameters.length > 0) {
-      pathParamsType = pathParameters
-        .map(item => {
-          requestPath = requestPath.replace(`{${item.name}}`, "${" + item.name + "}")
-          let fieldType = `${item.name}: ${item.dataType.typeName}`
+      pathParamsType =
+        pathParamsType +
+        "," +
+        pathParameters
+          .map(item => {
+            requestPath = requestPath.replace(`{${item.name}}`, "${" + item.name + "}")
+            let fieldType = `${item.name}: ${item.dataType.typeName}`
 
-          // 用于拼接到路径上，对于数字类型添加一个字符串兼容
-          if (item.dataType.typeName == "number") {
-            fieldType += " | string"
-          }
+            // 用于拼接到路径上，对于数字类型添加一个字符串兼容
+            if (item.dataType.typeName == "number") {
+              fieldType += " | string"
+            }
 
-          return fieldType
-        })
-        .join(",")
+            return fieldType
+          })
+          .join(",")
+    }
 
+    if (pathParamsType) {
       funcParamsType = `${pathParamsType}, ${funcParamsType}`
     }
 

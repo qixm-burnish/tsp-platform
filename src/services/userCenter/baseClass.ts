@@ -409,6 +409,50 @@ class CodeLoginPayload {
   code = ""
 }
 
+class CompanyDetail {
+  /** 企业地址 */
+  address = ""
+
+  /** 营业执照 */
+  business_license = ""
+
+  /** 创建时间 */
+  created_at = ""
+
+  /** 统一社会信用代码/税号 */
+  credit_code_tax_id = ""
+
+  /** 删除时间 */
+  deleted_at = ""
+
+  /** 主键 */
+  id = ""
+
+  /** 法人身份证正面 */
+  legal_representative_id_card_front = ""
+
+  /** 法人姓名 */
+  legal_representative_name = ""
+
+  /** 法人手机号 */
+  legal_representative_phone = ""
+
+  /** 企业全称 */
+  name = ""
+
+  /** 状态, choices: enable-启用、disable-禁用、pending_review-待审核, 当未关联至任何子系统时或管理员操作为禁用 */
+  status = undefined
+
+  /** 状态显示 */
+  status_display = ""
+
+  /** 关联的子系统 */
+  systems = []
+
+  /** 更新时间 */
+  updated_at = ""
+}
+
 class CompanyList {
   /** 企业地址 */
   address = ""
@@ -619,6 +663,11 @@ class HealthCheck {
 
   /** name */
   name = ""
+}
+
+class IdsSchema {
+  /** ids */
+  ids = []
 }
 
 class LoginSchema {
@@ -871,6 +920,23 @@ class ResourceLevelTreeNode {
   type_display = ""
 }
 
+class Resp {
+  /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
+  code = undefined
+
+  /** 响应数据格式 */
+  data = undefined
+
+  /** 响应提示信息 */
+  message = ""
+
+  /** 响应时间 */
+  response_time = ""
+
+  /** 请求唯一标识 */
+  trace_id = ""
+}
+
 class RespFormatEnum {}
 
 class Resp_AccountAuthDetail_ {
@@ -941,7 +1007,7 @@ class Resp_CaptchaCodeResponse_ {
   trace_id = ""
 }
 
-class Resp_CompanyList_ {
+class Resp_CompanyDetail_ {
   /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
   code = undefined
 
@@ -1361,6 +1427,7 @@ export const userCenter = {
   ChangePasswordCodeIn,
   ChangePasswordIn,
   CodeLoginPayload,
+  CompanyDetail,
   CompanyList,
   CompanyRegisterApplyDetail,
   CompanyRegisterApplyList,
@@ -1368,6 +1435,7 @@ export const userCenter = {
   GenderEnum,
   HTTPValidationError,
   HealthCheck,
+  IdsSchema,
   LoginSchema,
   LoginTypeEnum,
   PageInfo,
@@ -1379,12 +1447,13 @@ export const userCenter = {
   PasswordWithCaptchaLoginPayload,
   ResourceLevelTreeBaseNode,
   ResourceLevelTreeNode,
+  Resp,
   RespFormatEnum,
   Resp_AccountAuthDetail_,
   Resp_AccountDetail_,
   Resp_AuthData_,
   Resp_CaptchaCodeResponse_,
-  Resp_CompanyList_,
+  Resp_CompanyDetail_,
   Resp_CompanyRegisterApplyDetail_,
   Resp_HealthCheck_,
   Resp_SystemCompanyRoleDetail_,

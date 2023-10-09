@@ -415,6 +415,50 @@ declare namespace defs {
       code: string
     }
 
+    export class CompanyDetail {
+      /** 企业地址 */
+      address?: string
+
+      /** 营业执照 */
+      business_license: string
+
+      /** 创建时间 */
+      created_at: string
+
+      /** 统一社会信用代码/税号 */
+      credit_code_tax_id: string
+
+      /** 删除时间 */
+      deleted_at?: string
+
+      /** 主键 */
+      id?: string
+
+      /** 法人身份证正面 */
+      legal_representative_id_card_front: string
+
+      /** 法人姓名 */
+      legal_representative_name?: string
+
+      /** 法人手机号 */
+      legal_representative_phone?: string
+
+      /** 企业全称 */
+      name: string
+
+      /** 状态, choices: enable-启用、disable-禁用、pending_review-待审核, 当未关联至任何子系统时或管理员操作为禁用 */
+      status?: any
+
+      /** 状态显示 */
+      status_display: string
+
+      /** 关联的子系统 */
+      systems?: Array<defs.userCenter.SystemSimple>
+
+      /** 更新时间 */
+      updated_at: string
+    }
+
     export class CompanyList {
       /** 企业地址 */
       address?: string
@@ -625,6 +669,11 @@ declare namespace defs {
 
       /** name */
       name: string
+    }
+
+    export class IdsSchema {
+      /** ids */
+      ids: Array<string>
     }
 
     export class LoginSchema {
@@ -877,6 +926,23 @@ declare namespace defs {
       type_display: string
     }
 
+    export class Resp {
+      /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
+      code?: number
+
+      /** 响应数据格式 */
+      data?: any
+
+      /** 响应提示信息 */
+      message?: string
+
+      /** 响应时间 */
+      response_time?: string
+
+      /** 请求唯一标识 */
+      trace_id?: string
+    }
+
     export class RespFormatEnum {}
 
     export class Resp_AccountAuthDetail_ {
@@ -947,7 +1013,7 @@ declare namespace defs {
       trace_id?: string
     }
 
-    export class Resp_CompanyList_ {
+    export class Resp_CompanyDetail_ {
       /** 业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'} */
       code?: number
 
@@ -1365,7 +1431,10 @@ declare namespace API {
         * /v1/account/myself
         */
       export namespace getAccountMyselfV1 {
-        export class Params {}
+        export class Params {
+          /** 系统ID */
+          system_id?: string
+        }
 
         export type Response = defs.userCenter.Resp_AccountAuthDetail_
         export const init: Response
@@ -1398,6 +1467,8 @@ declare namespace API {
           username?: string
           /** 手机号 */
           phone?: string
+          /** 系统ID */
+          systems__id__in?: Array<string>
           /** 角色id */
           roles__id__in?: Array<string>
           /** 状态, choices: enable-启用、disable-禁用 */
@@ -1571,7 +1642,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1617,6 +1688,8 @@ declare namespace API {
        */
       export namespace getCompanySelfV1 {
         export class Params {
+          /** 系统ID */
+          systems__id__in?: Array<string>
           /** 第几页 */
           page?: number
           /** 每页数量 */
@@ -1644,9 +1717,9 @@ declare namespace API {
           id: string
         }
 
-        export type Response = defs.userCenter.Resp_CompanyList_
+        export type Response = defs.userCenter.Resp_CompanyDetail_
         export const init: Response
-        export function request(params: Params): Promise<defs.userCenter.Resp_CompanyList_>
+        export function request(params: Params): Promise<defs.userCenter.Resp_CompanyDetail_>
       }
     }
 
@@ -1740,6 +1813,8 @@ declare namespace API {
        */
       export namespace getRoleSelfV1 {
         export class Params {
+          /** 系统ID */
+          system_id?: string
           /** 第几页 */
           page?: number
           /** 每页数量 */
@@ -1770,6 +1845,32 @@ declare namespace API {
           params: Params,
           bodyParams: defs.userCenter.SystemCompanyRoleCreate,
         ): Promise<defs.userCenter.Resp_SystemCompanyRoleDetail_>
+      }
+
+      /**
+        * 角色添加已存在用户
+角色添加已存在用户
+        * /v1/role/self/add-account
+        */
+      export namespace postRoleSelfAddAccountV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
+      }
+
+      /**
+        * 角色移除关联已存在用户
+角色移除已存在用户
+        * /v1/role/self/remove-account
+        */
+      export namespace postRoleSelfRemoveAccountV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
       }
 
       /**

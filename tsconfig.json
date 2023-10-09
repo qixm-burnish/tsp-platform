@@ -19,8 +19,8 @@
     "lib": ["dom", "esnext"],
     "baseUrl": "./",
     "paths": {
-      "@": ["src"],
       "@/*": ["src/*"],
+      "@app/*": ["src/app/*"],
       "@build/*": ["build/*"]
     },
     "types": ["node", "vite/client", "element-plus/global", "@pureadmin/table/volar", "@pureadmin/descriptions/volar"]

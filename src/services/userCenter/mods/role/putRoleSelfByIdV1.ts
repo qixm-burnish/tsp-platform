@@ -11,6 +11,6 @@ export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> &
 /**
  * @desc 更新子系统角色
  */
-export function putRoleSelfByIdV1<T = any>(config?: RequestConfigType) {
-  return request.request<T>("put", `/v1/role/self/{id}`, config)
+export function putRoleSelfByIdV1<T = any>(id, config?: RequestConfigType) {
+  return request.request<T>("put", `/v1/role/self/${id}`, config)
 }

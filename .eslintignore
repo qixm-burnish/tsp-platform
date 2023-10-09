@@ -12,7 +12,7 @@ dist
 /public
 /docs
 /bin
-./src/assets
+assets
 
 package.json
 .eslintrc.js

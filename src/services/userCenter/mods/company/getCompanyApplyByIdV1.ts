@@ -11,6 +11,6 @@ export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> &
 /**
  * @desc 企业入驻申请详情
  */
-export function getCompanyApplyByIdV1<T = any>(id: string, config?: RequestConfigType) {
+export function getCompanyApplyByIdV1<T = any>(id, config?: RequestConfigType) {
   return request.request<T>("get", `/v1/company/apply/${id}`, config)
 }

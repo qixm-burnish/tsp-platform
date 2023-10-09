@@ -30,7 +30,7 @@ interface MessageParams {
   onClose?: Function | null
 }
 
-/** 用法非常简单，参考 src/views/components/message/index.vue 文件 */
+/** 用法非常简单，参考 src/pages/components/message/index.vue 文件 */
 
 /**
  * `Message` 消息提示函数
@@ -42,7 +42,19 @@ const message = (message: string | VNode | (() => VNode), params?: MessageParams
       customClass: "pure-message",
     })
   } else {
-    const { icon, type = "info", dangerouslyUseHTMLString = false, customClass = "antd", duration = 2000, showClose = false, center = false, offset = 20, appendTo = document.body, grouping = false, onClose } = params
+    const {
+      icon,
+      type = "info",
+      dangerouslyUseHTMLString = false,
+      customClass = "antd",
+      duration = 2000,
+      showClose = false,
+      center = false,
+      offset = 20,
+      appendTo = document.body,
+      grouping = false,
+      onClose,
+    } = params
 
     return ElMessage({
       message,

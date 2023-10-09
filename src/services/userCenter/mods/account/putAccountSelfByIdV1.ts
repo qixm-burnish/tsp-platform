@@ -11,6 +11,6 @@ export type RequestConfigType = Omit<PureHttpRequestConfig, "params" | "data"> &
 /**
  * @desc 更新用户
  */
-export function putAccountSelfByIdV1<T = any>(config?: RequestConfigType) {
-  return request.request<T>("put", `/v1/account/self/{id}`, config)
+export function putAccountSelfByIdV1<T = any>(id, config?: RequestConfigType) {
+  return request.request<T>("put", `/v1/account/self/${id}`, config)
 }

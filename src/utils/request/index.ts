@@ -15,7 +15,7 @@ import {
   PureHttpInitConfig,
 } from "./type.d"
 
-class PureHttp {
+export class PureHttp {
   private static loadingInstance: {
     close: CallableFunction
   }
@@ -134,7 +134,7 @@ class PureHttp {
       (error: PureHttpError) => {
         // 关闭进度条动画
         NProgress.done()
-        if (error.config.showLoading) {
+        if (error.config?.showLoading) {
           PureHttp.closeLoading()
         }
 
@@ -143,7 +143,7 @@ class PureHttp {
         const requestError = new RequestError(RequestErrorStage.REQUEST_INTERCEPTOR, isCancel, error)
 
         // 对于非取消错误、需要显示错误信息的错误处理
-        if (error.config.showError !== false && !isCancel) {
+        if (error.config && error.config.showError !== false && !isCancel) {
           handleError(requestError)
         }
 
@@ -156,8 +156,8 @@ class PureHttp {
   private static requestUrlConfig(config: PureHttpRequestConfig): void {
     if (/^(http|https):\/\//.test(config.url) || config.baseURL) return
 
-    let _urlPrefix = urlPrefix
-    if (urlPrefix.endsWith("/")) {
+    let _urlPrefix = urlPrefix ?? ""
+    if (urlPrefix?.endsWith("/")) {
       _urlPrefix = _urlPrefix.substring(0, _urlPrefix.length - 1)
     }
 
