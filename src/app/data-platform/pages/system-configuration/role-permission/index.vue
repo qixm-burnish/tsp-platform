@@ -45,8 +45,8 @@
       </div>
     </div>
     <div class="w-[324px] role-permission_center pt-[24px]">
-      <div class="role-permission_center_header flex justify-between">
-        <el-input v-model="roleName" class="w-50 m-2" placeholder="输入角色名称" :suffix-icon="Search" />
+      <div class="flex justify-between role-permission_center_header">
+        <el-input v-model="roleName" class="m-2 w-50" placeholder="输入角色名称" :suffix-icon="Search" />
         <el-button class="role-permission_center_header_btn" type="primary" @click="handleAddRole" v-if="is_compony_super">
           添加角色
           <el-icon class="role-permission_center_header_btn_icon"><CirclePlus /></el-icon>
@@ -72,7 +72,7 @@
     </div>
 
     <div class="flex-1 role-permission_right pt-[24px] pl-[20px] pr-[20px] overflow-auto">
-      <div class="role-permission_right_header flex justify-end">
+      <div class="flex justify-end role-permission_right_header">
         <el-button class="role-permission_right_header_btn" type="primary" @click="handleAddAccount" v-if="is_compony_super">
           添加账号
           <el-icon class="role-permission_right_header_icon"><CirclePlus /></el-icon>
@@ -80,7 +80,7 @@
       </div>
       <div class="role-permission_right_list">
         <div
-          class="role-permission_right_list_item flex justify-between"
+          class="flex justify-between role-permission_right_list_item"
           v-for="(item, index) in accountList"
           :key="item.id"
           :class="index == accountList.length ? 'role-permission_right_list_item_noborder' : ''"
@@ -93,7 +93,7 @@
             </div>
             <div class="role-permission_right_list_item_left_remarker">备注：{{ item.remark ? item.remark : "--" }}</div>
           </div>
-          <div class="role-permission_right_list_item_right flex">
+          <div class="flex role-permission_right_list_item_right">
             <!-- <div class="role-permission_right_list_item_right_find">找回密码</div> -->
             <div class="role-permission_right_list_item_right_del">删除</div>
           </div>
@@ -117,7 +117,7 @@ import { Search, CirclePlus } from "@element-plus/icons-vue"
 import EditDialog from "./components/roleEdit.vue"
 import ViewDialog from "./components/roleDetail.vue"
 import AccountEditDialog from "./components/accountEdit.vue"
-import { useUserStoreHook } from "@/store/modules/user"
+import { useUserStoreHook } from "@app/data-platform/store/user"
 import { getCompanySelfByIdV1 as getCompanyInfo } from "@/services/userCenter/mods/company/getCompanySelfByIdV1"
 import { getAccountMyselfV1 as getinfo } from "@/services/userCenter/mods/account/getAccountMyselfV1"
 import { getRoleSelfV1 as getRoleList } from "@/services/userCenter/mods/role/getRoleSelfV1"

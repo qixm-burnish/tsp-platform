@@ -43,7 +43,7 @@ import FormText from "@/components/FormText/index.vue"
 import { getRoleSelfByIdV1 as getRoleDetail } from "@/services/userCenter/mods/role/getRoleSelfByIdV1"
 import { getResourceSystemV1 as getConfigs } from "@/services/userCenter/mods/resource/getResourceSystemV1"
 import { treeMap } from "@/utils/tree.js"
-import { useUserStoreHook } from "@/store/modules/user"
+import { useUserStoreHook } from "@app/data-platform/store/user"
 
 /** 公司超管 */
 const is_super = computed(() => {
