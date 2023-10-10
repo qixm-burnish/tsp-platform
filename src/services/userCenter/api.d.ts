@@ -1296,6 +1296,9 @@ declare namespace defs {
       /** 描述 */
       description: string
 
+      /** 前端路由 */
+      front_route?: string
+
       /** 图标 */
       icon: string
 
@@ -1321,6 +1324,9 @@ declare namespace defs {
 
       /** 描述 */
       description: string
+
+      /** 前端路由 */
+      front_route?: string
 
       /** 图标 */
       icon: string
@@ -1352,6 +1358,9 @@ declare namespace defs {
       /** 系统唯一标识 */
       code: string
 
+      /** 前端路由 */
+      front_route?: string
+
       /** 主键 */
       id?: string
 
@@ -1371,6 +1380,9 @@ declare namespace defs {
 
       /** 系统唯一标识 */
       code: string
+
+      /** 前端路由 */
+      front_route?: string
 
       /** 主键 */
       id?: string
@@ -1659,7 +1671,7 @@ declare namespace API {
           page?: number
           /** 每页数量 */
           size?: number
-          /** 搜索关键字. 匹配字段: username, name */
+          /** 搜索关键字. 匹配字段: name, username */
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
@@ -1938,6 +1950,22 @@ declare namespace API {
         export const init: Response
         export function request(params: Params): Promise<defs.userCenter.Resp>
       }
+
+      /**
+        * 超级管理员角色详情
+虚拟超级管理员角色详情-超级管理员是企业超管, 本质和企业无关, 所以子系统没有超管, 但又必须展示, 所以前后端配合搞一个虚拟的
+        * /v1/role/super_admin
+        */
+      export namespace postRoleSuper_adminV1 {
+        export class Params {
+          /** system_id */
+          system_id: string
+        }
+
+        export type Response = defs.userCenter.Resp_SystemCompanyRoleDetail_
+        export const init: Response
+        export function request(params: Params): Promise<defs.userCenter.Resp_SystemCompanyRoleDetail_>
+      }
     }
 
     /**
@@ -2004,7 +2032,7 @@ declare namespace API {
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, description, status_display */
+          /** 指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, front_route, description, status_display */
           selected_fields?: Array<string>
         }
 

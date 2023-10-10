@@ -1,6 +1,13 @@
 <template>
   <el-dialog title="角色详情" fullscreen :model-value="props.visible" @close="onCancel" class="role-detail-dialog">
-    <div class="edit_header">1</div>
+    <div class="edit_header" v-if="data.label != '超级管理员'">
+      <el-button class="edit_header_btn edit_header_btn_edit" v-if="is_super" type="primary" @click="onEdit">修改</el-button>
+      <el-popconfirm v-if="is_super" :title="`确定删除(${data?.label})吗？`" @confirm="onRemove">
+        <template #reference>
+          <el-button class="edit_header_btn edit_header_btn_del" type="danger" style="margin: 0 10px">删除</el-button>
+        </template>
+      </el-popconfirm>
+    </div>
     <el-form class="role-detail-form">
       <div class="ly-role-module">
         <div class="ly-role-module__row">
@@ -21,15 +28,6 @@
         </el-form-item>
       </div>
     </el-form>
-    <template #footer>
-      <el-button class="footer_btn footer_btn_edit" v-if="is_super" type="primary" @click="onEdit">修改</el-button>
-      <el-popconfirm v-if="is_super" :title="`确定删除(${data?.label})吗？`" @confirm="onRemove">
-        <template #reference>
-          <el-button class="footer_btn footer_btn_del" type="danger" style="margin: 0 10px">删除</el-button>
-        </template>
-      </el-popconfirm>
-      <el-button class="footer_btn" @click="onCancel">取消</el-button>
-    </template>
   </el-dialog>
 </template>
 
@@ -41,6 +39,8 @@ import { onMounted, ref, computed } from "vue"
 import FuncList from "@/components/AuthFunctionView/index.vue"
 import FormText from "@/components/FormText/index.vue"
 import { getRoleSelfByIdV1 as getRoleDetail } from "@/services/userCenter/mods/role/getRoleSelfByIdV1"
+import { deleteRoleSelfByIdV1 as delRole } from "@/services/userCenter/mods/role/deleteRoleSelfByIdV1"
+import { postRoleSuper_adminV1 as getSuperRole } from "@/services/userCenter/mods/role/postRoleSuper_adminV1" //超级管理员
 import { getResourceSystemV1 as getConfigs } from "@/services/userCenter/mods/resource/getResourceSystemV1"
 import { treeMap } from "@/utils/tree.js"
 import { useUserStoreHook } from "@app/data-platform/store/user"
@@ -83,7 +83,9 @@ function onEdit() {
 }
 
 function onRemove() {
-  emit("remove", props.editId!)
+  delRole(props.editId).then(() => {
+    emit("remove", props.editId!)
+  })
 }
 
 const onCancel = () => {
@@ -93,11 +95,18 @@ const onCancel = () => {
 
 onMounted(() => {
   if (props.editId) {
-    getRoleDetail(props.editId).then(res => {
-      data.value.label = res.label
-      data.value.remark = res.remark
-      data.value.resources = res.resource_ids
-    })
+    console.log(props.editId)
+    if (props.editId == "超级管理员") {
+      getSuperRole({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(Res => {
+        console.log(Res)
+      })
+    } else {
+      getRoleDetail(props.editId).then(res => {
+        data.value.label = res.label
+        data.value.remark = res.remark
+        data.value.resources = res.resource_ids
+      })
+    }
   }
   getConfigs({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } })
     .then(data => {
@@ -113,9 +122,23 @@ onMounted(() => {
 })
 </script>
 <style lang="scss">
+.role-detail-dialog {
+  .el-dialog__body {
+    padding: 0;
+  }
+}
+
 .role-detail-form {
-  .el-form-item__label {
-    // display: none;
+  padding: 28px 57px;
+
+  .ly-role-module__title {
+    height: 36px;
+    padding-left: 16px;
+    font-size: 16px;
+    line-height: 36px;
+    color: #0d0d0d;
+    background: #e8ebed;
+    border-radius: 2px;
   }
 }
 
@@ -124,5 +147,30 @@ onMounted(() => {
   font-size: 12px;
   line-height: 36px;
   color: #0d0d0d;
+}
+</style>
+<style lang="scss" scoped>
+.edit_header {
+  height: 50px;
+  padding-right: 30px;
+  line-height: 50px;
+  text-align: right;
+  background: #fff;
+  border-bottom: 1px solid #c0c6cb;
+
+  &_btn {
+    width: 89px;
+    height: 28px;
+    color: #2d77d4;
+    background: #fff;
+    border: 1px solid #4181d9;
+    border-radius: 4px;
+
+    &_del {
+      color: #fff;
+      background: #000;
+      border: 1px solid #000;
+    }
+  }
 }
 </style>

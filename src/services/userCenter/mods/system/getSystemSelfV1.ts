@@ -14,7 +14,7 @@ export class RequestParamsType {
   search?: string
   /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
   order_by?: Array<string>
-  /** 指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, description, status_display */
+  /** 指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, front_route, description, status_display */
   selected_fields?: Array<string>
 }
 

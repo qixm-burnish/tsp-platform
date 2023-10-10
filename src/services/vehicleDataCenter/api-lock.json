@@ -1,0 +1,4162 @@
+{
+  "mods": [
+    {
+      "description": "其他",
+      "name": "other",
+      "interfaces": [
+        {
+          "description": "枚举表\n枚举-列表",
+          "name": "getOtherCommonEnumV1",
+          "method": "get",
+          "path": "/v1/other/common/enum",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_Union_dict__tuple_tuple___",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "description": "返回格式",
+              "required": false,
+              "in": "query",
+              "name": "format",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "enum_name",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "is_reversed",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "description": "根目录",
+      "name": "root",
+      "interfaces": [
+        {
+          "description": "健康检查",
+          "name": "getIndex",
+          "method": "get",
+          "path": "/",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_HealthCheck_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": []
+        },
+        {
+          "description": "全部uri",
+          "name": "getUriList",
+          "method": "get",
+          "path": "/uri-list",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_list_apis_http_urls_UriItem__",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": []
+        }
+      ]
+    },
+    {
+      "description": "报文",
+      "name": "segment",
+      "interfaces": [
+        {
+          "description": "登入登出报文\n登入登出报文",
+          "name": "getSegmentLoginOutV1",
+          "method": "get",
+          "path": "/v1/segment/login-out",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_LogInOutSegmentResponse_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "description": "vin",
+              "required": true,
+              "in": "query",
+              "name": "vin",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "开始时间",
+              "required": true,
+              "in": "query",
+              "name": "start_datetime",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "结束时间",
+              "required": true,
+              "in": "query",
+              "name": "stop_datetime",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "是否逆序",
+              "required": false,
+              "in": "query",
+              "name": "reverse",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "指定返回字段",
+              "required": false,
+              "in": "query",
+              "name": "selected_fields",
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "start_row_key",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "size",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "实时报文\n实时报文",
+          "name": "getSegmentRealtimeV1",
+          "method": "get",
+          "path": "/v1/segment/realtime",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_RealtimeSegmentResponse_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "description": "vin",
+              "required": true,
+              "in": "query",
+              "name": "vin",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "开始时间",
+              "required": true,
+              "in": "query",
+              "name": "start_datetime",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "结束时间",
+              "required": true,
+              "in": "query",
+              "name": "stop_datetime",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "是否逆序",
+              "required": false,
+              "in": "query",
+              "name": "reverse",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "指定返回字段",
+              "required": false,
+              "in": "query",
+              "name": "selected_fields",
+              "dataType": {
+                "typeArgs": [
+                  {
+                    "typeArgs": [],
+                    "typeName": "string",
+                    "isDefsType": false,
+                    "templateIndex": -1,
+                    "compileTemplateKeyword": "#/definitions/",
+                    "enum": [],
+                    "typeProperties": []
+                  }
+                ],
+                "typeName": "Array",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "start_row_key",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "required": false,
+              "in": "query",
+              "name": "size",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "name": "vehicleDataCenter",
+  "baseClasses": [
+    {
+      "name": "BatteryTemperatureInformation",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SubsystemCode",
+          "description": "可充电储能子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "TempProbeCount",
+          "description": "可充电储能温度探针个数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Value",
+          "description": "可充电储能子系统温度探针温度值",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "BatteryVoltageInformation",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "BatteryCount",
+          "description": "单体电池总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "BatteryStartNum",
+          "description": "本帧起始电池序号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Current",
+          "description": "可充电储能装置电流",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "FrameBatteryCount",
+          "description": "本帧单体电池总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SingleBatteryVoltage",
+          "description": "单体电池电压",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SubsystemCode",
+          "description": "可充电储能子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Voltage",
+          "description": "可充电储能装置电压",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "CommonAlertFlagData",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "BrakeSystem",
+          "description": "制动系统报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Consistence",
+          "description": "电池单体一致性差报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "DcStatus",
+          "description": "DC-DC 状态报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "DcTemperature",
+          "description": "DC-DC 温度报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "HighPressure",
+          "description": "高压互锁状态报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "HighSoc",
+          "description": "SOC 过高报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "HighTemperature",
+          "description": "电池高温报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Insulation",
+          "description": "绝缘报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "LowSoc",
+          "description": "SOC 低报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Mismatch",
+          "description": "可充电储能系统不匹配报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "MotorControllerTemperature",
+          "description": "驱动电机控制器温度报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "MotorTemperature",
+          "description": "驱动电机温度报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SingleBatteryExceedPressure",
+          "description": "单体电池过压报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SingleBatteryLackPressure",
+          "description": "单体电池欠压报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "SocChange",
+          "description": "SOC 跳变报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "StoreExceedLPressure",
+          "description": "车载储能装置类型过压报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "StoreLackPressure",
+          "description": "车载储能装置类型欠压报警",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "StoreType",
+          "description": "车载储能装置类型过充",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "TemperatureDifference",
+          "description": "温度差异报警",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "能源类型",
+      "name": "EnergyTypeEnum",
+      "templateArgs": [],
+      "properties": []
+    },
+    {
+      "name": "HealthCheck",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "description",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "environment",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "latest_version",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "name",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "LogInOutSegmentResponse",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "EnergyTypeEnum",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "energy_type",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "MotorData",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "ControllerTemp",
+          "description": "驱动电机控制器温度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Current",
+          "description": "电机控制器直流母线电流",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "InputVoltage",
+          "description": "电机控制器输入电压",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Num",
+          "description": "驱动电机序号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Rotate",
+          "description": "驱动电机转速",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "State",
+          "description": "驱动电机状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Temperature",
+          "description": "驱动电机温度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "Torque",
+          "description": "驱动电机扭矩",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "RealtimeSegmentResponse",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "EnergyTypeEnum",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "energy_type",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "响应格式",
+      "name": "RespFormatEnum",
+      "templateArgs": [],
+      "properties": []
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_HealthCheck_",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_LogInOutSegmentResponse_",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_RealtimeSegmentResponse_",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_Union_dict__tuple_tuple___",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "description": "响应Model.",
+      "name": "Resp_list_apis_http_urls_UriItem__",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "code",
+          "description": "业务响应代码, {0: '成功', -1: '失败', -2: '未授权', -3: '参数错误', -4: '请求频率限制', 500: '服务器内部错误', 403: '禁止访问'}",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "data",
+          "description": "响应数据格式",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "message",
+          "description": "响应提示信息",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "response_time",
+          "description": "响应时间",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "trace_id",
+          "description": "请求唯一标识",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "UriItem",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "method",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "name",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "path",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "tags",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "新能源登入登出报文\n\nAttributes:\n    A:a01: vin\n\n    A:a02: obd时间\n\n    A:a03: 创建时间\n\n    A:a05: 协议类型\n\n    A:a06: 接收时间\n\n    A:b02: 登录/登出: \"vehicle_logout\", \"vehicle_login\"\n\n    A:b03: 流水号\n\n    B:a01: 原始数据\n\n    B:a02: obd时间\n\n    B:a03: 创建时间",
+      "name": "storages__hbase__models__protocol17691__LogInOutSegment",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a01",
+          "description": "vin",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a03",
+          "description": "创建时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a05",
+          "description": "协议类型",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a06",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b02",
+          "description": "登录/登出",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b03",
+          "description": "流水号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a01",
+          "description": "原始数据",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a03",
+          "description": "创建时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "row_key",
+          "description": "主键",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "新能源实时数据报文\n\nAttributes:\n    A:a01: vin\n\n    A:a02: obd时间\n\n    A:a03: 创建时间\n\n    A:a05: 协议类型\n\n    A:a06: 接收时间\n\n    A:a07: 签名(未使用)\n\n\n    A:ryb01: obd诊断协议\n\n    A:ryb02: MIL状态\n\n    A:ryb03: 催化转化器监控\n\n    A:ryb04: 加热催化转化器监控\n\n    A:ryb05: 蒸发系统监控\n\n    A:ryb06: 二次空气系统监控\n\n    A:ryb07: 系统致冷剂监控\n\n    A:ryb08: 排气传感器加热器监控\n\n    A:ryb09: 排气传感器加热器监\n\n    A:ryb10: EGR 系统和 VVT 监控\n\n    A:ryb11: 冷启动辅助系统监控\n\n    A:ryb12: 增压压力控制系 统\n\n    A:ryb13: DPF 监控\n\n    A:ryb14: 选择性催化还原系统(SCR)或 NOx 吸附器\n\n    A:ryb15: NMHC 氧化催化器 监控\n\n    A:ryb16: 失火监控\n\n    A:ryb17: 燃油系统监控\n\n    A:ryb18: 综合成分监控\n\n    A:ryb19: obd诊断协议\n\n    A:ryb20: MIL状态\n\n    A:ryb21: 催化转化器监控\n\n    A:ryb22: 加热催化转化器监控\n\n    A:ryb23: 蒸发系统监控\n\n    A:ryb24: 二次空气系统监控\n\n    A:ryb25: 系统致冷剂监控\n\n    A:ryb26: 排气传感器加热器监控\n\n    A:ryb27: 排气传感器加热器监\n\n    A:ryb28: EGR 系统和 VVT 监控\n\n    A:ryb29: 冷启动辅助系统监控\n\n    A:ryb30: 增压压力控制系 统\n\n    A:ryb31: DPF 监控\n\n    A:ryb32: 选择性催化还原系统SCR)或 NOx 吸附器\n\n    A:ryb33: NMHC 氧化催化器 监控\n\n    A:ryb34: 失火监控\n\n    A:ryb35: 软件标定识别号\n\n    A:ryb36: 标定验证码\n\n    A:ryb37: IUPR 值\n\n    A:ryb38: 故障数\n\n    A:ryb39: 故障列表\n\n\n    A:ryc01: 车速\n\n    A:ryc02: 大气压\n\n    A:ryc03: 发动机净输出扭矩\n\n    A:ryc04: 摩擦扭矩\n\n    A:ryc05: 发动机转速\n\n    A:ryc06: 发动机燃料流量\n\n    A:ryc07: SCR 上游 NOx 传感器 输出值\n\n    A:ryc08: SCR 下游 NOx 传感器 输出值\n\n    A:ryc09: 反应剂余量\n\n    A:ryc10: 进气量\n\n    A:ryc11: SCR 入口温度\n\n    A:ryc12: SCR 出口温度\n\n    A:ryc13: DPF 压差\n\n    A:ryc14: 发动机冷却液温度\n\n    A:ryc15: 油箱液位\n\n    A:ryc16: 经度\n\n    A:ryc17: 纬度\n\n    A:ryc18: 累计里程\n\n    A:ryc19: 定位是否有效\n\n    A:ryc20: 南北纬\n\n    A:ryc21: 东西经\n\n\n    B:a01: 原始数据\n\n    B:a02: obd时间\n\n    B:a03: 创建时间",
+      "name": "storages__hbase__models__protocol17691__RealtimeSegment",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a01",
+          "description": "vin",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a03",
+          "description": "创建时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a05",
+          "description": "协议类型",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a06",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb01",
+          "description": "obd诊断协议",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb02",
+          "description": "MIL状态",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb03",
+          "description": "催化转化器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb04",
+          "description": "加热催化转化器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb05",
+          "description": "蒸发系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb06",
+          "description": "二次空气系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb07",
+          "description": "系统致冷剂监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb08",
+          "description": "排气传感器加热器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb09",
+          "description": "排气传感器加热器监",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb10",
+          "description": "EGR 系统和 VVT 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb11",
+          "description": "冷启动辅助系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb12",
+          "description": "增压压力控制系 统",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb13",
+          "description": "DPF 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb14",
+          "description": "选择性催化还原系统(SCR)或 NOx 吸附器",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb15",
+          "description": "NMHC 氧化催化器 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb16",
+          "description": "失火监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb17",
+          "description": "燃油系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb18",
+          "description": "综合成分监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb19",
+          "description": "obd诊断协议",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb20",
+          "description": "MIL状态",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb21",
+          "description": "催化转化器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb22",
+          "description": "加热催化转化器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb23",
+          "description": "蒸发系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb24",
+          "description": "二次空气系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb25",
+          "description": "系统致冷剂监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb26",
+          "description": "排气传感器加热器监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb27",
+          "description": "排气传感器加热器监",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb28",
+          "description": "EGR 系统和 VVT 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb29",
+          "description": "冷启动辅助系统监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb30",
+          "description": "增压压力控制系 统",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb31",
+          "description": "DPF 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb32",
+          "description": "选择性催化还原系统(SCR)或 NOx 吸附器",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb33",
+          "description": "NMHC 氧化催化器 监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb34",
+          "description": "失火监控",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb35",
+          "description": "软件标定识别号",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb36",
+          "description": "标定验证码",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb37",
+          "description": "IUPR 值",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb38",
+          "description": "故障数",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryb39",
+          "description": "故障列表",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc01",
+          "description": "车速",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc02",
+          "description": "大气压",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc03",
+          "description": "发动机净输出扭矩",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc04",
+          "description": "摩擦扭矩",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc05",
+          "description": "发动机转速",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc06",
+          "description": "发动机燃料流量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc07",
+          "description": "SCR 上游 NOx 传感器 输出值",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc08",
+          "description": "SCR 下游 NOx 传感器 输出值",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc09",
+          "description": "反应剂余量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc10",
+          "description": "进气量",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc11",
+          "description": "SCR 入口温度",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc12",
+          "description": "SCR 出口温度",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc13",
+          "description": "DPF 压差",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc14",
+          "description": "发动机冷却液温度",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc15",
+          "description": "油箱液位",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc16",
+          "description": "经度",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc17",
+          "description": "纬度",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc18",
+          "description": "累计里程",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc19",
+          "description": "定位是否有效",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc20",
+          "description": "南北纬",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:ryc21",
+          "description": "东西经",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a01",
+          "description": "原始数据",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a03",
+          "description": "创建时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "row_key",
+          "description": "主键",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "新能源登入登出报文\n\nAttributes:\n    A_a01: vin\n\n    A_a02: obd时间\n\n    A_a03: 接收时间\n\n    A_a04: 协议\n\n    A_a05: 采集时间\n\n    A_a06: 所属平台\n\n    A_a07: 命令标识\n\n    A_b01: 包类型\n\n    A_b02: 登出流水号\n\n    A_b03: 账户\n\n    A_b04: 密码\n\n    A_b05: iccid\n\n    A_b06: 子系统数\n\n    A_b07: 电池编码\n\n    B_a01: 原始数据\n\n    B_a02: obd时间\n\n    B_a03: 接收时间",
+      "name": "storages__hbase__models__protocol32960__LogInOutSegment",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a01",
+          "description": "vin",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a03",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a04",
+          "description": "协议",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a05",
+          "description": "采集时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a07",
+          "description": "命令标识",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b01",
+          "description": "包类型",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b02",
+          "description": "登出流水号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b03",
+          "description": "账户",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b04",
+          "description": "密码",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b05",
+          "description": "iccid",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b06",
+          "description": "子系统数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b07",
+          "description": "电池编码",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a01",
+          "description": "原始数据",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a03",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "row_key",
+          "description": "主键",
+          "required": true
+        }
+      ]
+    },
+    {
+      "description": "新能源实时数据报文\n\nAttributes:\n    A:a01: vin\n\n    A:a02: obd时间\n\n    A:a03: 接收时间\n\n    A:a04: 协议\n\n    A:a05: 采集时间\n\n    A:a06: 所属平台\n\n    A:a07: 命令标识\n\n    B:a01: 原始数据\n\n    B:a02: obd时间\n\n    B:a03: 接收时间\n\n\n    A:b01: 信息类型标志\n\n    A:b02: 车辆状态\n\n    A:b03: 充电状态\n\n    A:b04: 运行模式\n\n    A:b05: 车速\n\n    A:b06: 累计里程\n\n    A:b07: 总电压\n\n    A:b08: 总电流\n\n    A:b09: SOC\n\n    A:b10: DC-DC状态\n\n    A:b11: 档位\n\n    A:b12: 有无制动力\n\n    A:b13: 有无驱动力\n\n    A:b14: 绝缘电阻\n\n    A:b15: 加速踏板行程值\n\n    A:b16: 制动踏板状态\n\n\n    A:d01: 信息类型标志\n\n    A:d02: 燃料电池电压\n\n    A:d03: 燃料电池电流\n\n    A:d04: 燃料消耗率\n\n    A:d05: 燃料电池温度探针总数\n\n    A:d06: 探针温度值\n\n    A:d07: 氢系统中最高温度\n\n    A:d08: 氢系统中最高温度探针代号\n\n    A:d09: 氢气最高浓度\n\n    A:d10: 氢气最高浓度传感器代号\n\n    A:d11: 氢气最高压力\n\n    A:d12: 氢气最高压力传感器代号\n\n    A:d13: 高压DC/DC状态\n\n\n    A:e01: 信息类型标志\n\n    A:e02: 发动机状态\n\n    A:e03: 曲轴转速\n\n    A:e04: 燃料消耗率\n\n\n    A:f01: 信息类型标志\n\n    A:f02: 是否有效\n\n    A:f03: 北纬or南纬\n\n    A:f04: 东经or西经\n\n    A:f05: 经度\n\n    A:f06: 纬度\n\n\n    A:g01: 信息类型标志\n\n    A:g02: 最高电压电池子系统号\n\n    A:g03: 最高电压电池单体代号\n\n    A:g04: 电池单体电压最高值\n\n    A:g05: 最低电压电池子系统号\n\n    A:g06: 最低电压电池单体代号\n\n    A:g07: 电池单体电压最低值\n\n    A:g08: 最高温度子系统号\n\n    A:g09: 最高温度探针序号\n\n    A:g10: 最高温度值\n\n    A:g11: 最低温度子系统号\n\n    A:g12: 最低温度探针序号\n\n    A:g13: 最低温度值\n\n\n    A:h01: 信息类型标志\n\n    A:h02: 最高报警等级\n\n    A:h03: 通用报警标志\n\n    A:h04: 可充电储能装置故障总数\n\n    A:h05: 可充电储能装置故障代码列表\n\n    A:h06: 驱动电机故障总数\n\n    A:h07: 驱动电机故障代码列表\n\n    A:h08: 发动机故障总数\n\n    A:h09: 发动机故障列表\n\n    A:h10: 其他故障总数\n\n    A:h11: 其他故障代码\n\n    A:h12: 通用报警标志解析值\n\n\n    A:i01: 信息类型标志\n\n    A:i02: 可充电储能子系统个数\n\n    A:i03: 可充电储能子系统电压信息列表\n\n\n    A:j01: 信息类型标志\n\n    A:j02: 可充电储能子系统个数\n\n    A:j03: 可充电储能子系统温度信息列表",
+      "name": "storages__hbase__models__protocol32960__RealtimeSegment",
+      "templateArgs": [],
+      "properties": [
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a01",
+          "description": "vin",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a03",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a04",
+          "description": "协议",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a05",
+          "description": "采集时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a06",
+          "description": "所属平台",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:a07",
+          "description": "命令标识",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b02",
+          "description": "车辆状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b03",
+          "description": "充电状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b04",
+          "description": "运行模式",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b05",
+          "description": "车速",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b06",
+          "description": "累计里程",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b07",
+          "description": "总电压",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b08",
+          "description": "总电流",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b09",
+          "description": "SOC",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b10",
+          "description": "DC-DC状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b11",
+          "description": "档位",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b12",
+          "description": "有无制动力",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b13",
+          "description": "有无驱动力",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b14",
+          "description": "绝缘电阻",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b15",
+          "description": "加速踏板行程值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:b16",
+          "description": "制动踏板状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:c01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:c02",
+          "description": "驱动电机个数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:c03",
+          "description": "驱动电机信息列表原始数据",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "MotorData",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:c04",
+          "description": "驱动电机信息列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d02",
+          "description": "燃料电池电压",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d03",
+          "description": "燃料电池电流",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d04",
+          "description": "燃料消耗率",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d05",
+          "description": "燃料电池温度探针总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "number",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d06",
+          "description": "探针温度值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d07",
+          "description": "氢系统中最高温度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d08",
+          "description": "氢系统中最高温度探针代号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d09",
+          "description": "氢气最高浓度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d10",
+          "description": "氢气最高浓度传感器代号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d11",
+          "description": "氢气最高压力",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d12",
+          "description": "氢气最高压力传感器代号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:d13",
+          "description": "高压DC/DC状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:e01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:e02",
+          "description": "发动机状态",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:e03",
+          "description": "曲轴转速",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:e04",
+          "description": "燃料消耗率",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f02",
+          "description": "是否有效",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f03",
+          "description": "北纬or南纬",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f04",
+          "description": "东经or西经",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f05",
+          "description": "经度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:f06",
+          "description": "纬度",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g02",
+          "description": "最高电压电池子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g03",
+          "description": "最高电压电池单体代号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g04",
+          "description": "电池单体电压最高值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g05",
+          "description": "最低电压电池子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g06",
+          "description": "最低电压电池单体代号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g07",
+          "description": "电池单体电压最低值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g08",
+          "description": "最高温度子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g09",
+          "description": "最高温度探针序号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g10",
+          "description": "最高温度值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g11",
+          "description": "最低温度子系统号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g12",
+          "description": "最低温度探针序号",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:g13",
+          "description": "最低温度值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h02",
+          "description": "最高报警等级",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h03",
+          "description": "通用报警标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h04",
+          "description": "可充电储能装置故障总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h05",
+          "description": "可充电储能装置故障代码列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h06",
+          "description": "驱动电机故障总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h07",
+          "description": "驱动电机故障代码列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h08",
+          "description": "发动机故障总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h09",
+          "description": "发动机故障列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h10",
+          "description": "其他故障总数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h11",
+          "description": "其他故障代码",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "CommonAlertFlagData",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:h12",
+          "description": "通用报警标志解析值",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:i01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:i02",
+          "description": "可充电储能子系统个数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "BatteryVoltageInformation",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:i03",
+          "description": "可充电储能子系统电压信息列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:j01",
+          "description": "信息类型标志",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "number",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:j02",
+          "description": "可充电储能子系统个数",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "BatteryTemperatureInformation",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "A:j03",
+          "description": "可充电储能子系统温度信息列表",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a01",
+          "description": "原始数据",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a02",
+          "description": "obd时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "B:a03",
+          "description": "接收时间",
+          "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "row_key",
+          "description": "主键",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
