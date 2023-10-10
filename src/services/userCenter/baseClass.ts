@@ -1290,6 +1290,9 @@ class SystemDetail {
   /** 描述 */
   description = ""
 
+  /** 前端路由 */
+  front_route = ""
+
   /** 图标 */
   icon = ""
 
@@ -1315,6 +1318,9 @@ class SystemList {
 
   /** 描述 */
   description = ""
+
+  /** 前端路由 */
+  front_route = ""
 
   /** 图标 */
   icon = ""
@@ -1346,6 +1352,9 @@ class SystemSimple {
   /** 系统唯一标识 */
   code = ""
 
+  /** 前端路由 */
+  front_route = ""
+
   /** 主键 */
   id = ""
 
@@ -1365,6 +1374,9 @@ class SystemSimpleWithAvailableTag {
 
   /** 系统唯一标识 */
   code = ""
+
+  /** 前端路由 */
+  front_route = ""
 
   /** 主键 */
   id = ""

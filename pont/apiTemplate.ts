@@ -135,6 +135,8 @@ export default class MyGenerator extends CodeGenerator {
 
     if (name == "userCenter") {
       requestImportStr = 'import { userCenterRequest as request } from "@/utils/request"'
+    } else if (name == "vehicleDataCenter") {
+      requestImportStr = 'import { dataCenterRequest as request } from "@/utils/request"'
     }
 
     return requestImportStr

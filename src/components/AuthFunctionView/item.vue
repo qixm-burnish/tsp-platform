@@ -6,7 +6,7 @@
     <el-tree node-key="id" :data="props.options" :indent="24" :default-expanded-keys="expanedKeys" :expand-on-click-node="false">
       <template #default="{ node, data }">
         <!-- <i class="el-icon-check auth-func-pos" v-if="props.selected.includes(data.id)" /> -->
-        <el-icon class="auth-func-pos" v-if="props.selected.includes(data.id)"><Select /></el-icon>
+        <el-icon class="auth-func-pos" color="#285FEE" v-if="props.selected.includes(data.id)"><Select /></el-icon>
         <span v-else class="auth-func-pos auth-func-pos-empty" />
         <span :class="[props.selected.includes(data.id) ? 'auth-func-label-checked' : 'auth-func-label-unchecked']">{{
           node.label
@@ -46,8 +46,6 @@ const props = withDefaults(defineProps<IndexPropsType>(), {
   selected: () => [],
   disabled: false,
 })
-
-console.log(props)
 
 const classObj = computed(() => ["com-auth-func-view-item", props.className])
 const expanedKeys = computed<number[]>(() => treeToList(props.options).map(item => item.id))

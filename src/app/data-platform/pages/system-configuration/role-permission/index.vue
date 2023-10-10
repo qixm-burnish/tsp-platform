@@ -95,13 +95,19 @@
           </div>
           <div class="flex role-permission_right_list_item_right">
             <!-- <div class="role-permission_right_list_item_right_find">找回密码</div> -->
-            <div class="role-permission_right_list_item_right_del">删除</div>
+            <div class="role-permission_right_list_item_right_del" v-if="!item.is_company_super_admin">删除</div>
           </div>
         </div>
       </div>
     </div>
     <EditDialog :visible="editRoleVisible" :editId="editRoleId" @confirm="onEditFinish" @close="onEditClose" />
-    <ViewDialog v-if="viewRoleVisible" :visible="viewRoleVisible" :editId="roleDetailId" @close="handleViewClose" />
+    <ViewDialog
+      v-if="viewRoleVisible"
+      :visible="viewRoleVisible"
+      :editId="roleDetailId"
+      @close="handleViewClose"
+      @remove="handleRoleDel"
+    />
     <AccountEditDialog
       :visible="editAccountVisible"
       :editId="editAccountId"
@@ -123,7 +129,6 @@ import { getAccountMyselfV1 as getinfo } from "@/services/userCenter/mods/accoun
 import { getRoleSelfV1 as getRoleList } from "@/services/userCenter/mods/role/getRoleSelfV1"
 
 import { getAccountSelfV1 as getAccountList } from "@/services/userCenter/mods/account/getAccountSelfV1"
-// import { getResourceSystemV1 as getList } from "@/services/userCenter/mods/resource/getResourceSystemV1"
 
 defineOptions({
   name: "Rolepermission",
@@ -150,10 +155,17 @@ const handleActiveRole = val => {
     return
   }
   activeRoleId.value = val
-  // 获取账号列表
-  getAccountList({ params: { roles__id__in: val } }).then(respon => {
-    accountList.value = respon
-  })
+  if (val == "超级管理员") {
+    // 获取账号列表
+    getAccountList({ params: { is_company_super_admin: true } }).then(respon => {
+      accountList.value = respon
+    })
+  } else {
+    // 获取账号列表
+    getAccountList({ params: { roles__id__in: val } }).then(respon => {
+      accountList.value = respon
+    })
+  }
 }
 //账号列表
 const accountList = ref<any>("")
@@ -173,17 +185,13 @@ onMounted(() => {
   }
   //获取角色列表
   getRoleList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
-    roleList.value = res
-    activeRoleId.value = res[0]?.id
+    roleList.value = [{ label: "超级管理员", id: "超级管理员" }, ...res]
+    activeRoleId.value = "超级管理员"
     // 获取账号列表
-    getAccountList({ params: { roles__id__in: res[0].id } }).then(respon => {
+    getAccountList({ params: { is_company_super_admin: true } }).then(respon => {
       accountList.value = respon
     })
   })
-
-  // getList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
-  //   console.log(res)
-  // })
 
   //判断超管信息是否获取
   if (!is_super.value) {
@@ -203,7 +211,7 @@ const handleAddRole = () => {
 const onEditFinish = () => {
   editRoleVisible.value = false
   getRoleList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
-    roleList.value = res
+    roleList.value = [{ label: "超级管理员", id: "超级管理员" }, ...res]
   })
 }
 const onEditClose = () => {
@@ -226,6 +234,11 @@ const handleRoleView = id => {
   viewRoleVisible.value = true
 }
 const handleViewClose = () => {
+  viewRoleVisible.value = false
+}
+
+const handleRoleDel = id => {
+  roleList.value = roleList.value.filter(item => item.id != id)
   viewRoleVisible.value = false
 }
 </script>

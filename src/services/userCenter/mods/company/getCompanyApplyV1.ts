@@ -6,7 +6,7 @@ export class RequestParamsType {
   page?: number
   /** 每页数量 */
   size?: number
-  /** 搜索关键字. 匹配字段: username, name */
+  /** 搜索关键字. 匹配字段: name, username */
   search?: string
   /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
   order_by?: Array<string>

@@ -672,7 +672,7 @@
               }
             },
             {
-              "description": "搜索关键字. 匹配字段: username, name",
+              "description": "搜索关键字. 匹配字段: name, username",
               "required": false,
               "in": "query",
               "name": "search",
@@ -1452,6 +1452,37 @@
               }
             }
           ]
+        },
+        {
+          "description": "超级管理员角色详情\n虚拟超级管理员角色详情-超级管理员是企业超管, 本质和企业无关, 所以子系统没有超管, 但又必须展示, 所以前后端配合搞一个虚拟的",
+          "name": "postRoleSuper_adminV1",
+          "method": "post",
+          "path": "/v1/role/super_admin",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp_SystemCompanyRoleDetail_",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "query",
+              "name": "system_id",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
         }
       ]
     },
@@ -1629,7 +1660,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, description, status_display",
+              "description": "指定返回字段. 可选字段: id, code, label, scenes, status, internal, icon, front_route, description, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -7677,7 +7708,7 @@
       ]
     },
     {
-      "description": "子系统.",
+      "description": "子系统",
       "name": "SystemDetail",
       "templateArgs": [],
       "properties": [
@@ -7708,6 +7739,20 @@
           "name": "description",
           "description": "描述",
           "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "front_route",
+          "description": "前端路由",
+          "required": false
         },
         {
           "dataType": {
@@ -7796,7 +7841,7 @@
       ]
     },
     {
-      "description": "子系统.",
+      "description": "子系统",
       "name": "SystemList",
       "templateArgs": [],
       "properties": [
@@ -7827,6 +7872,20 @@
           "name": "description",
           "description": "描述",
           "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "front_route",
+          "description": "前端路由",
+          "required": false
         },
         {
           "dataType": {
@@ -7941,7 +8000,7 @@
       "properties": []
     },
     {
-      "description": "子系统.",
+      "description": "子系统",
       "name": "SystemSimple",
       "templateArgs": [],
       "properties": [
@@ -7958,6 +8017,20 @@
           "name": "code",
           "description": "系统唯一标识",
           "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "front_route",
+          "description": "前端路由",
+          "required": false
         },
         {
           "dataType": {
@@ -8018,7 +8091,7 @@
       ]
     },
     {
-      "description": "子系统.",
+      "description": "子系统",
       "name": "SystemSimpleWithAvailableTag",
       "templateArgs": [],
       "properties": [
@@ -8049,6 +8122,20 @@
           "name": "code",
           "description": "系统唯一标识",
           "required": true
+        },
+        {
+          "dataType": {
+            "typeArgs": [],
+            "typeName": "string",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "front_route",
+          "description": "前端路由",
+          "required": false
         },
         {
           "dataType": {

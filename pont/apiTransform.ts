@@ -2,9 +2,7 @@ import { Interface, StandardDataSource } from "pont-engine"
 import { toUpperFirstLetter } from "pont-engine/lib/compatible/utils"
 
 export default function (dataSource: StandardDataSource): StandardDataSource {
-  if (dataSource.name == "userCenter") {
-    formatUserCenterDataSource(dataSource)
-  }
+  formatUserCenterDataSource(dataSource)
 
   return dataSource
 }

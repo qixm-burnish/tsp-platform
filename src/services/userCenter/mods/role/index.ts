@@ -8,6 +8,7 @@ import * as postRoleSelfV1 from "./postRoleSelfV1"
 import * as getRoleSelfByIdV1 from "./getRoleSelfByIdV1"
 import * as putRoleSelfByIdV1 from "./putRoleSelfByIdV1"
 import * as deleteRoleSelfByIdV1 from "./deleteRoleSelfByIdV1"
+import * as postRoleSuper_adminV1 from "./postRoleSuper_adminV1"
 
 export {
   postRoleAddAccountV1,
@@ -17,4 +18,5 @@ export {
   getRoleSelfByIdV1,
   putRoleSelfByIdV1,
   deleteRoleSelfByIdV1,
+  postRoleSuper_adminV1,
 }

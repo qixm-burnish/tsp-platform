@@ -3,7 +3,7 @@ import { ElLoading } from "element-plus"
 
 import NProgress from "../progress"
 import { getToken, formatToken } from "./util"
-import { defaultConfig, RequestTokenKey, tokenDenyList, urlPrefix, userCenterUrlPrefix } from "./config"
+import { defaultConfig, RequestTokenKey, tokenDenyList, urlPrefix, userCenterUrlPrefix, dataCenterUrlPrefix } from "./config"
 import { RequestError, handleError } from "./errorHandler"
 import {
   BusinessResponse,
@@ -225,6 +225,12 @@ const _userCenterRequest = new PureHttp({
   baseURL: userCenterUrlPrefix,
 })
 
+const _dataCenterRequest = new PureHttp({
+  ...defaultConfig,
+  baseURL: dataCenterUrlPrefix,
+})
+
 export const userCenterRequest = _userCenterRequest
+export const dataCenterRequest = _dataCenterRequest
 
 export const axiosInstance = Axios.create()
