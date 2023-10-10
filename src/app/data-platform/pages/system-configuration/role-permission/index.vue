@@ -47,7 +47,7 @@
     <div class="w-[324px] role-permission_center pt-[24px]">
       <div class="role-permission_center_header flex justify-between">
         <el-input v-model="roleName" class="w-50 m-2" placeholder="输入角色名称" :suffix-icon="Search" />
-        <el-button class="role-permission_center_header_btn" type="primary" @click="handleAddRole">
+        <el-button class="role-permission_center_header_btn" type="primary" @click="handleAddRole" v-if="is_compony_super">
           添加角色
           <el-icon class="role-permission_center_header_btn_icon"><CirclePlus /></el-icon>
         </el-button>
@@ -73,7 +73,7 @@
 
     <div class="flex-1 role-permission_right pt-[24px] pl-[20px] pr-[20px] overflow-auto">
       <div class="role-permission_right_header flex justify-end">
-        <el-button class="role-permission_right_header_btn" type="primary" @click="handleAddAccount">
+        <el-button class="role-permission_right_header_btn" type="primary" @click="handleAddAccount" v-if="is_compony_super">
           添加账号
           <el-icon class="role-permission_right_header_icon"><CirclePlus /></el-icon>
         </el-button>
@@ -100,8 +100,8 @@
         </div>
       </div>
     </div>
-    <EditDialog :visible="editRoleVisible" :editId="editRoleId" @confirm="onEditFinish" @close="onEditFinish" />
-    <ViewDialog :visible="viewRoleVisible" :editId="editRoleId" @close="handleViewClose" />
+    <EditDialog :visible="editRoleVisible" :editId="editRoleId" @confirm="onEditFinish" @close="onEditClose" />
+    <ViewDialog v-if="viewRoleVisible" :visible="viewRoleVisible" :editId="roleDetailId" @close="handleViewClose" />
     <AccountEditDialog
       :visible="editAccountVisible"
       :editId="editAccountId"
@@ -117,13 +117,13 @@ import { Search, CirclePlus } from "@element-plus/icons-vue"
 import EditDialog from "./components/roleEdit.vue"
 import ViewDialog from "./components/roleDetail.vue"
 import AccountEditDialog from "./components/accountEdit.vue"
-import { useUserStoreHook } from "@app/data-platform/store/user"
+import { useUserStoreHook } from "@/store/modules/user"
 import { getCompanySelfByIdV1 as getCompanyInfo } from "@/services/userCenter/mods/company/getCompanySelfByIdV1"
 import { getAccountMyselfV1 as getinfo } from "@/services/userCenter/mods/account/getAccountMyselfV1"
 import { getRoleSelfV1 as getRoleList } from "@/services/userCenter/mods/role/getRoleSelfV1"
-import { getRoleSelfByIdV1 as getRoleDetail } from "@/services/userCenter/mods/role/getRoleSelfByIdV1"
+
 import { getAccountSelfV1 as getAccountList } from "@/services/userCenter/mods/account/getAccountSelfV1"
-import { getResourceSystemV1 as getList } from "@/services/userCenter/mods/resource/getResourceSystemV1"
+// import { getResourceSystemV1 as getList } from "@/services/userCenter/mods/resource/getResourceSystemV1"
 
 defineOptions({
   name: "Rolepermission",
@@ -138,8 +138,7 @@ const companyId = computed(() => {
 const is_super = computed(() => {
   return useUserStoreHook()?.is_compony_super
 })
-
-console.log(is_super.value)
+const is_compony_super = ref<boolean>(is_super.value)
 
 //公司信息
 const companyInfo = ref<any>("")
@@ -152,7 +151,7 @@ const handleActiveRole = val => {
   }
   activeRoleId.value = val
   // 获取账号列表
-  getAccountList({ params: { roles__id__in: [val] } }).then(respon => {
+  getAccountList({ params: { roles__id__in: val } }).then(respon => {
     accountList.value = respon
   })
 }
@@ -174,23 +173,23 @@ onMounted(() => {
   }
   //获取角色列表
   getRoleList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
-    console.log(res)
-
     roleList.value = res
-    activeRoleId.value = res[0].id
+    activeRoleId.value = res[0]?.id
     // 获取账号列表
-    getAccountList({ params: { roles__id__in: [res[0].id] } }).then(respon => {
+    getAccountList({ params: { roles__id__in: res[0].id } }).then(respon => {
       accountList.value = respon
     })
   })
 
-  getList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
-    console.log(res)
-  })
+  // getList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
+  //   console.log(res)
+  // })
 
   //判断超管信息是否获取
-  if (is_super.value) {
-    console.log(111)
+  if (!is_super.value) {
+    getinfo({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
+      is_compony_super.value = res.is_company_super_admin
+    })
   }
 })
 
@@ -202,6 +201,12 @@ const handleAddRole = () => {
   editRoleVisible.value = true
 }
 const onEditFinish = () => {
+  editRoleVisible.value = false
+  getRoleList({ params: { system_id: "018acffb-9ab7-8ea0-534f-7f5a0012337d" } }).then(res => {
+    roleList.value = res
+  })
+}
+const onEditClose = () => {
   editRoleVisible.value = false
 }
 
@@ -215,12 +220,10 @@ const onAccountEditFinish = () => {
 }
 
 const viewRoleVisible = ref(false)
+const roleDetailId = ref<any>("")
 const handleRoleView = id => {
-  console.log(id)
-  getRoleDetail(id).then(res => {
-    console.log(res)
-  })
-  // viewRoleVisible.value = true
+  roleDetailId.value = id
+  viewRoleVisible.value = true
 }
 const handleViewClose = () => {
   viewRoleVisible.value = false

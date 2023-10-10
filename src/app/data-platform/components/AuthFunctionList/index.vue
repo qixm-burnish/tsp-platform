@@ -25,7 +25,7 @@ import FuncItem from "./item.vue"
 import type { OptionType } from "./item.vue"
 
 type IndexPropsType = {
-  modelValue?: number[]
+  modelValue?: string[]
   configs?: OptionType[]
 }
 
@@ -49,8 +49,6 @@ const isCheckedAll = computed(() => expanedKeys.value.length && expanedKeys.valu
 function onItemChange(val?: number[]) {
   emit("input", val)
 }
-
-console.log(expanedKeys.value)
 
 function onCheckChangeChange(isChecked: boolean) {
   emit("input", isChecked ? expanedKeys.value : [])

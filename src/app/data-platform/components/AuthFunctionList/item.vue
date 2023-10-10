@@ -16,6 +16,7 @@
       :default-expanded-keys="expanedKeys"
       :default-checked-keys="checkedKeys"
       :expand-on-click-node="false"
+      :check-strictly="true"
     />
   </div>
 </template>
@@ -38,7 +39,7 @@ export type OptionType = {
 type IndexPropsType = {
   title?: string
 
-  value?: number[]
+  value?: string[]
   options?: OptionType[]
   className?: string
 }
@@ -48,22 +49,22 @@ const props = withDefaults(defineProps<IndexPropsType>(), {
   value: () => [],
 })
 const emit = defineEmits<{
-  (type: "input", val?: number[])
-  (type: "change", val?: number[])
+  (type: "input", val?: string[])
+  (type: "change", val?: string[])
 }>()
 const classObj = computed(() => ["com-auth-func-item", props.className])
-const expanedKeys = computed<number[]>(() => treeToList(props.options).map(item => item.id))
-const checkedKeys = computed<number[]>(() => props.value.filter(key => expanedKeys.value.includes(key)))
+const expanedKeys = computed<string[]>(() => treeToList(props.options).map(item => item.id))
+const checkedKeys = computed<string[]>(() => props.value.filter(key => expanedKeys.value.includes(key)))
 const isCheckedAll = computed(() => expanedKeys.value.length && expanedKeys.value.length === checkedKeys.value.length)
 const treeRef = ref<null | any>()
 
-function onChange(keys: number[]) {
+function onChange(keys: string[]) {
   emit("input", keys)
   emit("change", keys)
 }
 
 function onCheckChange(val: boolean) {
-  let keys: number[] = []
+  let keys: string[] = []
   if (val) {
     keys = Array.from(new Set(props.value.concat(expanedKeys.value)))
   } else {
@@ -76,7 +77,7 @@ function onTreeChange(data) {
   let ids = [data.id]
   let vals = props.value
 
-  if (data.children) {
+  if (data.children.length) {
     ids = ids.concat(data.children.map(item => item.id))
     // 如果已选中父节点：则删除父节点及其子节点；未选中，则选中当前节点及子节点
     vals = vals.includes(data.id) ? vals.filter(item => !ids.includes(item)) : vals.concat(ids)

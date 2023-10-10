@@ -46,7 +46,6 @@ const props = withDefaults(defineProps<IndexPropsType>(), {
   selected: () => [],
   disabled: false,
 })
-
 console.log(props)
 
 const classObj = computed(() => ["com-auth-func-view-item", props.className])

@@ -39,7 +39,6 @@
 <script lang="ts" setup>
 import { computed, shallowReactive, shallowRef, onMounted, watch } from "vue"
 import { ElMessage } from "element-plus"
-import { isEmpty } from "@/utils/is"
 // import { pick, assign } from "lodash-es"
 
 import { treeMap } from "@/utils/tree.js"
@@ -48,8 +47,9 @@ import FuncList from "@/components/AuthFunctionList/index.vue"
 import type { OptionType } from "@/components/AuthFunctionList/item.vue"
 
 import { getResourceSystemV1 as getConfigs } from "@/services/userCenter/mods/resource/getResourceSystemV1"
+import { postRoleSelfV1 as creatRole } from "@/services/userCenter/mods/role/postRoleSelfV1"
 
-type RoleItemType = any
+type RoleItemType = defs.userCenter.SystemCompanyRoleCreate
 type PropsType = {
   visible: boolean
 
@@ -58,14 +58,13 @@ type PropsType = {
 }
 type CommonValuesType = {
   loading: boolean
-  saving: boolean
   configLoading: boolean
 
   rules: Record<string, any[]>
   funcConfigs: OptionType[]
   disabledfuncConfigs: OptionType[]
 }
-type FormValuesType = Omit<RoleItemType, "company">
+type FormValuesType = RoleItemType
 
 const handleInput = val => {
   formValues.resources = val
@@ -91,30 +90,18 @@ const formValues = shallowReactive<FormValuesType>({
 })
 const commValues = shallowReactive<CommonValuesType>({
   loading: false,
-  saving: false,
   configLoading: true,
   funcConfigs: [],
   disabledfuncConfigs: [],
 
   rules: {
     label: [{ required: true, message: "请输入角色名称", trigger: "blur" }],
-    resources: [{ validator: validateFuncs, trigger: "blur" }],
   },
 })
-// const loading = computed(() => commValues.loading || commValues.saving || commValues.configLoading)
-
-function validateFuncs(_, value, callback) {
-  if (!value || value.length === 0) {
-    callback(new Error("请至少选择一项功能权限"))
-  } else {
-    callback()
-  }
-}
 
 function initDialog() {
   formRef.value?.resetFields()
   commValues.loading = false
-  commValues.saving = false
 }
 
 function getRoleDetail() {
@@ -144,17 +131,16 @@ function onCancel() {
 function onConfirm() {
   formRef.value?.validate(valid => {
     if (valid) {
-      // const bodyParams: RoleItemType = {
-      //   ...toRaw(formValues),
-      //   company: 0,
-      // }
-
-      if (formValues.time_resources?.some(item => isEmpty(item.count))) {
-        ElMessage.warning("数据权限字段不能为空")
+      if (!formValues.resources.length) {
+        ElMessage.warning("请选择至少一项功能权限")
         return
       }
 
-      commValues.saving = true
+      creatRole({ data: formValues }).then(() => {
+        ElMessage.success("添加成功")
+        emit("confirm")
+      })
+
       // const saveReq = props.editId
       //   ? updateItem(props.editId, { bodyParams })
       //   : addItem({
@@ -169,12 +155,6 @@ function onConfirm() {
       //   .finally(() => {
       //     commValues.saving = false
       //   })
-    } else {
-      if (formValues.label.trim()) {
-        ElMessage.warning("请至少选择一项功能权限")
-      } else {
-        ElMessage.warning("请输入角色名称")
-      }
     }
   })
 }
