@@ -31,11 +31,11 @@ export const configCompressPlugin = (compress: ViteCompression): Plugin | Plugin
 
   const plugins: Plugin[] = []
 
-  codeList.forEach((item) => {
+  codeList.forEach(item => {
     if (compress.includes(item.k)) {
       if (compress.includes("clear")) {
         if (isArray(item.v)) {
-          item.v.forEach((vItem) => {
+          item.v.forEach(vItem => {
             plugins.push(compressPlugin(Object.assign(vItem, { deleteOriginFile: true })))
           })
         } else {
@@ -43,7 +43,7 @@ export const configCompressPlugin = (compress: ViteCompression): Plugin | Plugin
         }
       } else {
         if (isArray(item.v)) {
-          item.v.forEach((vItem) => {
+          item.v.forEach(vItem => {
             plugins.push(compressPlugin(vItem))
           })
         } else {

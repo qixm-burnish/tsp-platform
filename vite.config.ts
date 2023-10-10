@@ -6,6 +6,7 @@ import { getPluginsList } from "./build/plugins"
 import { include, exclude } from "./build/optimize"
 import { UserConfigExport, ConfigEnv, loadEnv } from "vite"
 import { defDTFormat } from "./src/config/dt"
+import buildEntry from "./build/entry"
 
 const { name, version } = pkg
 const __APP_INFO__ = {
@@ -48,10 +49,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
-        input: {
-          index: pathResolve("src/app/index.html"),
-          demo: pathResolve("src/app/demo/index.html"),
-        },
+        input: buildEntry,
         // 静态资源分类打包
         output: {
           chunkFileNames: "static/js/[name]-[hash].js",

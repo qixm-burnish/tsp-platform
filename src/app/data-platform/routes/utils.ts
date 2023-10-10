@@ -13,9 +13,6 @@ const IFrame = () => import("@app/data-platform/layout/frameView.vue")
 // https://cn.vitejs.dev/guide/features.html#glob-import
 const modulesRoutes = import.meta.glob("/src/pages/**/*.{vue,tsx}")
 
-// 动态路由
-import { getAsyncRoutes } from "@app/data-platform/api/routes"
-
 function handRank(routeInfo: any) {
   const { name, path, parentId, meta } = routeInfo
   return isAllEmpty(parentId)
@@ -152,19 +149,16 @@ function initRouter() {
       })
     } else {
       return new Promise(resolve => {
-        getAsyncRoutes().then(({ data }) => {
-          handleAsyncRoutes(cloneDeep(data))
-          storageSession().setItem(key, data)
-          resolve(router)
-        })
+        const data = []
+        handleAsyncRoutes(cloneDeep(data))
+        storageSession().setItem(key, data)
+        resolve(router)
       })
     }
   } else {
     return new Promise(resolve => {
-      getAsyncRoutes().then(({ data }) => {
-        handleAsyncRoutes(cloneDeep(data))
-        resolve(router)
-      })
+      handleAsyncRoutes([])
+      resolve(router)
     })
   }
 }

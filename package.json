@@ -7,6 +7,7 @@
     "serve": "pnpm dev",
     "build:prod": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build --mode prod",
     "build:test": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build --mode test",
+    "build:dev": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build --mode dev",
     "report": "rimraf dist && vite build",
     "preview": "vite preview",
     "preview:build": "pnpm build && vite preview",

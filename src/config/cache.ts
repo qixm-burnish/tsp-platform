@@ -12,7 +12,7 @@ export const DEFAULT_CACHE_TIME = 60 * 60 * 24 * 7
 // aes encryption key
 export const cacheCipher = {
   key: "_11011000001111@",
-  iv: "@111111000001111_",
+  iv: "@111_0000011110_",
 }
 
 // Whether the system cache is encrypted using aes
