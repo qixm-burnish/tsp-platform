@@ -178,6 +178,21 @@
               }
             },
             {
+              "description": "是否超级管理员",
+              "required": false,
+              "in": "query",
+              "name": "is_company_super_admin",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "boolean",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
               "description": "状态, choices: male-男、female-女、other-其他",
               "required": false,
               "in": "query",
@@ -381,6 +396,52 @@
               }
             }
           ]
+        },
+        {
+          "description": "单个删除用户",
+          "name": "deleteAccountSelfByIdV1",
+          "method": "delete",
+          "path": "/v1/account/self/{id}",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "path",
+              "name": "id",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            },
+            {
+              "description": "需要删除的系统ID",
+              "required": true,
+              "in": "query",
+              "name": "system_id",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
         }
       ]
     },
@@ -389,7 +450,7 @@
       "name": "authorization",
       "interfaces": [
         {
-          "description": "注销\n注销",
+          "description": "注销\n直接注销全部子系统账号",
           "name": "postAuthArchiveV1",
           "method": "post",
           "path": "/v1/auth/archive",
@@ -402,32 +463,7 @@
             "enum": [],
             "typeProperties": []
           },
-          "parameters": [
-            {
-              "required": true,
-              "in": "body",
-              "name": "requestBody",
-              "dataType": {
-                "typeArgs": [
-                  {
-                    "typeArgs": [],
-                    "typeName": "string",
-                    "isDefsType": false,
-                    "templateIndex": -1,
-                    "compileTemplateKeyword": "#/definitions/",
-                    "enum": [],
-                    "typeProperties": []
-                  }
-                ],
-                "typeName": "Array",
-                "isDefsType": false,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
+          "parameters": []
         },
         {
           "description": "登录\n登录接口",
@@ -636,7 +672,7 @@
               }
             },
             {
-              "description": "搜索关键字. 匹配字段: name, username",
+              "description": "搜索关键字. 匹配字段: username, name",
               "required": false,
               "in": "query",
               "name": "search",
@@ -676,7 +712,7 @@
               }
             },
             {
-              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display",
+              "description": "指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display",
               "required": false,
               "in": "query",
               "name": "selected_fields",
@@ -1105,6 +1141,68 @@
       "name": "role",
       "interfaces": [
         {
+          "description": "角色添加已存在用户\n角色添加已存在用户",
+          "name": "postRoleAddAccountV1",
+          "method": "post",
+          "path": "/v1/role/add-account",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "body",
+              "name": "requestBody",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "IdsSchema",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "角色移除关联已存在用户\n角色移除已存在用户",
+          "name": "postRoleRemoveAccountV1",
+          "method": "post",
+          "path": "/v1/role/remove-account",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "body",
+              "name": "requestBody",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "IdsSchema",
+                "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
           "description": "子系统角色列表",
           "name": "getRoleSelfV1",
           "method": "get",
@@ -1263,68 +1361,6 @@
           ]
         },
         {
-          "description": "角色添加已存在用户\n角色添加已存在用户",
-          "name": "postRoleSelfAddAccountV1",
-          "method": "post",
-          "path": "/v1/role/self/add-account",
-          "response": {
-            "typeArgs": [],
-            "typeName": "Resp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "required": true,
-              "in": "body",
-              "name": "requestBody",
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "IdsSchema",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
-          "description": "角色移除关联已存在用户\n角色移除已存在用户",
-          "name": "postRoleSelfRemoveAccountV1",
-          "method": "post",
-          "path": "/v1/role/self/remove-account",
-          "response": {
-            "typeArgs": [],
-            "typeName": "Resp",
-            "isDefsType": true,
-            "templateIndex": -1,
-            "compileTemplateKeyword": "#/definitions/",
-            "enum": [],
-            "typeProperties": []
-          },
-          "parameters": [
-            {
-              "required": true,
-              "in": "body",
-              "name": "requestBody",
-              "dataType": {
-                "typeArgs": [],
-                "typeName": "IdsSchema",
-                "isDefsType": true,
-                "templateIndex": -1,
-                "compileTemplateKeyword": "#/definitions/",
-                "enum": [],
-                "typeProperties": []
-              }
-            }
-          ]
-        },
-        {
           "description": "子系统角色详情",
           "name": "getRoleSelfByIdV1",
           "method": "get",
@@ -1378,6 +1414,37 @@
                 "typeArgs": [],
                 "typeName": "SystemCompanyRoleUpdate",
                 "isDefsType": true,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            }
+          ]
+        },
+        {
+          "description": "单个删除子系统角色",
+          "name": "deleteRoleSelfByIdV1",
+          "method": "delete",
+          "path": "/v1/role/self/{id}",
+          "response": {
+            "typeArgs": [],
+            "typeName": "Resp",
+            "isDefsType": true,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "parameters": [
+            {
+              "required": true,
+              "in": "path",
+              "name": "id",
+              "dataType": {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
                 "templateIndex": -1,
                 "compileTemplateKeyword": "#/definitions/",
                 "enum": [],
@@ -7356,6 +7423,30 @@
           },
           "name": "remark",
           "description": "备注",
+          "required": false
+        },
+        {
+          "dataType": {
+            "typeArgs": [
+              {
+                "typeArgs": [],
+                "typeName": "string",
+                "isDefsType": false,
+                "templateIndex": -1,
+                "compileTemplateKeyword": "#/definitions/",
+                "enum": [],
+                "typeProperties": []
+              }
+            ],
+            "typeName": "Array",
+            "isDefsType": false,
+            "templateIndex": -1,
+            "compileTemplateKeyword": "#/definitions/",
+            "enum": [],
+            "typeProperties": []
+          },
+          "name": "resource_ids",
+          "description": "资源ID",
           "required": false
         },
         {

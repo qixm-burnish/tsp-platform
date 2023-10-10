@@ -12,6 +12,8 @@ export class RequestParamsType {
   roles__id__in?: Array<string>
   /** 状态, choices: enable-启用、disable-禁用 */
   status?: any
+  /** 是否超级管理员 */
+  is_company_super_admin?: boolean
   /** 状态, choices: male-男、female-女、other-其他 */
   gender?: any
   /** 第几页 */

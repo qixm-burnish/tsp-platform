@@ -7,6 +7,7 @@ import * as getAccountSelfV1 from "./getAccountSelfV1"
 import * as postAccountSelfV1 from "./postAccountSelfV1"
 import * as getAccountSelfByIdV1 from "./getAccountSelfByIdV1"
 import * as putAccountSelfByIdV1 from "./putAccountSelfByIdV1"
+import * as deleteAccountSelfByIdV1 from "./deleteAccountSelfByIdV1"
 
 export {
   getAccountMyselfV1,
@@ -15,4 +16,5 @@ export {
   postAccountSelfV1,
   getAccountSelfByIdV1,
   putAccountSelfByIdV1,
+  deleteAccountSelfByIdV1,
 }

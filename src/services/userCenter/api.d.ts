@@ -1239,6 +1239,9 @@ declare namespace defs {
       /** 备注 */
       remark?: string
 
+      /** 资源ID */
+      resource_ids?: Array<string>
+
       /** 系统资源 */
       resources?: Array<defs.userCenter.ResourceLevelTreeBaseNode>
 
@@ -1473,6 +1476,8 @@ declare namespace API {
           roles__id__in?: Array<string>
           /** 状态, choices: enable-启用、disable-禁用 */
           status?: any
+          /** 是否超级管理员 */
+          is_company_super_admin?: boolean
           /** 状态, choices: male-男、female-女、other-其他 */
           gender?: any
           /** 第几页 */
@@ -1530,6 +1535,23 @@ declare namespace API {
         export const init: Response
         export function request(params: Params, bodyParams: defs.userCenter.AccountUpdate): Promise<defs.userCenter.AccountDetail>
       }
+
+      /**
+       * 单个删除用户
+       * /v1/account/self/{id}
+       */
+      export namespace deleteAccountSelfByIdV1 {
+        export class Params {
+          /** id */
+          id: string
+          /** 需要删除的系统ID */
+          system_id: string
+        }
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params): Promise<defs.userCenter.Resp>
+      }
     }
 
     /**
@@ -1538,7 +1560,7 @@ declare namespace API {
     export namespace authorization {
       /**
         * 注销
-注销
+直接注销全部子系统账号
         * /v1/auth/archive
         */
       export namespace postAuthArchiveV1 {
@@ -1548,7 +1570,6 @@ declare namespace API {
         export const init: Response
         export function request(
           params: Params,
-          bodyParams: Array<string>,
         ): Promise<defs.userCenter.Resp_list_apis_http_routes_v1_auth_schemas_ArchiveCheckOut__>
       }
 
@@ -1638,11 +1659,11 @@ declare namespace API {
           page?: number
           /** 每页数量 */
           size?: number
-          /** 搜索关键字. 匹配字段: name, username */
+          /** 搜索关键字. 匹配字段: username, name */
           search?: string
           /** 排序字段. 升序保持原字段名, 降序增加前缀-. 无可排序字段 */
           order_by?: Array<string>
-          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, account_id, company_id, status_display */
+          /** 指定返回字段. 可选字段: id, created_at, updated_at, deleted_at, name, credit_code_tax_id, legal_representative_name, legal_representative_phone, legal_representative_id_card_front, business_license, address, username, phone, email, real_name, id_number, status, submit_remark, result_remark, company_id, account_id, status_display */
           selected_fields?: Array<string>
         }
 
@@ -1808,6 +1829,32 @@ declare namespace API {
      */
     export namespace role {
       /**
+        * 角色添加已存在用户
+角色添加已存在用户
+        * /v1/role/add-account
+        */
+      export namespace postRoleAddAccountV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
+      }
+
+      /**
+        * 角色移除关联已存在用户
+角色移除已存在用户
+        * /v1/role/remove-account
+        */
+      export namespace postRoleRemoveAccountV1 {
+        export class Params {}
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
+      }
+
+      /**
        * 子系统角色列表
        * /v1/role/self
        */
@@ -1848,32 +1895,6 @@ declare namespace API {
       }
 
       /**
-        * 角色添加已存在用户
-角色添加已存在用户
-        * /v1/role/self/add-account
-        */
-      export namespace postRoleSelfAddAccountV1 {
-        export class Params {}
-
-        export type Response = defs.userCenter.Resp
-        export const init: Response
-        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
-      }
-
-      /**
-        * 角色移除关联已存在用户
-角色移除已存在用户
-        * /v1/role/self/remove-account
-        */
-      export namespace postRoleSelfRemoveAccountV1 {
-        export class Params {}
-
-        export type Response = defs.userCenter.Resp
-        export const init: Response
-        export function request(params: Params, bodyParams: defs.userCenter.IdsSchema): Promise<defs.userCenter.Resp>
-      }
-
-      /**
        * 子系统角色详情
        * /v1/role/self/{id}
        */
@@ -1901,6 +1922,21 @@ declare namespace API {
           params: Params,
           bodyParams: defs.userCenter.SystemCompanyRoleUpdate,
         ): Promise<defs.userCenter.SystemCompanyRoleDetail>
+      }
+
+      /**
+       * 单个删除子系统角色
+       * /v1/role/self/{id}
+       */
+      export namespace deleteRoleSelfByIdV1 {
+        export class Params {
+          /** id */
+          id: string
+        }
+
+        export type Response = defs.userCenter.Resp
+        export const init: Response
+        export function request(params: Params): Promise<defs.userCenter.Resp>
       }
     }
 

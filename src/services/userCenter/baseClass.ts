@@ -1233,6 +1233,9 @@ class SystemCompanyRoleDetail {
   /** 备注 */
   remark = ""
 
+  /** 资源ID */
+  resource_ids = []
+
   /** 系统资源 */
   resources = []
 
