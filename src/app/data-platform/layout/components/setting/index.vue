@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, unref, watch, reactive, computed, nextTick, onBeforeMount } from "vue"
 import { useDark, debounce, useGlobal, storageLocal, storageSession } from "@pureadmin/utils"
-import { getConfig } from "@/config"
+import { getConfig } from "@app/data-platform/config"
 import { useRouter } from "vue-router"
 import panel from "../panel/index.vue"
 import { emitter } from "@/utils/mitt"

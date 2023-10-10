@@ -1,5 +1,5 @@
 import { storeToRefs } from "pinia"
-import { getConfig } from "@/config"
+import { getConfig } from "@app/data-platform/config"
 import { emitter } from "@/utils/mitt"
 import { routeMetaType } from "../types"
 import userAvatar from "@/assets/user.jpg"

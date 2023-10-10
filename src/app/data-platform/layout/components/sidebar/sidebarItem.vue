@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import path from "path"
-import { getConfig } from "@/config"
+import { getConfig } from "@app/data-platform/config"
 import { menuType } from "../../types"
 import extraIcon from "./extraIcon.vue"
 import { useNav } from "@app/data-platform/layout/hooks/useNav"

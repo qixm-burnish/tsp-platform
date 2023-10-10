@@ -1,4 +1,4 @@
-import { getConfig } from "@/config"
+import { getConfig } from "@app/data-platform/config"
 import NProgress from "@/utils/progress"
 import { getToken } from "@/utils/auth"
 import { useMultiTagsStoreHook } from "@app/data-platform/store/multiTags"
@@ -41,7 +41,6 @@ export const constantRoutes: Array<RouteRecordRaw> = formatTwoStageRoutes(
 
 /** 用于渲染菜单，保持原始层级 */
 export const constantMenus: Array<RouteComponent> = ascending(routes.flat(Infinity))
-console.log(constantMenus)
 
 export function setupRoutes(app: App) {
   constantRoutes.forEach(item => {
@@ -108,10 +107,7 @@ export function setPermissionGuard(router: Router) {
       } else {
         // 刷新
         if (usePermissionStoreHook().wholeMenus.length === 0 && to.path !== "/login") {
-          console.log(router.getRoutes())
-
           initRouter().then((router: Router) => {
-            debugger
             if (!useMultiTagsStoreHook().getMultiTagsCache) {
               const { path } = to
               const route = findRouteByPath(path, constantRoutes[0].children)

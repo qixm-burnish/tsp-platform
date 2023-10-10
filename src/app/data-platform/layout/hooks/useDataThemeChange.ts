@@ -1,5 +1,5 @@
 import { ref } from "vue"
-import { getConfig } from "@/config"
+import { getConfig } from "@app/data-platform/config"
 import { useLayout } from "./useLayout"
 import { themeColorsType } from "../types"
 import { useGlobal } from "@pureadmin/utils"

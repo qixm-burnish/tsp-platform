@@ -110,7 +110,6 @@ interface IndexProps {
 const props = withDefaults(defineProps<IndexProps>(), {
   show: false,
 })
-console.log(props.id)
 
 const emit = defineEmits<{
   close: [params: any]
