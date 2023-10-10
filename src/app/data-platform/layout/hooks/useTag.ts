@@ -2,7 +2,7 @@ import { ref, unref, watch, computed, reactive, onMounted, CSSProperties, getCur
 import { tagsViewsType } from "../types"
 import { useEventListener } from "@vueuse/core"
 import { useRoute, useRouter } from "vue-router"
-import { responsiveStorageNameSpace } from "@/config"
+import { responsiveStorageNameSpace } from "@app/data-platform/config"
 import { useSettingStoreHook } from "@app/data-platform/store/settings"
 import { useMultiTagsStoreHook } from "@app/data-platform/store/multiTags"
 import { isEqual, isBoolean, storageLocal, toggleClass, hasClass } from "@pureadmin/utils"

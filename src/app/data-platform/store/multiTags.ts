@@ -1,9 +1,9 @@
 import { defineStore } from "pinia"
-import store from "@/store"
-import { routerArrays } from "@app/data-platform/layout/types"
-import { multiType, positionType } from "./types"
-import { responsiveStorageNameSpace } from "@/config"
 import { isEqual, isBoolean, isUrl, storageLocal } from "@pureadmin/utils"
+import { responsiveStorageNameSpace } from "@app/data-platform/config"
+import { routerArrays } from "@app/data-platform/layout/types"
+import store from "@/store"
+import { multiType, positionType } from "./types"
 
 export const useMultiTagsStore = defineStore({
   id: "pure-multiTags",
